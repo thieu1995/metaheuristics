@@ -15,7 +15,7 @@
 # Notes
 * This repository includes all optimization algorithms coded in python (Numpy) in my research time
 * If you want to know how to implement optimization with neural networks, take a look at this repos:
-    * https://github.com/thieunguyen5991/prediction_flnn
+    * https://github.com/chasebk/code_FLNN
 
 * If you see my code and data useful and use it, please cites us here
 
