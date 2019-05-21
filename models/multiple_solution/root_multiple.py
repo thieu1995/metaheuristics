@@ -38,6 +38,16 @@ class RootAlgo(object):
                 if solution[i] > self.domain_range[1]:
                     solution[i] = self.domain_range[1]
 
+    def _amend_solution_and_return__(self, solution=None):
+        temp = deepcopy(solution)
+        for i in range(self.problem_size):
+            if solution[i] < self.domain_range[0]:
+                temp[i] = self.domain_range[0]
+            else:
+                if solution[i] > self.domain_range[1]:
+                    temp[i] = self.domain_range[1]
+        return temp
+
     def _train__(self):
         pass
 

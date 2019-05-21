@@ -1,19 +1,19 @@
-from models.multiple_solution.bio_inspired.EPO import BaseEPO
+from models.multiple_solution.swarm_based.PFA import BasePFA
 from utils.FunctionUtil import square_function
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 10,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
     "objective_func": square_function
 }
-epo_paras = {
-    "epoch": 1000,
-    "pop_size": 200
+pfa_paras = {
+    "epoch": 500,
+    "pop_size": 100
 }
 
 ## Run model
-md = BaseEPO(root_algo_paras=root_paras, epo_paras=epo_paras)
+md = BasePFA(root_algo_paras=root_paras, pfa_paras=pfa_paras)
 md._train__()
 
