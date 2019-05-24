@@ -5,13 +5,13 @@ sys.path.insert(0,"D:\metaheuristics\models")
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-10, 10],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": whale_f11
+    "objective_func": whale_f1
 }
 two_paras = {
     "epoch": 500,
-    "pop_size": 50,
+    "pop_size": 100,
 }
 
 ## Run model

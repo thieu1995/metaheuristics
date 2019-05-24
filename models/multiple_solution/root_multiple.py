@@ -21,7 +21,7 @@ class RootAlgo(object):
     def _fitness_model__(self, solution=None, minmax=0):
         """ Assumption that objective function always return the original value """
         return self.objective_func(solution, self.problem_size) if minmax == 0 \
-            else 1.0 / ( self.objective_func(solution, self.problem_size) + 1.0)
+            else 1.0 / self.objective_func(solution, self.problem_size)
 
     def _fitness_encoded__(self, encoded=None, id_pos=None, minmax=0):
         return self._fitness_model__(solution=encoded[id_pos], minmax=minmax)
