@@ -7,7 +7,7 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-10, 10],
     "print_train": True,
-    "objective_func": whale_f11
+    "objective_func": square_function
 }
 two_paras = {
     "epoch": 500,

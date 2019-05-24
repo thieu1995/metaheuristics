@@ -1,4 +1,4 @@
-from models.multiple_solution.physics_based.QSO import BaseQSO, LevyQSO, OppQSO, LevyOppQSO
+from models.multiple_solution.physics_based.QSO import BaseQSO, OppQSO, LevyQSO, LevyOppQSO
 from utils.FunctionUtil import *
 import sys 
 sys.path.insert(0,"D:\metaheuristics\models")
@@ -9,11 +9,11 @@ root_paras = {
     "print_train": True,
     "objective_func": whale_f1
 }
-two_paras = {
+qso_paras = {
     "epoch": 500,
     "pop_size": 100,
 }
 
 ## Run model
-md = OppQSO(root_algo_paras=root_paras, two_paras=two_paras)
+md = LevyOppQSO(root_algo_paras=root_paras, qso_paras=qso_paras)
 md._train__()

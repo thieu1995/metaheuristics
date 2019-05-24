@@ -1,23 +1,18 @@
 import numpy as np
-from copy import deepcopy
 from math import gamma
 from models.multiple_solution.root_multiple import RootAlgo
+
 class BaseQSO(RootAlgo):
     ID_POS = 0
     ID_FIT = 1
-    def __init__(self, root_algo_paras=None, two_paras = None):
+    def __init__(self, root_algo_paras=None, qso_paras = None):
         RootAlgo.__init__(self, root_algo_paras)
-        self.epoch =  two_paras["epoch"]
-        self.pop_size = two_paras["pop_size"]
+        self.epoch =  qso_paras["epoch"]
+        self.pop_size = qso_paras["pop_size"]
 
-    def _create_solution__(self, minmax=0):
-        pos = np.random.uniform(self.domain_range[0], self.domain_range[1], (self.problem_size, 1))
-        fit = self._fitness_model__(solution=pos, minmax=minmax)
-        return [pos, fit]  
     def _calculate_queue_length__(self, t1, t2 , t3):
         """
         calculate length of each queue based on  t1, t2,t3
-        
         """
         n1 = (1/t1)/((1/t1) + (1/t2) + (1/t3))
         n2 = (1/t2)/((1/t1) + (1/t2) + (1/t3))
@@ -26,6 +21,7 @@ class BaseQSO(RootAlgo):
         q2 = int(n2*self.pop_size)
         q3 = self.pop_size - q1 - q2
         return q1, q2, q3
+
     def _update_bussiness_1__(self, pop, current_iter, max_iter):
         sorted_pop = sorted(pop, key = lambda x: x[1])
         s1, s2, s3 = sorted_pop[0:3]
@@ -86,7 +82,6 @@ class BaseQSO(RootAlgo):
                 A = A2
             else:
                 A = A3
-            
             if np.random.random() < pr[i]:
                 i1, i2 = np.random.choice(self.pop_size, 2, replace=False)
                 X1 = pop[i1][0]
@@ -121,9 +116,11 @@ class BaseQSO(RootAlgo):
             fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
             if fit < sorted_pop[i][1]:
                 sorted_pop[i] = [X_new, fit]
-        return sorted_pop    
+        return sorted_pop
+
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
+        sorted_pop = None
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop)
@@ -134,10 +131,31 @@ class BaseQSO(RootAlgo):
         print("best fit ", sorted_pop[0][1])
         print("best pos", sorted_pop[0][0])
 
+
 class LevyQSO(BaseQSO):
-    def __init__(self, root_algo_paras=None, two_paras = None):
-         BaseQSO.__init__(self, root_algo_paras, two_paras)
-    def _update_bussiness_2__(self, pop, current_iter):
+    def __init__(self, root_algo_paras=None, qso_paras = None):
+         BaseQSO.__init__(self, root_algo_paras, qso_paras)
+
+    def _levy_flight__(self, solution, A, current_iter):
+        # muy and v are two random variables which follow normal distribution
+        # sigma_muy : standard deviation of muy
+        beta = 1
+        sigma_muy = np.power(
+            gamma(1 + beta) * np.sin(np.pi * beta / 2) / (gamma((1 + beta) / 2) * beta * np.power(2, (beta - 1) / 2)),
+            1 / beta)
+        # sigma_v : standard deviation of v
+        sigma_v = 1
+        muy = np.random.normal(0, sigma_muy)
+        v = np.random.normal(0, sigma_v)
+        s = muy / np.power(np.abs(v), 1 / beta)
+        D = self._create_solution__(minmax=self.ID_MIN_PROBLEM)[self.ID_POS]
+        LB = 0.01 * s * (solution - A)
+        levy = D * LB
+        # X_new = solution + 0.01*levy
+        # X_new = solution + 1.0/np.sqrt(current_iter+1)*np.sign(np.random.random()-0.5)*levy
+        return levy
+
+    def _update_bussiness_2__(self, pop=None, current_iter=None):
         sorted_pop = sorted(pop, key=lambda x:x[1])
         s1, s2, s3 = sorted_pop[0:3]
         A1, A2 , A3 = s1[0], s2[0], s3[0]
@@ -161,32 +179,18 @@ class LevyQSO(BaseQSO):
                 F1 = e*(X1-X2)
                 F2 = e*(A-X1)
                 if np.random.random() < cv:
-                    X_new = self.levy_flight(sorted_pop[i][0], A, current_iter)
+                    X_new = self._levy_flight__(sorted_pop[i][0], A, current_iter)
                     fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 else:
                     X_new = sorted_pop[i][0] + F2
                     fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 if fit < sorted_pop[i][1]:
                     sorted_pop[i] = [X_new, fit]
-        return sorted_pop      
-    def levy_flight(self, solution, A, current_iter):
-        #muy and v are two random variables which follow normal distribution
-        #sigma_muy : standard deviation of muy 
-        beta = 1
-        sigma_muy = np.power(gamma(1+beta)*np.sin(np.pi*beta/2)/(gamma((1+beta)/2)*beta*np.power(2,(beta-1)/2)), 1/beta)
-        #sigma_v : standard deviation of v
-        sigma_v = 1
-        muy = np.random.normal(0,sigma_muy)
-        v = np.random.normal(0, sigma_v)
-        s = muy/np.power(np.abs(v),1/beta)    
-        D = self._create_solution__(minmax=self.ID_MIN_PROBLEM)[self.ID_POS]
-        LB = 0.01*s*(solution- A)
-        levy = D*LB
-        #X_new = solution + 0.01*levy
-        #X_new = solution + 1.0/np.sqrt(current_iter+1)*np.sign(np.random.random()-0.5)*levy
-        return levy
+        return sorted_pop
+
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
+        sorted_pop = None
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop, current_iter)
@@ -196,52 +200,45 @@ class LevyQSO(BaseQSO):
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
         print("best fit ", sorted_pop[0][1])
         print("best pos", sorted_pop[0][0])
+
+
 class OppQSO(BaseQSO):
-    def __init__(self, root_algo_paras=None, two_paras = None):
-        BaseQSO.__init__(self, root_algo_paras, two_paras)
-    def opposition_based_replace(self, solution, A):
-        candidate = [self.domain_range[0] + self.domain_range[1] - A[i] + np.random.random()*(A[i] - solution[i]) for i in range(self.problem_size)]
-        return np.array(candidate)     
+    def __init__(self, root_algo_paras=None, qso_paras = None):
+        BaseQSO.__init__(self, root_algo_paras, qso_paras)
+
     def apply_opposition_based(self, sorted_pop, best):    
         a = 0.3
         num_change = int(self.pop_size*a)
         for i in range(self.pop_size-num_change,self.pop_size):
-            X_new = self.opposition_based_replace(sorted_pop[i][0], best)
+            X_new = self._create_opposition_solution__(sorted_pop[i][0], best)
             fitness = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
             if fitness < sorted_pop[i][1]:
                 sorted_pop[i] = [X_new, fitness]
         return sorted_pop
+
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
+        sorted_pop = None
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop)
             pop = self._update_bussiness_3__(pop)
             sorted_pop = sorted(pop, key=lambda x:x[1])
             sorted_pop = self.apply_opposition_based(sorted_pop, sorted_pop[0][0])
-            if(current_iter%50==0):
+            if(current_iter % 50 == 0):
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
         print("best fit ", sorted_pop[0][1])
         print("best pos", sorted_pop[0][0])
-        
-class LevyOppQSO(LevyQSO):
-    def __init__(self, root_algo_paras=None, two_paras = None):
-        LevyQSO.__init__(self, root_algo_paras, two_paras)
-    def opposition_based_replace(self, solution, A):
-        candidate = [self.domain_range[0] + self.domain_range[1] - A[i] + np.random.random()*(A[i] - solution[i]) for i in range(self.problem_size)]
-        return np.array(candidate)     
-    def apply_opposition_based(self, sorted_pop, best):    
-         #opposition-
-        a = 0.3
-        num_change = int(self.pop_size*a)
-        for i in range(self.pop_size-num_change,self.pop_size):
-            X_new = self.opposition_based_replace(sorted_pop[i][0], best)
-            fitness = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
-            if fitness < sorted_pop[i][1]:
-                sorted_pop[i] = [X_new, fitness]
-        return sorted_pop
+
+
+class LevyOppQSO(OppQSO, LevyQSO):
+    def __init__(self, root_algo_paras=None, qso_paras = None):
+        OppQSO.__init__(self, root_algo_paras, qso_paras)
+        LevyQSO.__init__(self, root_algo_paras, qso_paras)
+
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
+        sorted_pop = None
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop, current_iter)

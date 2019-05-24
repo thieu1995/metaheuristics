@@ -1,4 +1,5 @@
 import numpy as np
+from math import gamma
 from copy import deepcopy
 
 class RootAlgo(object):
@@ -45,6 +46,12 @@ class RootAlgo(object):
             if solution[i] > self.domain_range[1]:
                 solution[i] = self.domain_range[1]
         return temp
+
+    def _create_opposition_solution__(self, solution=None, g_best=None):
+        temp = [self.domain_range[0] + self.domain_range[1] - g_best[i] + np.random.random() * (g_best[i] - solution[i])
+                      for i in range(self.problem_size)]
+        return np.array(temp)
+
 
     def _train__(self):
         pass

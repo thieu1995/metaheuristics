@@ -1,4 +1,5 @@
 # In coding process
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.seterr.html
 
 ### Single Solution
 ```code

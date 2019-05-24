@@ -9,7 +9,7 @@ class BasePFA(RootAlgo):
 
     def __init__(self, root_algo_paras=None, pfa_paras = None):
         RootAlgo.__init__(self, root_algo_paras)
-        self.epoch =  pfa_paras["epoch"]
+        self.epoch = pfa_paras["epoch"]
         self.pop_size = pfa_paras["pop_size"]
 
     def _train__(self):
@@ -36,13 +36,15 @@ class BasePFA(RootAlgo):
             ## Update positions of members, check the bound and calculate new fitness
             pop_new = deepcopy(pop_past)
             for j in range(1, self.pop_size):
-                for k in range(1, self.pop_size):
-                    dist = np.linalg.norm(pop_new[k][self.ID_POS] - pop_new[j][self.ID_POS])
+                temp = deepcopy(pop_new[j][self.ID_POS])
 
-                    pop_new[j][self.ID_POS] += \
-                        alpha*np.random.uniform()* (pop_new[k][self.ID_POS] - pop_new[j][self.ID_POS]) + \
-                            beta*np.random.uniform()* (gbest_present[self.ID_POS] - pop_new[j][self.ID_POS]) +\
-                                np.random.uniform(-1, 1) * (1 - (i+1)*1.0/self.epoch)* dist
+                for k in range(1, self.pop_size):
+                    dist = np.linalg.norm(pop_new[k][self.ID_POS] - temp)
+                    t1 = alpha*np.random.uniform()* (pop_new[k][self.ID_POS] - temp)
+                    t2 = beta*np.random.uniform()* (gbest_present[self.ID_POS] - temp)
+                    t3 = np.random.uniform(-1, 1, self.problem_size) * (1 - (i+1)*1.0/self.epoch)* dist
+                    #print("t1: {}, t2: {}, t3: {}", t1, t2, t3)
+                    pop_new[j][self.ID_POS] += t1 + t2 + t3
                 pop_new[j][self.ID_POS] = self._amend_solution_and_return__(pop_new[j][self.ID_POS])
                 pop_new[j][self.ID_FIT] = self._fitness_model__(pop_new[j][self.ID_POS])
 
@@ -145,9 +147,9 @@ class LPFA(BasePFA):
         LB = 0.01 * s * (solution[self.ID_POS] - prey[self.ID_POS])
 
         levy = D[self.ID_POS] * LB
-        #return levy
-        x_new = solution[self.ID_POS] + levy
-        return x_new
+        return levy
+        #x_new = solution[self.ID_POS] + 1.0/np.sqrt(epoch+1) * np.sign(np.random.uniform() - 0.5) * levy
+        #return x_new
 
     def _train__(self):
         # Init pop and calculate fitness
