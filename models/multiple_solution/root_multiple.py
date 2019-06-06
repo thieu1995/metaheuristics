@@ -1,5 +1,4 @@
 import numpy as np
-from math import gamma
 from copy import deepcopy
 
 class RootAlgo(object):
@@ -42,7 +41,7 @@ class RootAlgo(object):
         temp = deepcopy(solution)
         for i in range(self.problem_size):
             if solution[i] < self.domain_range[0]:
-                solution[i] = np.random.uniform()
+                solution[i] = self.domain_range[0]
             if solution[i] > self.domain_range[1]:
                 solution[i] = self.domain_range[1]
         return temp
