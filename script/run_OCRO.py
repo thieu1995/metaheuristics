@@ -1,4 +1,4 @@
-from models.multiple_solution.bio_inspired.CRO import OCRO
+from models.multiple_solution.evolutionary_based.CRO import OCRO
 from utils.FunctionUtil import square_function
 
 ## Setting parameters

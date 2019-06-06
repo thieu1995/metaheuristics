@@ -1,4 +1,4 @@
-from models.multiple_solution.physics_based.QSO import BaseQSO, OppQSO, LevyQSO, LevyOppQSO
+from models.multiple_solution.human_based.QSO import LevyOppQSO
 from utils.FunctionUtil import *
 import sys 
 sys.path.insert(0,"D:\metaheuristics\models")

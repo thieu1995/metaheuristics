@@ -1,4 +1,4 @@
-from models.multiple_solution.bio_inspired.EPO import BaseEPO
+from models.multiple_solution.swarm_based.EPO import BaseEPO
 from utils.FunctionUtil import square_function
 
 ## Setting parameters
