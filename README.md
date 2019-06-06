@@ -4,7 +4,7 @@
 3. models: includes all algorithms 
     * single_solution: 
     * multiple_solution: 4 folders
-        * bio_inspired
+        * human_based
         * physics_based
         * swarm_based
         * evolutionary_based
@@ -37,33 +37,39 @@ None
 ### Multiple Solution
 1._. Physics-based
 ```code
-None
+1. (done) TWO (2016)- A novel meta-heuristic algorithm: tug of war optimization
+
+...
 ```
 
 2._. Evolutionary-based
 ```code 
-1. GA - Genetic algorithms
-2. DE - Differential evolution: A survey of the state-of-the-art
+1. (done) GA (1989) - Genetic algorithms in search
+2. (done) DE (2006) - Differential evolution: A survey of the state-of-the-art
+3. (done) CRO (2013) - The Coral Reefs Optimization Algorithm: A Novel Metaheuristic for Efficiently Solving Optimization Problems
+4. (done) OCRO (2019) - In reviewing process
+
 ...
 ```
 
 3._. Swarm-based
 ```code
-1. PSO - Particle swarm optimization
-2. CSO - Cat swarm optimization
-3. WOA - The whale optimization algorithm
-4. BFO - Bacterial foraging optimization
-5. ABFOLS - An adaptive bacterial foraging optimization algorithm with lifecycle and social learning
-6. ABC - Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems
+1. (done) PSO (1995) - Particle swarm optimization
+2. (done) CSO (2006) - Cat swarm optimization
+3. (done) WOA (2016) - The whale optimization algorithm
+4. (done) BFO (2002) - Biomimicry of bacterial foraging for distributed optimization and control
+5. (done) ABFOLS (2012) - An adaptive bacterial foraging optimization algorithm with lifecycle and social learning
+6. (done) ABC (2007) - Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems
+7. (done) PFA (2019) - A new meta-heuristic optimizer: Pathfinder algorithm
+
 ...
 ```
 
-4._. Bio-inspired 
+4._. Human activity-based
 ```code
-1. CRO: The Coral Reefs Optimization Algorithm: A Novel Metaheuristic for Efficiently Solving Optimization Problems
-2. OCRO: In reviewing process
-3. EPO - Emperor penguin optimizer: A bio-inspired algorithm for engineering problems (Kind of fake paper, bad results)
-...
+1. (done) - QSA (2018) - Queuing search algorithm: A novel metaheuristic algorithm for solving engineering optimization problems
+
+... 
 ```
 
 #### The list will continue update...
