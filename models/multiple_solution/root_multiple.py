@@ -34,9 +34,23 @@ class RootAlgo(object):
         for i in range(self.problem_size):
             if solution[i] < self.domain_range[0]:
                 solution[i] = self.domain_range[0]
-            else:
-                if solution[i] > self.domain_range[1]:
-                    solution[i] = self.domain_range[1]
+            if solution[i] > self.domain_range[1]:
+                solution[i] = self.domain_range[1]
+
+    def _amend_solution_and_return__(self, solution=None):
+        temp = deepcopy(solution)
+        for i in range(self.problem_size):
+            if solution[i] < self.domain_range[0]:
+                solution[i] = self.domain_range[0]
+            if solution[i] > self.domain_range[1]:
+                solution[i] = self.domain_range[1]
+        return temp
+
+    def _create_opposition_solution__(self, solution=None, g_best=None):
+        temp = [self.domain_range[0] + self.domain_range[1] - g_best[i] + np.random.random() * (g_best[i] - solution[i])
+                      for i in range(self.problem_size)]
+        return np.array(temp)
+
 
     def _train__(self):
         pass
