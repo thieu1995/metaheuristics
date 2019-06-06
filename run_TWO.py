@@ -1,4 +1,4 @@
-from models.multiple_solution.physics_based.TWO import BaseTWO, OTWO, LevyTWO
+from models.multiple_solution.physics_based.TWO1 import BaseTWO, OTWO, LevyTWO
 from utils.FunctionUtil import *
 import sys 
 sys.path.insert(0,"D:\metaheuristics\models")
