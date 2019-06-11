@@ -52,7 +52,7 @@ None
 11. no - BOA (2019) -16 cites -  Butterfly optimization algorithm: a novel approach for global optimization
 12. check - SOA (2019) - 9 cites - Seagull optimization algorithm: Theory and its applications for large-scale industrial engineering problems
 13. check - TSO (2019) - 1 cites - The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems
-14. check - HHO (2019) - 10 cites - Harris Hawks optimization: Algorithm and applications
+14. check (done) - HHO (2019) - 11 cites - Harris Hawks optimization: Algorithm and applications
 15. fine - SSA (2019) - 17 cites - A novel nature-inspired algorithm for optimization: Squirrel search algorithm
 ...
 ```
