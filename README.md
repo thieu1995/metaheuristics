@@ -61,6 +61,7 @@ None
 5. (done) ABFOLS (2012) - An adaptive bacterial foraging optimization algorithm with lifecycle and social learning
 6. (done) ABC (2007) - Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems
 7. (done) PFA (2019) - A new meta-heuristic optimizer: Pathfinder algorithm
+8. check (done) - HHO (2019) - 11 cites - Harris Hawks optimization: Algorithm and applications
 
 ...
 ```
