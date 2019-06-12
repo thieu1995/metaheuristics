@@ -62,6 +62,7 @@ None
 6. (done) ABC (2007) - Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems
 7. (done) PFA (2019) - A new meta-heuristic optimizer: Pathfinder algorithm
 8. check (done) - HHO (2019) - 11 cites - Harris Hawks optimization: Algorithm and applications
+9. check - (done) SFO (2019) - 1 cites - The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems
 
 ...
 ```
