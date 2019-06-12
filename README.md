@@ -45,15 +45,16 @@ None
 5. (done) ABFOLS (2012) - An adaptive bacterial foraging optimization algorithm with lifecycle and social learning
 6. (done) ABC (2007) - Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems
 7. (done) PFA (2019) - A new meta-heuristic optimizer: Pathfinder algorithm
+8. check (done) - HHO (2019) - 11 cites - Harris Hawks optimization: Algorithm and applications
+9. check - (done) SFO (2019) - 1 cites - The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems
 
-8. MBF (2018) - 0 cites - Tackling global optimization problems with a novel algorithm – Mouth Brooding Fish algorithm
-9. VOA (2016) - 5 cites - Virulence Optimization Algorithm
-10. EPO (2018) - Emperor penguin optimizer: A bio-inspired algorithm for engineering problems (Kind of fake paper, bad results)
-11. no - BOA (2019) -16 cites -  Butterfly optimization algorithm: a novel approach for global optimization
-12. check - SOA (2019) - 9 cites - Seagull optimization algorithm: Theory and its applications for large-scale industrial engineering problems
-13. check - TSO (2019) - 1 cites - The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems
-14. check (done) - HHO (2019) - 11 cites - Harris Hawks optimization: Algorithm and applications
-15. fine - SSA (2019) - 17 cites - A novel nature-inspired algorithm for optimization: Squirrel search algorithm
+
+10. MBF (2018) - 0 cites - Tackling global optimization problems with a novel algorithm – Mouth Brooding Fish algorithm
+11. VOA (2016) - 5 cites - Virulence Optimization Algorithm
+12. EPO (2018) - Emperor penguin optimizer: A bio-inspired algorithm for engineering problems (Kind of fake paper, bad results)
+13. no - BOA (2019) -16 cites -  Butterfly optimization algorithm: a novel approach for global optimization
+14. check - SOA (2019) - 9 cites - Seagull optimization algorithm: Theory and its applications for large-scale industrial engineering problems
+16. fine - SSA (2019) - 17 cites - A novel nature-inspired algorithm for optimization: Squirrel search algorithm 
 ...
 ```
 
