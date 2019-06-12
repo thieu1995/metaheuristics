@@ -44,5 +44,6 @@ md._train__()
 ## Another comment on original paper, their "pp" parameter should be more lower.
 ## Because in fact, sardines population >> sailfish population (watch video above again)
 ##      About: pp = 0.001 or 0.0001
+## (Link: https://www.newscientist.com/article/2111013-sword-slashing-sailfish-hint-at-origins-of-cooperative-hunting/)
 
 
