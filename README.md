@@ -49,12 +49,20 @@ None
 9. check - (done) SFO (2019) - 1 cites - The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems
 
 
-10. MBF (2018) - 0 cites - Tackling global optimization problems with a novel algorithm – Mouth Brooding Fish algorithm
-11. VOA (2016) - 5 cites - Virulence Optimization Algorithm
-12. EPO (2018) - Emperor penguin optimizer: A bio-inspired algorithm for engineering problems (Kind of fake paper, bad results)
-13. no - BOA (2019) -16 cites -  Butterfly optimization algorithm: a novel approach for global optimization
-14. check - SOA (2019) - 9 cites - Seagull optimization algorithm: Theory and its applications for large-scale industrial engineering problems
-16. fine - SSA (2019) - 17 cites - A novel nature-inspired algorithm for optimization: Squirrel search algorithm 
+10. MBF (2018) - 5 cites - Tackling global optimization problems with a novel algorithm – Mouth Brooding Fish algorithm
+11. VOA (2016) - 4 cites - Virulence Optimization Algorithm
+12. EPO (2018) - 34 cites - Emperor penguin optimizer: A bio-inspired algorithm for engineering problems 
+13. no - BOA (2019) -19 cites -  Butterfly optimization algorithm: a novel approach for global optimization
+14. check - SOA (2019) - 10 cites - Seagull optimization algorithm: Theory and its applications for large-scale industrial engineering problems
+16. fine - SSA (2019) - 26 cites - A novel nature-inspired algorithm for optimization: Squirrel search algorithm 
+17. dont know - EPC (2019) - 0 cites - Emperor Penguins Colony: a New Metaheuristic Algorithm for Optimization
+18. dont know - SLO (2019) - 0 cites - Sea Lion Optimization Algorithm
+19. dont know - BFS (2019) - 0 cites - Birds foraging search: a novel population‑based algorithm for global optimization
+20. dont know - BMO (2014) - 74 cites - Bird mating optimizer: An optimization algorithm inspired by bird mating strategies
+21. dont know - CSA (2016) - 309 cites - A novel metaheuristic method for solving constrained engineering optimization problems: Crow search algorithm
+22. dont know - HOA (2018) - 5 cites - An optimization method: hummingbirds optimization algorithm
+23. dont know - STOA (2019) - 1 cites - STOA: A bio-inspired based optimization algorithm for industrial engineering problems
+
 ...
 ```
 
