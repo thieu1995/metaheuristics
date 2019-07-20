@@ -14,9 +14,19 @@ class BaseQSO(RootAlgo):
         """
         calculate length of each queue based on  t1, t2,t3
         """
-        n1 = (1/t1)/((1/t1) + (1/t2) + (1/t3))
-        n2 = (1/t2)/((1/t1) + (1/t2) + (1/t3))
-        n3 = (1/t3)/((1/t1) + (1/t2) + (1/t3))
+        #t1 = t1 * 1.0e+100
+        #t2 = t2 * 1.0e+100
+        #t3 = t3 * 1.0e+100
+        #print("t1",t1)
+        if t1 > 1.0e-6:
+            n1 = (1/t1)/((1/t1) + (1/t2) + (1/t3))
+            n2 = (1/t2)/((1/t1) + (1/t2) + (1/t3))
+            n3 = (1/t3)/((1/t1) + (1/t2) + (1/t3))
+        else:
+            n1 = 1/3
+            n2 = 1/3
+            n3 = 1/3
+            print("1")
         q1 = int(n1*self.pop_size)
         q2 = int(n2*self.pop_size)
         q3 = self.pop_size - q1 - q2
@@ -74,7 +84,11 @@ class BaseQSO(RootAlgo):
         #print("t1 {} , t2 {} , t3 {}".format(t1,t2,t3))
         q1, q2, q3 = self._calculate_queue_length__(t1, t2, t3)
         pr = [i/self.pop_size for i in range(1,self.pop_size+1)]
-        cv = t1/(t2+t3)
+        if t1 > 1.0e-005:
+            cv = t1/(t2+t3)
+        else:
+            print("yes")
+            cv = 1/2
         for i in range(self.pop_size):
             if i < q1:
                 A = A1
@@ -121,15 +135,19 @@ class BaseQSO(RootAlgo):
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
         sorted_pop = None
+        loss = []
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop)
             pop = self._update_bussiness_3__(pop)
             sorted_pop = sorted(pop, key=lambda x:x[1])
-            if(current_iter%50==0):
-                print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        print("best fit ", sorted_pop[0][1])
-        print("best pos", sorted_pop[0][0])
+            loss.append(sorted_pop[0][1])
+            if self.print_train:
+                if(current_iter%50==0):
+                    print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
+        #print("best fit ", sorted_pop[0][1])
+        #print("best pos", sorted_pop[0][0])
+        return sorted_pop[0][0], loss, sorted_pop[0][1]
 
 
 class LevyQSO(BaseQSO):
@@ -163,7 +181,10 @@ class LevyQSO(BaseQSO):
         #print("t1 {} , t2 {} , t3 {}".format(t1,t2,t3))
         q1, q2, q3 = self._calculate_queue_length__(t1, t2, t3)
         pr = [i/self.pop_size for i in range(1,self.pop_size+1)]
-        cv = t1/(t2+t3)
+        if t1  > 1.0e-6:
+            cv = t1/(t2+t3)
+        else: 
+            cv = 1/2
         for i in range(self.pop_size):
             if i < q1:
                 A = A1
@@ -239,13 +260,17 @@ class LevyOppQSO(OppQSO, LevyQSO):
     def _train__(self):
         pop = [self._create_solution__(minmax=self.ID_MIN_PROBLEM) for _ in range(self.pop_size)]
         sorted_pop = None
+        loss = []
         for current_iter in range(self.epoch):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop, current_iter)
             pop = self._update_bussiness_3__(pop)
             sorted_pop = sorted(pop, key=lambda x:x[1])
             sorted_pop = self.apply_opposition_based(sorted_pop, sorted_pop[0][0])
-            if(current_iter%50==0):
-                print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        print("best fit ", sorted_pop[0][1])
-        print("best pos", sorted_pop[0][0])
+            loss.append(sorted_pop[0][1])
+            if self.print_train:
+                if(current_iter%50==0):
+                    print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
+        # print("best fit ", sorted_pop[0][1])
+        # print("best pos", sorted_pop[0][0])
+        return sorted_pop[0][0], loss, sorted_pop[0][1]

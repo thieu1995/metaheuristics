@@ -108,5 +108,5 @@ class BaoWOA(RootAlgo):
             self.loss_train.append(gbest[self.ID_FIT])
             if self.print_train:
                 print("Epoch = {}, Fit = {}".format(i + 1, gbest[self.ID_FIT]))
-
-        return gbest[self.ID_POS], self.loss_train
+        #print(gbest[self.ID_POS])
+        return gbest[self.ID_POS], self.loss_train, gbest[self.ID_FIT]

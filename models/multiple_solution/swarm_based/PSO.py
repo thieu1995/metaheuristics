@@ -9,9 +9,9 @@ class BasePSO(RootAlgo):
     ID_CURRENT_FITNESS = 3
     ID_PAST_FITNESS = 4
 
-    def __init__(self, root_algo_paras=None, pso_paras = None):
+    def __init__(self, root_algo_paras=None, pso_paras=None):
         RootAlgo.__init__(self, root_algo_paras)
-        self.epoch =  pso_paras["epoch"]
+        self.epoch = pso_paras["epoch"]
         self.pop_size = pso_paras["pop_size"]
         self.c1 = pso_paras["c_minmax"][0]
         self.c2 = pso_paras["c_minmax"][1]
@@ -71,7 +71,7 @@ class BasePSO(RootAlgo):
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(i+1, gbest[self.ID_CURRENT_FITNESS]))
 
-        return gbest[self.ID_CURRENT_POSITION], self.loss_train
+        return gbest[self.ID_CURRENT_POSITION], self.loss_train, gbest[self.ID_CURRENT_FITNESS]
 
 
 

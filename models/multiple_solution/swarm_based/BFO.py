@@ -215,4 +215,4 @@ class ABFOLS(RootAlgo):
             if self.print_train:
                 print("Epoch = {}, Pop_size = {}, >> Best fitness = {}".format(loop + 1, len(cells), 1.0 / self.global_best[self.ID_FITNESS]))
 
-        return self.global_best[self.ID_VECTOR], self.loss_train
+        return self.global_best[self.ID_VECTOR], self.loss_train, self.global_best[self.ID_FITNESS]

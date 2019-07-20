@@ -7,7 +7,7 @@ class BaseCRO(RootAlgo):
     This is standard version of CRO implement according to this paper:
         http://downloads.hindawi.com/journals/tswj/2014/739768.pdf
     """
-    HEALTH = 10000
+    HEALTH = 1000000
     def __init__(self, root_algo_paras=None, cro_paras = None):
         """
         # reef_size: size of the reef, NxM square grids, each  grid stores a solution
@@ -48,7 +48,7 @@ class BaseCRO(RootAlgo):
 
     # Init the coral reefs
     def _init_reef__(self):
-        reef = np.array([{'occupied' : 0, 'solution' : [], 'health': [self.HEALTH, self.HEALTH]} for i in range(self.pop_size)])
+        reef = np.array([{'occupied' : 0, 'solution' : [], 'health': self.HEALTH} for i in range(self.pop_size)])
         num_occupied = int(self.pop_size/(1 + self.po))
         occupied_position = random.sample(list(range(self.pop_size)), num_occupied)
         for i in (occupied_position):
@@ -150,7 +150,7 @@ class BaseCRO(RootAlgo):
         return new_sol.tolist()
 
     def _train__(self):
-        best_train = {"occupied": 0, "solution": None, "health": [self.HEALTH, self.HEALTH]}
+        best_train = {"occupied": 0, "solution": None, "health": self.HEALTH}
         self._init_reef__()
         for j in range(0, self.epoch):
             self._broadcast_spawning_brooding__()
@@ -168,7 +168,7 @@ class BaseCRO(RootAlgo):
                 print("> Epoch {}: Best training fitness {}".format(j + 1, best_train["health"]))
             self.loss_train.append(best_train["health"])
 
-        return best_train["solution"], self.loss_train
+        return best_train["solution"], self.loss_train, best_train['health']
 
 
 class OCRO(BaseCRO):
@@ -182,7 +182,7 @@ class OCRO(BaseCRO):
         self.restart_count = ocro_paras["restart_count"]
 
     def __local_seach__(self):
-        reef = np.array([{'occupied' : 0, 'solution' : [], 'health': [self.HEALTH, self.HEALTH]} for i in range(self.pop_size)])
+        reef = np.array([{'occupied' : 0, 'solution' : [], 'health': self.HEALTH} for i in range(self.pop_size)])
         num_occupied = int(self.pop_size/(1 + self.po))
         occupied_position = random.sample(list(range(self.pop_size)), num_occupied)
         for i in (occupied_position):
@@ -232,7 +232,7 @@ class OCRO(BaseCRO):
                 self.reef[i]['occupied'] = 0
 
     def _train__(self):
-        best_train = {"occupied": 0, "solution": None, "health": [self.HEALTH, self.HEALTH]}
+        best_train = {"occupied": 0, "solution": None, "health": self.HEALTH}
         self._init_reef__()
         self.best_sol = np.array(self.reef[self.occupied_position[0]]['solution']).copy()
         reset_count = 0
