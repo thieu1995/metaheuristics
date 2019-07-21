@@ -6,11 +6,11 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C4
+    "objective_func": C1
 }
 abfols_paras = {
     "epoch": 1000,
-    "pop_size": 100,
+    "pop_size": 250,
     "Ci": [0.1, 0.001],         # C_s (start), C_e (end)  -=> step size # step size in BFO
     "Ped": 0.25,                  # p_eliminate
     "Ns": 4,                      # swim_length

@@ -1,17 +1,17 @@
 from models.multiple_solution.evolutionary_based.CRO import BaseCRO
-from utils.FunctionUtil import square_function
+from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-1, 1],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C21
 }
 
 cro_paras = {
-    "epoch": 100,
-    "pop_size": 250,
+    "epoch": 500,
+    "pop_size": 100,
     "G": [0.02, 0.2],
     "GCR": 0.1,
     "po": 0.4,

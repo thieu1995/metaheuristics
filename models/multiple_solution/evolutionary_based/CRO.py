@@ -257,4 +257,4 @@ class OCRO(BaseCRO):
                 print("> Epoch {}: Best training fitness {}".format(j + 1, best_train["health"]))
             self.loss_train.append(best_train["health"])
 
-        return best_train["solution"], self.loss_train
+        return best_train["solution"], self.loss_train, best_train["health"]

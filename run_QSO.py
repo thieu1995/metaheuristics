@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C20
+    "objective_func": C12
 }
 qso_paras = {
     "epoch": 500,

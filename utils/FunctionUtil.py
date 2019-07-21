@@ -216,11 +216,11 @@ def CEC_1(solution=None, problem_size=None, shift=0):
     f(x*) = 100
     """
     res = 0
-    constant = np.power(10, 6)
+    constant = 10 ** 6
     dim = len(solution)
     for i in range(dim):
-        res += np.power(constant, i/dim) * np.square((solution[i] - shift))
-    return res 
+        res += (constant ** (i/dim)) * np.square((solution[i] - shift))
+    return res
 
 
 def CEC_2(solution=None, problem_size=None, shift=0):
@@ -295,9 +295,9 @@ def CEC_6(solution=None, problem_size=None, shift=0):
     B = 0
     for i in range(dim):
         for k in range(kmax + 1):
-            A += np.power(a, k) * np.cos(2 * np.pi * np.power(b, k) * (x[i] + 0.5))
+            A += (a ** k) * np.cos(2 * np.pi * (b ** k) * (x[i] + 0.5))
     for k in range(kmax + 1):
-        B += np.power(a, k) * np.cos(2 * np.pi * np.power(b, k) * 0.5)
+        B += (a ** k) * np.cos(2 * np.pi * (b ** k) * 0.5)
     res = A - dim * B
     return res 
 
@@ -357,10 +357,10 @@ def CEC_10(solution=None, problem_size=None, shift=0):
     B = 0
     for i in range(dim):
         temp = 1
-        for j in range(32):
-            temp += i * (np.abs(np.power(2, j + 1) * x[i] 
-                    - round(np.power(2, j + 1) * x[i]))) / np.power(2, j)
-        A *= np.power(temp, 10 / np.power(dim, 1.2))
+        for j in range(16):
+            temp += i * (np.abs((2 ** j + 1) * x[i]
+                    - round((2 ** j + 1) * x[i]))) / (2 ** j)
+        A *= (temp ** (10 / (dim ** 1.2)))
     B = 10 / np.square(dim) 
     res = B*A - B
     return res 
