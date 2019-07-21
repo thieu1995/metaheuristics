@@ -1,5 +1,4 @@
 import numpy as np 
-import matplotlib as plt
 import pickle as pkl
 from models.multiple_solution.swarm_based.WOA import BaoWOA
 from models.multiple_solution.swarm_based.PSO import BasePSO
@@ -26,8 +25,9 @@ run_times = 15
 problem_size = 30
 epoch = 500
 pop_size = 100
-algo_dicts = {'WOA': BaoWOA, 'QSO': BaseQSO, 'IQSO': LevyOppQSO}
-                # GA': BaseGA}#, ,
+algo_dicts = {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
+		#{'WOA': BaoWOA, 'QSO': BaseQSO, 'IQSO': LevyOppQSO}
+                # GA': BaseGA}#,
                 #  'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'TWO': BaseTWO,
 fun_list = [C1, C2, C3, C4, C5, C6, C7, C8,
             C9, C10, C11, C12, C13, C14, C15,
@@ -60,7 +60,7 @@ for name, Algo in algo_dicts.items():
                 "problem_size": problem_size,
                 "domain_range": [-100, 100],
                 "print_train": False,
-                "objective_func": fun_list[20 + i]
+                "objective_func": fun_list[i]
             }
 
             if name == 'GA':
@@ -182,8 +182,8 @@ for name, Algo in algo_dicts.items():
             pkl.dump(list_best_fit, fo_fit, pkl.HIGHEST_PROTOCOL)
 
     res[name] = {'std': std_list, 'mean': mean_list, 'worst': worst_list, 'best': best_list}
-with open('./history/overall/res_woa_qso_iqso.csv', 'w') as f:
+with open('./history/overall/res_abc_cro_abfol.csv', 'w') as f:
     for k, v in res.items():
         f.write(k + ',' + str(v) + '\n')
-with open('./history/overall/res_woa_qso_iqso.pkl', 'wb') as f:
+with open('./history/overall/res_abc_cro_abfol.pkl', 'wb') as f:
     pkl.dump(res, f, pkl.HIGHEST_PROTOCOL)
