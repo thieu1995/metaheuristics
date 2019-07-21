@@ -25,7 +25,7 @@ run_times = 15
 problem_size = 30
 epoch = 500
 pop_size = 100
-algo_dicts = 	{'QSO': BaseQSO}
+algo_dicts = 	{'IQSO': LevyOppQSO}
 # {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
                 # GA': BaseGA}#,
                 #  'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'TWO': BaseTWO,

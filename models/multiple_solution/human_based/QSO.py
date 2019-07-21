@@ -262,7 +262,7 @@ class LevyOppQSO(OppQSO, LevyQSO):
         sorted_pop = None
         loss = []
         for current_iter in range(self.epoch):
-            st = time.time()
+           # st = time.time()
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop, current_iter)
             pop = self._update_bussiness_3__(pop)
@@ -272,7 +272,7 @@ class LevyOppQSO(OppQSO, LevyQSO):
             if self.print_train:
                 if(current_iter%50==0):
                     print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-            print("time ", time.time() - st)
+           # print("time ", time.time() - st)
         # print("best fit ", sorted_pop[0][1])
         # print("best pos", sorted_pop[0][0])
         return sorted_pop[0][0], loss, sorted_pop[0][1]
