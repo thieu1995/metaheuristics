@@ -1,12 +1,12 @@
 from models.multiple_solution.swarm_based.PSO import BasePSO
-from utils.FunctionUtil import square_function
+from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C1s
 }
 pso_paras = {
     "epoch": 100,

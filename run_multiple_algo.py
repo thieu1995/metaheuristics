@@ -60,7 +60,7 @@ for name, Algo in algo_dicts.items():
                 "problem_size": problem_size,
                 "domain_range": [-100, 100],
                 "print_train": False,
-                "objective_func": fun_list[20 + i]
+                "objective_func": fun_list[i]
             }
 
             if name == 'GA':
