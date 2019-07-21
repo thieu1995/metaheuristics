@@ -357,7 +357,7 @@ def CEC_10(solution=None, problem_size=None, shift=0):
     B = 0
     for i in range(dim):
         temp = 1
-        for j in range(16):
+        for j in range(8):
             temp += i * (np.abs((2 ** j + 1) * x[i]
                     - round((2 ** j + 1) * x[i]))) / (2 ** j)
         A *= (temp ** (10 / (dim ** 1.2)))

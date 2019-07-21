@@ -25,8 +25,8 @@ run_times = 15
 problem_size = 30
 epoch = 500
 pop_size = 100
-algo_dicts = {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
-		#{'WOA': BaoWOA, 'QSO': BaseQSO, 'IQSO': LevyOppQSO}
+algo_dicts = 	{'QSO': BaseQSO}
+# {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
                 # GA': BaseGA}#,
                 #  'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'TWO': BaseTWO,
 fun_list = [C1, C2, C3, C4, C5, C6, C7, C8,
@@ -41,6 +41,7 @@ global_min = [100, 200, 300, 400, 500, 600, 700,
               2600, 2700, 2800, 2900, 3000]
 # run each algo 15 time with 30 different benmark functions
 res = {}
+overall_name = ""
 for name, Algo in algo_dicts.items():
     std_list = []
     mean_list = []
@@ -180,10 +181,11 @@ for name, Algo in algo_dicts.items():
 
         with open(path_file_best_fit + ".pkl", 'wb') as fo_fit:
             pkl.dump(list_best_fit, fo_fit, pkl.HIGHEST_PROTOCOL)
-
+    overall_name += name + "_"
+    overall_path = './history/overall/' + overall_name
     res[name] = {'std': std_list, 'mean': mean_list, 'worst': worst_list, 'best': best_list}
-with open('./history/overall/res_abc_cro_abfol.csv', 'w') as f:
+with open(overall_path + '.csv', 'w') as f:
     for k, v in res.items():
         f.write(k + ',' + str(v) + '\n')
-with open('./history/overall/res_abc_cro_abfol.pkl', 'wb') as f:
+with open(overall_path + '.pkl', 'wb') as f:
     pkl.dump(res, f, pkl.HIGHEST_PROTOCOL)
