@@ -230,7 +230,7 @@ class OppQSO(BaseQSO):
     def apply_opposition_based(self, sorted_pop, best):    
         a = 0.3
         num_change = int(self.pop_size*a)
-        for i in range(self.pop_size-num_change,self.pop_size):
+        for i in range(self.pop_size - num_change, self.pop_size):
             X_new = self._create_opposition_solution__(sorted_pop[i][0], best)
             fitness = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
             if fitness < sorted_pop[i][1]:

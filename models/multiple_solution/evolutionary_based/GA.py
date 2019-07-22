@@ -69,7 +69,7 @@ class BaseGA(RootAlgo):
 
 
     def _train__(self):
-        best_train = [None, -1 ]
+        best_train = [None, -1]
         pop = [self._create_solution__(minmax=1) for _ in range(self.pop_size)]
 
         for j in range(0, self.epoch):
