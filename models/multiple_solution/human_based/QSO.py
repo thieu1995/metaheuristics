@@ -216,8 +216,8 @@ class LevyQSO(BaseQSO):
             pop = self._update_bussiness_1__(pop, current_iter, self.epoch)
             pop = self._update_bussiness_2__(pop, current_iter)
             pop = self._update_bussiness_3__(pop)
-            sorted_pop = sorted(pop, key=lambda x:x[1])
-            if(current_iter%50==0):
+            sorted_pop = sorted(pop, key=lambda x: x[1])
+            if(current_iter % 50 == 0):
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
         print("best fit ", sorted_pop[0][1])
         print("best pos", sorted_pop[0][0])
