@@ -12,7 +12,7 @@ class AlgoInfor:
         self.loss = []      
         self.best_fit = []
 
-algos = ['PSO', 'ABFOLS', 'CRO', 'ABC', 'QSO']
+algos = ['PSO', 'ABFOLS', 'CRO', 'ABC', 'WOA', 'QSO']
 path_loss = './history/loss/'
 path_best_fit = './history/best_fit/'
 algo_dict = {}
@@ -51,4 +51,4 @@ with open('./history/overall/algo_dict_info.pkl', 'wb') as f:
 with open('./history/overall/algo_dict_info.pkl', 'rb') as f:
     alf = pkl.load(f)
 
-# print(alf['PSO'].name)
+print(alf['PSO'].name)
