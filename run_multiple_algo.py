@@ -1,4 +1,4 @@
-import numpy as np 
+import numpy as np
 import pickle as pkl
 from models.multiple_solution.swarm_based.WOA import BaoWOA
 from models.multiple_solution.swarm_based.PSO import BasePSO
@@ -25,7 +25,7 @@ run_times = 15
 problem_size = 30
 epoch = 500
 pop_size = 100
-algo_dicts = 	{'IQSO': LevyOppQSO}
+algo_dicts = {'GA': BaseGA}
 # {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
                 # GA': BaseGA}#,
                 #  'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'TWO': BaseTWO,
@@ -48,7 +48,7 @@ for name, Algo in algo_dicts.items():
     worst_list = []
     best_list = []
     print("-----------------------------------")
-    for i in range(len(fun_list)):
+    for i in range(23, len(fun_list)):
         list_best_fit = []
         gbest_fit = np.inf
         gworst_fit = np.inf
@@ -141,7 +141,7 @@ for name, Algo in algo_dicts.items():
 
             elif name == 'IQSO':
                 algo_paras = {
-                    "epoch": pop_size,
+                    "epoch": epoch,
                     "pop_size": pop_size,
                 }
                 md = Algo(root_paras, algo_paras)

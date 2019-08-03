@@ -1,0 +1,240 @@
+{ 
+\begin{table}[h!] 
+\begin{footnotesize}
+\begin{center} 
+   \begin{tabular}{ccccccccc}  
+       \hline 
+       Function & Criteria  & GA  & PSO  & ABC  & CRO  & WOA  & QSO  & IQSO \\ 
+       \hline 
+       \multirow{5}{1em}{F1}     & std            & 5.01E+05            & 9.91E+05            & 1.38E+08            & 1.67E+05            & 1.08E+03            & 3.09E+00            & \textbf{1.69E-02}  \\  
+                                & mean            & 4.59E+05            & 8.69E+05            & 1.26E+08            & 1.48E+05            & 8.64E+02            & 2.48E+00            & \textbf{1.36E-02}  \\  
+                                & worst            & 1.04E+06            & 2.05E+06            & 2.26E+08            & 2.88E+05            & 2.63E+03            & 1.06E+02            & \textbf{1.00E+02}  \\  
+                                & best            & 2.30E+05            & 2.20E+05            & 6.20E+07            & 2.30E+04            & 1.87E+02            & 1.00E+02            & \textbf{1.00E+02}  \\  
+                                & rank           & 5                       & 6                       & 7                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F2}     & std            & 1.33E+07            & 5.54E+07            & 2.38E+10            & 1.00E+06            & 4.29E+03            & 9.09E+02            & \textbf{2.02E+00}  \\  
+                                & mean            & 1.27E+07            & 4.43E+07            & 2.34E+10            & 1.00E+06            & 3.05E+03            & 7.82E+02            & \textbf{1.72E+00}  \\  
+                                & worst            & 2.22E+07            & 1.04E+08            & 2.94E+10            & 1.00E+06            & 1.20E+04            & 2.01E+03            & \textbf{2.04E+02}  \\  
+                                & best            & 8.19E+06            & 7.69E+06            & 1.31E+10            & 1.00E+06            & 4.79E+02            & 4.31E+02            & \textbf{2.00E+02}  \\  
+                                & rank           & 5                       & 6                       & 8                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F3}     & std            & 2.75E+03            & 8.96E+03            & 5.04E+04            & 1.33E+03            & 1.27E+02            & 3.10E-03            & \textbf{1.70E-03}  \\  
+                                & mean            & 1.41E+03            & 8.62E+03            & 4.94E+04            & 4.96E+02            & 1.00E+02            & 2.70E-03            & \textbf{9.00E-04}  \\  
+                                & worst            & 1.00E+04            & 1.43E+04            & 6.05E+04            & 5.34E+03            & 6.34E+02            & 3.00E+02            & \textbf{3.00E+02}  \\  
+                                & best            & 3.22E+02            & 4.79E+03            & 2.18E+04            & 3.03E+02            & 3.11E+02            & 3.00E+02            & \textbf{3.00E+02}  \\  
+                                & rank           & 5                       & 6                       & 7                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+   \end{tabular} 
+\end{center} 
+\end{footnotesize} 
+\caption{Result and comparison of different algorithms based on several metrics for multimodal functions} 
+\label{tb:} 
+\end{table} 
+} 
+{ 
+\begin{table}[h!] 
+\begin{footnotesize}
+\begin{center} 
+   \begin{tabular}{ccccccccc}  
+       \hline 
+       Function & Criteria  & GA  & PSO  & ABC  & CRO  & WOA  & QSO  & IQSO \\ 
+       \hline 
+       \multirow{5}{1em}{F4}     & std            & 6.16E+01            & 8.26E+01            & 3.02E+03            & 7.40E+01            & \textbf{5.00E-04}            & 3.30E+01            & 2.00E-03  \\  
+                                & mean            & 6.13E+01            & 6.87E+01            & 2.96E+03            & 6.56E+01            & \textbf{4.00E-04}            & 2.94E+01            & 1.00E-03  \\  
+                                & worst            & 4.71E+02            & 5.63E+02            & 4.31E+03            & 5.46E+02            & \textbf{4.00E+02}            & 4.85E+02            & 4.00E+02  \\  
+                                & best            & 4.53E+02            & 4.09E+02            & 2.03E+03            & 4.19E+02            & \textbf{4.00E+02}            & 4.20E+02            & 4.00E+02  \\  
+                                & rank           & 4                       & 6                       & 8                       & 5                       & \textbf{1}                       & 3                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F5}     & std            & 1.59E+01            & 1.96E+01            & 2.00E+01            & 2.00E+01            & \textbf{4.55E-02}            & 2.05E+01            & 2.63E+00  \\  
+                                & mean            & 1.59E+01            & 1.95E+01            & 2.00E+01            & 2.00E+01            & \textbf{3.61E-02}            & 2.05E+01            & 2.62E+00  \\  
+                                & worst            & 5.17E+02            & 5.21E+02            & 5.20E+02            & 5.20E+02            & \textbf{5.00E+02}            & 5.21E+02            & 5.03E+02  \\  
+                                & best            & 5.15E+02            & 5.14E+02            & 5.20E+02            & 5.20E+02            & \textbf{5.00E+02}            & 5.20E+02            & 5.02E+02  \\  
+                                & rank           & 3                       & 5                       & 6                       & 7                       & \textbf{1}                       & 8                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F6}     & std            & 3.02E+00            & 1.18E+00            & 1.97E+01            & 5.29E+00            & 0.00E+00            & 2.78E+00            & \textbf{0.00E+00}  \\  
+                                & mean            & 3.01E+00            & 7.89E-01            & 1.97E+01            & 4.96E+00            & 0.00E+00            & 1.74E+00            & \textbf{0.00E+00}  \\  
+                                & worst            & 6.03E+02            & 6.03E+02            & 6.22E+02            & 6.08E+02            & 6.00E+02            & 6.08E+02            & \textbf{6.00E+02}  \\  
+                                & best            & 6.03E+02            & 6.00E+02            & 6.17E+02            & 6.01E+02            & 6.00E+02            & 6.00E+02            & \textbf{6.00E+02}  \\  
+                                & rank           & 5                       & 3                       & 8                       & 6                       & 2                       & 4                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F7}     & std            & 9.67E+00            & 1.70E+00            & 2.47E+02            & 9.82E-01            & 1.24E-01            & 7.27E-02            & \textbf{7.90E-03}  \\  
+                                & mean            & 9.63E+00            & 1.67E+00            & 2.46E+02            & 9.82E-01            & 7.26E-02            & 6.13E-02            & \textbf{4.40E-03}  \\  
+                                & worst            & 7.11E+02            & 7.02E+02            & 9.75E+02            & 7.01E+02            & 7.00E+02            & 7.00E+02            & \textbf{7.00E+02}  \\  
+                                & best            & 7.08E+02            & 7.01E+02            & 9.01E+02            & 7.01E+02            & 7.00E+02            & 7.00E+02            & \textbf{7.00E+02}  \\  
+                                & rank           & 6                       & 5                       & 8                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F8}     & std            & 1.58E+02            & 7.10E+01            & 1.60E+02            & 8.33E+01            & 2.90E-01            & 5.61E+01            & \textbf{0.00E+00}  \\  
+                                & mean            & 1.57E+02            & 6.75E+01            & 1.59E+02            & 8.06E+01            & 7.68E-02            & 5.08E+01            & \textbf{0.00E+00}  \\  
+                                & worst            & 9.78E+02            & 9.21E+02            & 9.92E+02            & 9.12E+02            & 8.01E+02            & 9.10E+02            & \textbf{8.00E+02}  \\  
+                                & best            & 9.38E+02            & 8.28E+02            & 9.17E+02            & 8.42E+02            & 8.00E+02            & 8.26E+02            & \textbf{8.00E+02}  \\  
+                                & rank           & 7                       & 5                       & 8                       & 6                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F9}     & std            & 1.56E+02            & 8.20E+01            & 1.56E+02            & 7.50E+01            & 2.84E-01            & 6.49E+01            & \textbf{0.00E+00}  \\  
+                                & mean            & 1.55E+02            & 7.88E+01            & 1.54E+02            & 7.28E+01            & 7.73E-02            & 6.21E+01            & \textbf{0.00E+00}  \\  
+                                & worst            & 1.08E+03            & 1.02E+03            & 1.11E+03            & 9.93E+02            & 9.01E+02            & 1.00E+03            & \textbf{9.00E+02}  \\  
+                                & best            & 1.04E+03            & 9.33E+02            & 1.01E+03            & 9.37E+02            & 9.00E+02            & 9.31E+02            & \textbf{9.00E+02}  \\  
+                                & rank           & 8                       & 6                       & 7                       & 5                       & 2                       & 4                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F10}     & std            & 3.84E+03            & 4.26E+03            & 3.74E+03            & 1.90E+03            & 3.82E+00            & 4.04E+03            & \textbf{8.00E-04}  \\  
+                                & mean            & 3.83E+03            & 4.20E+03            & 3.71E+03            & 1.84E+03            & 1.37E+00            & 3.97E+03            & \textbf{7.00E-04}  \\  
+                                & worst            & 5.18E+03            & 6.12E+03            & 5.64E+03            & 3.67E+03            & 1.01E+03            & 5.85E+03            & \textbf{1.00E+03}  \\  
+                                & best            & 3.95E+03            & 3.64E+03            & 4.03E+03            & 1.77E+03            & 1.00E+03            & 3.01E+03            & \textbf{1.00E+03}  \\  
+                                & rank           & 6                       & 8                       & 5                       & 3                       & 2                       & 7                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F11}     & std            & 3.78E+03            & 4.32E+03            & 4.04E+03            & 1.67E+03            & 6.47E-01            & 3.87E+03            & \textbf{9.00E-04}  \\  
+                                & mean            & 3.76E+03            & 4.23E+03            & 4.01E+03            & 1.58E+03            & 2.42E-01            & 3.76E+03            & \textbf{8.00E-04}  \\  
+                                & worst            & 5.68E+03            & 7.57E+03            & 5.93E+03            & 3.70E+03            & 1.10E+03            & 6.01E+03            & \textbf{1.10E+03}  \\  
+                                & best            & 4.36E+03            & 3.51E+03            & 4.04E+03            & 1.83E+03            & 1.10E+03            & 3.23E+03            & \textbf{1.10E+03}  \\  
+                                & rank           & 6                       & 8                       & 7                       & 3                       & 2                       & 5                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F12}     & std            & 2.41E+01            & 1.36E+01            & \textbf{5.50E-03}            & 1.08E-01            & 1.97E-01            & 5.10E+00            & 8.13E-02  \\  
+                                & mean            & 2.39E+01            & 1.31E+01            & \textbf{3.70E-03}            & 1.03E-01            & 1.05E-01            & 5.07E+00            & 3.64E-02  \\  
+                                & worst            & 1.23E+03            & 1.22E+03            & \textbf{1.20E+03}            & 1.20E+03            & 1.20E+03            & 1.21E+03            & 1.20E+03  \\  
+                                & best            & 1.22E+03            & 1.21E+03            & \textbf{1.20E+03}            & 1.20E+03            & 1.20E+03            & 1.20E+03            & 1.20E+03  \\  
+                                & rank           & 8                       & 7                       & \textbf{1}                       & 3                       & 4                       & 5                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F13}     & std            & 8.48E-01            & 6.86E-01            & 3.81E+00            & 6.18E-01            & \textbf{3.05E-01}            & 5.51E-01            & 5.02E-01  \\  
+                                & mean            & 8.43E-01            & 6.63E-01            & 3.80E+00            & 6.13E-01            & \textbf{2.89E-01}            & 5.48E-01            & 4.95E-01  \\  
+                                & worst            & 1.30E+03            & 1.30E+03            & 1.30E+03            & 1.30E+03            & \textbf{1.30E+03}            & 1.30E+03            & 1.30E+03  \\  
+                                & best            & 1.30E+03            & 1.30E+03            & 1.30E+03            & 1.30E+03            & \textbf{1.30E+03}            & 1.30E+03            & 1.30E+03  \\  
+                                & rank           & 6                       & 5                       & 8                       & 4                       & \textbf{1}                       & 3                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F14}     & std            & 6.18E-01            & \textbf{4.30E-01}            & 6.82E+01            & 7.65E-01            & 4.63E-01            & 4.90E-01            & 4.39E-01  \\  
+                                & mean            & 6.07E-01            & \textbf{4.15E-01}            & 6.80E+01            & 7.03E-01            & 4.60E-01            & 4.25E-01            & 4.38E-01  \\  
+                                & worst            & 1.40E+03            & 1.40E+03            & 1.48E+03            & 1.40E+03            & 1.40E+03            & 1.40E+03            & \textbf{1.40E+03}  \\  
+                                & best            & 1.40E+03            & 1.40E+03            & 1.46E+03            & 1.40E+03            & 1.40E+03            & \textbf{1.40E+03}            & 1.40E+03  \\  
+                                & rank           & 5                       & \textbf{1}                       & 8                       & 6                       & 4                       & 2                       & 3             \\  
+       \hline 
+       \multirow{5}{1em}{F15}     & std            & 1.69E+01            & 2.22E+01            & 2.08E+04            & 1.14E+01            & \textbf{5.52E-02}            & 1.28E+01            & 5.55E-02  \\  
+                                & mean            & 1.69E+01            & 2.09E+01            & 1.78E+04            & 1.05E+01            & \textbf{1.43E-02}            & 1.27E+01            & 2.08E-02  \\  
+                                & worst            & 1.52E+03            & 1.54E+03            & 4.88E+04            & 1.52E+03            & 1.50E+03            & 1.52E+03            & \textbf{1.50E+03}  \\  
+                                & best            & 1.52E+03            & 1.51E+03            & 4.65E+03            & 1.51E+03            & \textbf{1.50E+03}            & 1.51E+03            & 1.50E+03  \\  
+                                & rank           & 5                       & 6                       & 8                       & 3                       & \textbf{1}                       & 4                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F16}     & std            & 1.04E+01            & 4.81E+00            & 5.77E+00            & 2.94E+00            & \textbf{4.10E-03}            & 2.85E+00            & 2.80E+00  \\  
+                                & mean            & 1.04E+01            & 4.70E+00            & 5.72E+00            & 2.92E+00            & \textbf{1.50E-03}            & 2.79E+00            & 2.76E+00  \\  
+                                & worst            & 1.61E+03            & 1.61E+03            & 1.61E+03            & 1.60E+03            & \textbf{1.60E+03}            & 1.60E+03            & 1.60E+03  \\  
+                                & best            & 1.61E+03            & 1.60E+03            & 1.60E+03            & 1.60E+03            & \textbf{1.60E+03}            & 1.60E+03            & 1.60E+03  \\  
+                                & rank           & 8                       & 5                       & 7                       & 4                       & \textbf{1}                       & 3                       & 2             \\  
+       \hline 
+   \end{tabular} 
+\end{center} 
+\end{footnotesize} 
+\caption{Result and comparison of different algorithms based on several metrics for multimodal functions} 
+\label{tb:} 
+\end{table} 
+} 
+{ 
+\begin{table}[h!] 
+\begin{footnotesize}
+\begin{center} 
+   \begin{tabular}{ccccccccc}  
+       \hline 
+       Function & Criteria  & GA  & PSO  & ABC  & CRO  & WOA  & QSO  & IQSO \\ 
+       \hline 
+       \multirow{5}{1em}{F17}     & std            & 3.84E+04            & 2.92E+04            & 4.12E+06            & 2.91E+03            & 2.99E+02            & 6.38E+02            & \textbf{1.68E+01}  \\  
+                                & mean            & 3.19E+04            & 2.28E+04            & 2.98E+06            & 2.55E+03            & 2.43E+02            & 5.79E+02            & \textbf{1.20E+01}  \\  
+                                & worst            & 8.22E+04            & 7.24E+04            & 1.05E+07            & 7.84E+03            & 2.43E+03            & 2.75E+03            & \textbf{1.75E+03}  \\  
+                                & best            & 1.01E+04            & 7.00E+03            & 2.88E+05            & 2.55E+03            & 1.75E+03            & 1.84E+03            & \textbf{1.70E+03}  \\  
+                                & rank           & 6                       & 5                       & 7                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F18}     & std            & 3.54E+06            & 3.25E+04            & 2.32E+08            & 1.92E+04            & 1.21E+03            & 4.80E+01            & \textbf{2.43E+01}  \\  
+                                & mean            & 3.11E+06            & 2.81E+04            & 1.30E+08            & 1.17E+04            & 1.06E+03            & 4.71E+01            & \textbf{2.40E+01}  \\  
+                                & worst            & 6.59E+06            & 7.96E+04            & 7.70E+08            & 6.87E+04            & 3.85E+03            & 1.87E+03            & \textbf{1.83E+03}  \\  
+                                & best            & 1.13E+06            & 1.07E+04            & 7.15E+04            & 3.20E+03            & 2.12E+03            & 1.84E+03            & \textbf{1.82E+03}  \\  
+                                & rank           & 6                       & 5                       & 7                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F19}     & std            & 3.89E+03            & 1.85E+02            & 1.73E+06            & 2.71E+03            & \textbf{1.09E+01}            & 4.15E+01            & 1.20E+01  \\  
+                                & mean            & 3.02E+03            & 6.55E+01            & 1.02E+06            & 1.41E+03            & \textbf{1.02E+01}            & 2.52E+01            & 1.19E+01  \\  
+                                & worst            & 1.23E+04            & 2.61E+03            & 4.01E+06            & 9.42E+03            & 1.92E+03            & 2.05E+03            & \textbf{1.91E+03}  \\  
+                                & best            & 3.09E+03            & 1.92E+03            & 1.91E+03            & 1.91E+03            & \textbf{1.91E+03}            & 1.91E+03            & 1.91E+03  \\  
+                                & rank           & 6                       & 4                       & 7                       & 5                       & \textbf{1}                       & 3                       & 2             \\  
+       \hline 
+       \multirow{5}{1em}{F20}     & std            & 3.77E+04            & 2.31E+04            & 2.85E+09            & 6.03E+03            & 3.11E+02            & 1.30E+02            & \textbf{1.26E+01}  \\  
+                                & mean            & 2.25E+04            & 1.98E+04            & 1.98E+09            & 4.19E+03            & 2.16E+02            & 8.00E+01            & \textbf{1.22E+01}  \\  
+                                & worst            & 1.32E+05            & 5.31E+04            & 6.93E+09            & 1.46E+04            & 2.98E+03            & 2.45E+03            & \textbf{2.02E+03}  \\  
+                                & best            & 4.48E+03            & 8.00E+03            & 7.46E+04            & 2.30E+03            & 2.04E+03            & 2.02E+03            & \textbf{2.01E+03}  \\  
+                                & rank           & 6                       & 5                       & 7                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F21}     & std            & 2.83E+04            & 2.53E+04            & 1.79E+07            & 5.40E+03            & 2.30E+02            & 5.86E+02            & \textbf{5.54E+00}  \\  
+                                & mean            & 2.64E+04            & 2.22E+04            & 1.49E+07            & 4.61E+03            & 1.80E+02            & 4.82E+02            & \textbf{5.41E+00}  \\  
+                                & worst            & 4.34E+04            & 4.76E+04            & 4.32E+07            & 1.29E+04            & 2.73E+03            & 3.47E+03            & \textbf{2.11E+03}  \\  
+                                & best            & 1.13E+04            & 7.81E+03            & 4.44E+06            & 3.20E+03            & 2.13E+03            & 2.21E+03            & \textbf{2.10E+03}  \\  
+                                & rank           & 6                       & 5                       & 7                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F22}     & std            & 3.72E+03            & 4.38E+02            & 5.10E+05            & 4.84E+03            & 1.12E+01            & 5.18E+01            & \textbf{4.30E+00}  \\  
+                                & mean            & 1.36E+03            & 3.91E+02            & 1.34E+05            & 1.45E+03            & 1.06E+01            & 4.53E+01            & \textbf{4.06E+00}  \\  
+                                & worst            & 1.63E+04            & 3.04E+03            & 1.98E+06            & 2.09E+04            & 2.22E+03            & 2.30E+03            & \textbf{2.21E+03}  \\  
+                                & best            & 2.27E+03            & 2.34E+03            & 3.48E+03            & 2.22E+03            & 2.20E+03            & 2.22E+03            & \textbf{2.20E+03}  \\  
+                                & rank           & 5                       & 4                       & 7                       & 6                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+   \end{tabular} 
+\end{center} 
+\end{footnotesize} 
+\caption{Result and comparison of different algorithms based on several metrics for multimodal functions} 
+\label{tb:} 
+\end{table} 
+} 
+{ 
+\begin{table}[h!] 
+\begin{footnotesize}
+\begin{center} 
+   \begin{tabular}{ccccccccc}  
+       \hline 
+       Function & Criteria  & GA  & PSO  & ABC  & CRO  & WOA  & QSO  & IQSO \\ 
+       \hline 
+       \multirow{5}{1em}{F23}     & std            & 2.59E+02            & 2.88E+02            & 3.76E+02            & 2.56E+02            & 8.05E+00            & 1.80E+01            & \textbf{1.82E+00}  \\  
+                                & mean            & 2.59E+02            & 2.88E+02            & 3.75E+02            & 2.54E+02            & 7.11E+00            & 1.71E+01            & \textbf{1.82E+00}  \\  
+                                & worst            & 2.57E+03            & 2.61E+03            & 2.74E+03            & 2.60E+03            & 2.31E+03            & 2.33E+03            & \textbf{2.30E+03}  \\  
+                                & best            & 2.54E+03            & 2.55E+03            & 2.63E+03            & 2.49E+03            & 2.30E+03            & 2.31E+03            & \textbf{2.30E+03}  \\  
+                                & rank           & 5                       & 6                       & 7                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F24}     & std            & 1.51E+03            & 1.49E+03            & 1.54E+03            & 8.55E+02            & 3.58E+01            & 1.09E+03            & \textbf{7.86E-02}  \\  
+                                & mean            & 1.51E+03            & 1.45E+03            & 1.53E+03            & 8.38E+02            & 1.20E+01            & 1.04E+03            & \textbf{7.58E-02}  \\  
+                                & worst            & 4.05E+03            & 4.38E+03            & 4.17E+03            & 3.62E+03            & 2.54E+03            & 3.98E+03            & \textbf{2.40E+03}  \\  
+                                & best            & 3.71E+03            & 3.34E+03            & 3.63E+03            & 2.92E+03            & 2.40E+03            & 2.95E+03            & \textbf{2.40E+03}  \\  
+                                & rank           & 7                       & 6                       & 8                       & 3                       & 2                       & 4                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F25}     & std            & 2.88E+02            & 2.24E+02            & 2.58E+02            & 2.20E+02            & 3.94E+00            & 1.39E+02            & \textbf{5.31E-01}  \\  
+                                & mean            & 2.88E+02            & 2.24E+02            & 2.58E+02            & 2.20E+02            & 3.50E+00            & 1.18E+02            & \textbf{4.61E-01}  \\  
+                                & worst            & 2.80E+03            & 2.77E+03            & 2.77E+03            & 2.75E+03            & 2.51E+03            & 2.70E+03            & \textbf{2.50E+03}  \\  
+                                & best            & 2.77E+03            & 2.71E+03            & 2.73E+03            & 2.70E+03            & 2.50E+03            & 2.52E+03            & \textbf{2.50E+03}  \\  
+                                & rank           & 8                       & 5                       & 7                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F26}     & std            & 4.69E+02            & 4.49E+02            & 1.20E+03            & 4.40E+02            & 5.49E+00            & 5.25E+01            & \textbf{1.24E-01}  \\  
+                                & mean            & 4.67E+02            & 4.47E+02            & 1.20E+03            & 4.36E+02            & 5.06E+00            & 3.31E+01            & \textbf{1.21E-01}  \\  
+                                & worst            & 3.10E+03            & 3.17E+03            & 3.95E+03            & 3.13E+03            & 2.61E+03            & 2.78E+03            & \textbf{2.60E+03}  \\  
+                                & best            & 2.94E+03            & 2.99E+03            & 3.75E+03            & 2.94E+03            & 2.60E+03            & 2.61E+03            & \textbf{2.60E+03}  \\  
+                                & rank           & 6                       & 5                       & 8                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F27}     & std            & 7.94E+02            & 5.90E+02            & 7.90E+02            & 5.57E+02            & 1.65E+01            & 3.59E+02            & \textbf{1.20E+01}  \\  
+                                & mean            & 7.93E+02            & 5.87E+02            & 7.88E+02            & 5.57E+02            & 1.50E+01            & 3.59E+02            & \textbf{1.15E+01}  \\  
+                                & worst            & 3.54E+03            & 3.36E+03            & 3.54E+03            & 3.29E+03            & 2.73E+03            & 3.09E+03            & \textbf{2.72E+03}  \\  
+                                & best            & 3.44E+03            & 3.18E+03            & 3.40E+03            & 3.23E+03            & \textbf{2.71E+03}            & 3.05E+03            & 2.71E+03  \\  
+                                & rank           & 7                       & 5                       & 6                       & 4                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F28}     & std            & 4.07E+03            & 1.02E+03            & 2.61E+03            & 1.86E+03            & 3.68E+02            & 3.93E+02            & \textbf{1.90E+01}  \\  
+                                & mean            & 4.05E+03            & 9.55E+02            & 2.60E+03            & 1.85E+03            & 1.10E+02            & 3.93E+02            & \textbf{1.64E+01}  \\  
+                                & worst            & 7.63E+03            & 4.49E+03            & 5.74E+03            & 4.87E+03            & 4.22E+03            & 3.19E+03            & \textbf{2.84E+03}  \\  
+                                & best            & 6.27E+03            & 3.31E+03            & 5.01E+03            & 4.40E+03            & \textbf{2.80E+03}            & 3.19E+03            & 2.81E+03  \\  
+                                & rank           & 8                       & 4                       & 6                       & 5                       & 2                       & 3                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F29}     & std            & 1.28E+06            & 1.47E+06            & 8.41E+08            & 2.92E+04            & 1.60E+03            & 2.48E+02            & \textbf{1.99E+02}  \\  
+                                & mean            & 1.20E+06            & 1.31E+06            & 7.70E+08            & 2.90E+04            & 1.17E+03            & 2.44E+02            & \textbf{1.95E+02}  \\  
+                                & worst            & 1.97E+06            & 2.40E+06            & 1.64E+09            & 3.55E+04            & 6.78E+03            & 3.26E+03            & \textbf{3.11E+03}  \\  
+                                & best            & 1.90E+05            & 3.24E+03            & 2.32E+08            & 2.83E+04            & 3.12E+03            & 3.11E+03            & \textbf{2.99E+03}  \\  
+                                & rank           & 5                       & 6                       & 8                       & 4                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+       \multirow{5}{1em}{F30}     & std            & 8.33E+04            & 2.10E+04            & 3.40E+08            & 2.89E+05            & 1.25E+03            & 2.33E+02            & \textbf{2.23E+02}  \\  
+                                & mean            & 7.59E+04            & 1.83E+04            & 2.59E+08            & 2.24E+05            & 6.23E+02            & 2.33E+02            & \textbf{2.23E+02}  \\  
+                                & worst            & 1.30E+05            & 4.15E+04            & 9.56E+08            & 6.44E+05            & 7.57E+03            & 3.26E+03            & \textbf{3.23E+03}  \\  
+                                & best            & 1.77E+04            & 9.49E+03            & 4.78E+06            & 2.76E+04            & \textbf{3.04E+03}            & 3.23E+03            & 3.21E+03  \\  
+                                & rank           & 5                       & 4                       & 7                       & 6                       & 3                       & 2                       & \textbf{1}             \\  
+       \hline 
+   \end{tabular} 
+\end{center} 
+\end{footnotesize} 
+\caption{Result and comparison of different algorithms based on several metrics for multimodal functions} 
+\label{tb:} 
+\end{table} 
+} 

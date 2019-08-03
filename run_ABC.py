@@ -16,7 +16,7 @@ abc_paras = {
     "sites": [3, 1],                        # 3 bees (employed bees, onlookers and scouts), 1 good partition
 }
 
-## Run model
+# Run model
 md = BaseABC(root_algo_paras=root_paras, abc_paras=abc_paras)
 a, b, c = md._train__()
 print(c)

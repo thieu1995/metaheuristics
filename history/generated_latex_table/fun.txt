@@ -1,0 +1,34 @@
+\multirow{3}{2em}{Unimodal} & 1 & Rotated High Conditioned Elliptic Function & 100\\ 
+& 2 & Rotated Bent Cigar Function & 200\\ 
+& 3 & Rotated Discus Function & 300\\ 
+\hline 
+\multirow{13}{2em}{Unimodal} & 4 & Shifted and Rotated Rosenbrock’s Function & 400\\ 
+& 5 & Shifted and Rotated Ackley’s Function & 500\\ 
+& 6 & Shifted and Rotated Weierstrass Function & 600\\ 
+& 7 & Shifted and Rotated Griewank’s Function & 700\\ 
+& 8 & Shifted Rastrigin’s Function & 800\\ 
+& 9 & Shifted and Rotated Rastrigin’s Function & 900\\ 
+& 10 & Shifted Schwefel’s Function & 1000\\ 
+& 11 & Shifted and Rotated Schwefel’s Function & 1100\\ 
+& 12 & Shifted and Rotated Katsuura Function & 1200\\ 
+& 13 & Shifted and Rotated HappyCat Function & 1300\\ 
+& 14 & Shifted and Rotated HGBat Function & 1400\\ 
+& 15 & Shifted and Rotated Expanded Griewank’s plus Rosenbrock’s Function & 1500\\ 
+& 16 & Shifted and Rotated Expanded Scaffer’s F6 Function & 1600\\ 
+\hline 
+\multirow{6}{2em}{Unimodal} & 17 & Hybrid Function 1 (N=3) & 1700\\ 
+& 18 & Hybrid Function 2 (N=3) & 1800\\ 
+& 19 & Hybrid Function 3 (N=4) & 1900\\ 
+& 20 & Hybrid Function 4 (N=4) & 2000\\ 
+& 21 & Hybrid Function 5 (N=5) & 2100\\ 
+& 22 & Hybrid Function 6 (N=5) & 2200\\ 
+& 23 & Composition Function 1 (N=5) & 2300\\ 
+\hline 
+\multirow{8}{2em}{Unimodal} & 24 & Composition Function 2 (N=3) & 2400\\ 
+& 25 & Composition Function 3 (N=3) & 2500\\ 
+& 26 & Composition Function 4 (N=5) & 2600\\ 
+& 27 & Composition Function 5 (N=5) & 2700\\ 
+& 28 & Composition Function 6 (N=5) & 2800\\ 
+& 29 & Composition Function 7 (N=3) & 2900\\ 
+& 30 & Composition Function 8 (N=3) & 3000\\ 
+\hline 
