@@ -1,4 +1,5 @@
 import numpy as np
+
 """"
 Generate latex table of 30 benmark functions
 """
