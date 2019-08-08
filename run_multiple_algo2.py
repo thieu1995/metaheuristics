@@ -21,10 +21,10 @@ WOA - 2016
 QS0 - 2016
 IQSO
 """
-run_times = 1
-problem_size = 5
-epoch = 10
-pop_size = 20
+run_times = 15
+problem_size = 30
+epoch = 500
+pop_size = 100
 algo_dicts = {'GA': BaseGA}
 # {'ABFOLS': ABFOLS, 'CRO': BaseCRO, 'ABC': BaseABC}
                 # GA': BaseGA}#,
@@ -48,7 +48,7 @@ for name, Algo in algo_dicts.items():
     worst_list = []
     best_list = []
     print("-----------------------------------")
-    for i in range(0, len(fun_list)):
+    for i in range(23, len(fun_list)):
         list_best_fit = []
         gbest_fit = np.inf
         gworst_fit = np.inf
@@ -59,7 +59,7 @@ for name, Algo in algo_dicts.items():
             print("name {}, fun {}, time {}/{}".format(name, i, time, run_times))
             root_paras = {
                 "problem_size": problem_size,
-                "domain_range": [-10, 10],
+                "domain_range": [-100, 100],
                 "print_train": False,
                 "objective_func": fun_list[i]
             }

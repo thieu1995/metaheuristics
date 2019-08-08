@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from utils.FunctionUtil import cal_mean, cal_std
-from class_utils import AlgoInfor
+from utils.class_utils import AlgoInfor
 """
 Get all information (best fit of 15 runtimes and losses for the best run) of all algorithms.
 Save all information in  overall/algo_dict_info.pkl

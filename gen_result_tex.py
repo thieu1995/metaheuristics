@@ -5,7 +5,6 @@ import seaborn as sns
 import os
 import matplotlib.pyplot as plt
 from utils.FunctionUtil import cal_mean, cal_std
-from plot import AlgoInfor
 from decimal import Decimal
 """
 Generate unimodal, multimodal, hybrid, compostion result table 
