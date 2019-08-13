@@ -1,4 +1,4 @@
-from models.multiple_solution.swarm_based.WOA import BaseWOA, BaoWOA
+from models.multiple_solution.swarm_based.SLnO import MSLnO
 from utils.FunctionUtil import *
 
 ## Setting parameters`
@@ -14,6 +14,5 @@ woa_paras = {
 }
 
 ## Run model
-md = BaoWOA(root_algo_paras=root_paras, woa_paras=woa_paras)
+md = MSLnO(root_algo_paras=root_paras, woa_paras=woa_paras)
 md._train__()
-

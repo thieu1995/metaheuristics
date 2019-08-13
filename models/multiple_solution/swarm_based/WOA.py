@@ -88,7 +88,7 @@ class BaoWOA(RootAlgo):
                 p = np.random.rand()
                 b = 1
 
-                if (p < 0.5) :
+                if p < 0.5:
                     if np.abs(A) < 1:
                         D = np.abs(C * gbest[self.ID_POS] - pop[j][self.ID_POS] )
                         new_position = gbest[0] - A * D
