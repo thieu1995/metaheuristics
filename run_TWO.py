@@ -3,15 +3,15 @@ from utils.FunctionUtil import *
 
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-1, 1],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C26
 }
 two_paras = {
-    "epoch": 1000,
+    "epoch": 500,
     "pop_size": 100,
 }
 
 ## Run model
-md = OppoTWO(root_algo_paras=root_paras, two_paras=two_paras)
+md = BaseTWO(root_algo_paras=root_paras, two_paras=two_paras)
 md._train__()

@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C30
+    "objective_func": C26
 }
 woa_paras = {
     "epoch": 500,
