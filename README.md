@@ -37,8 +37,12 @@ None
 ### Multiple Solution
 1._. Physics-based
 ```code
-1. (done) TWO (2016)- A novel meta-heuristic algorithm: tug of war optimization
-
+1. (done) TWO (2016) - A novel meta-heuristic algorithm: tug of war optimization
+2. (done) NRO (2019) - Nuclear Reaction Optimization- A novel and powerful physics-based algorithm for global optimization
+    + So many equations and loops - take time to run on larger dimension 
+    + General O (g * n * d) 
+    + Good convergence curse because the used of gaussian-distribution and levy-flight trajectory
+    + Use the variant of Differential Evolution
 ...
 ```
 
