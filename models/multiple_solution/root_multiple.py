@@ -30,6 +30,10 @@ class RootAlgo(object):
         sorted_pop = sorted(pop, key=lambda temp: temp[id_fitness])
         return deepcopy(sorted_pop[id_best])
 
+    def _get_global_worst__(self, pop=None, id_fitness=None, id_worst=None):
+        sorted_pop = sorted(pop, key=lambda temp: temp[id_fitness])
+        return deepcopy(sorted_pop[id_worst])
+
     def _amend_solution__(self, solution=None):
         for i in range(self.problem_size):
             if solution[i] < self.domain_range[0]:
