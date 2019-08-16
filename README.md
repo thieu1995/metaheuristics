@@ -36,7 +36,8 @@ None
 
 ## Multiple Solution
 
-###1._. Physics-based
+
+### 1._. Physics-based
 
 * __Tug Of War Optimization__: Kaveh, A., & Zolghadr, A. (2016). A novel meta-heuristic algorithm: tug of war optimization. Iran University of Science & Technology, 6(4), 469-492.
 * __Nuclear Reaction Optimization__: Wei, Z., Huang, C., Wang, X., Han, T., & Li, Y. (2019). Nuclear Reaction Optimization: A novel and powerful physics-based algorithm for global optimization. IEEE Access. 
@@ -47,41 +48,33 @@ None
     + Use the variant of Differential Evolution
 ```
 
-###2._. Evolutionary-based
+
+### 2._. Evolutionary-based
 
 * __Genetic Algorithms__: Holland, J. H. (1992). Genetic algorithms. Scientific american, 267(1), 66-73.
-
 * __Differential Evolution__: Storn, R., & Price, K. (1997). Differential evolution–a simple and efficient heuristic for global optimization over continuous spaces. Journal of global optimization, 11(4), 341-359.
-
 * __Coral Reefs Optimization Algorithm__: Salcedo-Sanz, S., Del Ser, J., Landa-Torres, I., Gil-López, S., & Portilla-Figueras, J. A. (2014). The coral reefs optimization algorithm: a novel metaheuristic for efficiently solving optimization problems. The Scientific World Journal, 2014.
 
 
-###3._. Swarm-based
+
+### 3._. Swarm-based
 
 * __Particle Swarm Optimization__: Eberhart, R., & Kennedy, J. (1995, October). A new optimizer using particle swarm theory. In MHS'95. Proceedings of the Sixth International Symposium on Micro Machine and Human Science (pp. 39-43). Ieee.
-
 * __Cat Swarm Optimization__: Chu, S. C., Tsai, P. W., & Pan, J. S. (2006, August). Cat swarm optimization. In Pacific Rim international conference on artificial intelligence (pp. 854-858). Springer, Berlin, Heidelberg.
-
 * __Whale Optimization__: Mirjalili, S., & Lewis, A. (2016). The whale optimization algorithm. Advances in engineering software, 95, 51-67.
-
-
 * __Bacterial Foraging Optimization__: Passino, K. M. (2002). Biomimicry of bacterial foraging for distributed optimization and control. IEEE control systems magazine, 22(3), 52-67.
-
 * __Adaptive Bacterial Foraging Optimization__: Yan, X., Zhu, Y., Zhang, H., Chen, H., & Niu, B. (2012). An adaptive bacterial foraging optimization algorithm with lifecycle and social learning. Discrete Dynamics in Nature and Society, 2012.
-
 * __Artificial Bee Colony__: Karaboga, D., & Basturk, B. (2007, June). Artificial bee colony (ABC) optimization algorithm for solving constrained optimization problems. In International fuzzy systems association world congress (pp. 789-798). Springer, Berlin, Heidelberg.
-
 * __Pathfinder Algorithm__: Yapici, H., & Cetinkaya, N. (2019). A new meta-heuristic optimizer: Pathfinder algorithm. Applied Soft Computing, 78, 545-568.
-
 * __Harris Hawks Optimization__: Heidari, A. A., Mirjalili, S., Faris, H., Aljarah, I., Mafarja, M., & Chen, H. (2019). Harris hawks optimization: Algorithm and applications. Future Generation Computer Systems, 97, 849-872.
-
 * __Sailfish Optimizer__: Shadravan, S., Naji, H. R., & Bardsiri, V. K. (2019). The Sailfish Optimizer: A novel nature-inspired metaheuristic algorithm for solving constrained engineering optimization problems. Engineering Applications of Artificial Intelligence, 80, 20-34.
 
 
 
-###4._. Human activity-based
+### 4._. Human activity-based
 
 * __Queuing Search Algorithm__: Zhang, J., Xiao, M., Gao, L., & Pan, Q. (2018). Queuing search algorithm: A novel metaheuristic algorithm for solving engineering optimization problems. Applied Mathematical Modelling, 63, 464-490.
+
 
 
 # List of trash meta-heuristics (totally fake and unethical)
@@ -93,7 +86,6 @@ None
 3._. Swarm-based
 
 * __Sandpiper Optimization Algorithm__: Kaur, A., Jain, S., & Goel, S. (2019). Sandpiper optimization algorithm: a novel approach for solving real-life engineering problems. Applied Intelligence, 1-38.
-
 * __Sooty Tern Optimization Algorithm__: Dhiman, G., & Kaur, A. (2019). STOA: A bio-inspired based optimization algorithm for industrial engineering problems. Engineering Applications of Artificial Intelligence, 82, 148-174.
 ```code
 + Cant even update the position itself
