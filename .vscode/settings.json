@@ -1,6 +1,0 @@
-{
-    "python.pythonPath": "/home/hoangbao/Downloads/home/hoangbao/program/miniconda3/envs/ai/bin/python",
-    "python.linting.pylintEnabled": false,
-    "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true
-}
