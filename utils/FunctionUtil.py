@@ -730,11 +730,149 @@ def cal_std(li, global_min):
     return np.sqrt(np.mean(np.square(np.array(li) - global_min)))
 
 
+############ Function Implementation for MSLnO paper ############
+
+##### BASIC FUNCTION #######
+
+def slno_f1(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(solution)
+    fitness = 0
+    for i in range(dim):
+        fitness += (10e6)**((i-1)/(dim-1))*(x[i]**2)
+    return fitness
+
+
+def slno_f2(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    fitness = x[0]**2
+    for i in range(1, dim):
+        fitness += 10e6*x[i]**2
+    return fitness
+
+
+def slno_f3(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    fitness = 10e6*x[0]**2
+    for i in range(1, dim):
+        fitness += x[i]**2
+    return fitness
+
+
+def slno_f4(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    fitness = 0
+    for i in range(dim-1):
+        fitness += (100*(x[i]**2 - x[i+1])**2 + (x[i] - 1)**2)
+    return fitness
+
+
+def slno_f5(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return -20 * np.exp(-0.2 * (1/dim*np.sum([x[i] ** 2 for i in range(dim)])) ** 0.5) - \
+           np.exp(1/dim*np.sum([np.cos(2 * np.pi * x[i]) for i in range(dim)])) + 20 + np.e
+
+
+def slno_f6(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    a = 0.5
+    b = 3
+    k_max = 20
+    return np.sum([np.sum([a**k*np.cos(2*np.pi*b**k*(x[i]+0.5)) for k in range(k_max+1)]) for i in range(dim)]) - \
+           dim*np.sum([a**k*np.cos(2*np.pi*b**k*0.5) for k in range(k_max+1)])
+
+
+def slno_f7(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return np.sum([1/4000*x[i]**2 for i in range(dim)]) - np.prod([np.cos(x[i]/((i+1)**0.5)) for i in range(dim)]) + 1
+
+
+def g9_slno(z, dim):
+    return g9(z, dim)
+
+def slno_f8(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return np.sum([x[i]**2 - 10*np.cos(2*np.pi*x[i]) + 10 for i in range(dim)])
+
+
+def slno_f9(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    z = x + 4.209687462275036e+002
+    return 418.9829*dim - np.sum([g9_slno(z[i], dim) for i in range(dim)])
+
+
+def slno_f10(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return (10/dim**2)*np.prod([(1+(i+1)*np.sum([(np.abs(2**j*x[i]-round(2**j*x[i]))/2**j)
+                                                 for j in range(1, 32)]))**(10/dim**1.2) for i in range(dim)]) - 10/dim**2
+
+
+def slno_f11(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return np.abs(np.sum([x[i]**2 for i in range(dim)])-dim)**0.25 + \
+            (0.5*np.sum([x[i]**2 for i in range(dim)]) + np.sum([x[i] for i in range(dim)]))/dim + 0.5
+
+
+def slno_f12(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return np.abs(np.sum([x[i]**2 for i in range(dim)])**2-np.sum([x[i]**2 for i in range(dim)])**2)**0.5 + \
+            (0.5*np.sum([x[i]**2 for i in range(dim)]) + np.sum([x[i] for i in range(dim)]))/dim + 0.5
+
+
+def slno_f13(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return CEC_13(solution)
+
+
+def slno_f14(solution, problem_size=None, shift_num=0):
+    x = solution - shift_num
+    dim = len(x)
+    return CEC_14(solution)
+
+
+def slno_F1(solution, problem_size=None, shift_num=1, rate=1):
+    x = solution - shift_num
+    return slno_f1(x) + 100
+
+
+def slno_F2(solution, problem_size=None, shift_num=1, rate=1):
+    x = solution - shift_num
+    return slno_f2(x) + 200
+
+
+def slno_F3(solution, problem_size=None, shift_num=1, rate=1):
+    x = solution - shift_num
+    return slno_f5(x) + 300
+
+
+def slno_F4(solution, problem_size=None, shift_num=1, rate=1):
+    x = solution - shift_num
+    return slno_f1(5.12*x/100) + 400
+
+
+def slno_F5(solution, problem_size=None, shift_num=1, rate=1):
+    x = solution - shift_num
+    return slno_f5(1000*x/100) + 500
+
+
+
 
 if __name__ == "__main__":
-
-    x = np.array([1, 1, 1 , 1, 1])
-    print(C1(x))    
+    x = np.array([-5, -5, -5, -5, -5, -5])
+    y = np.array([0, 0, 0, 0, 0, 0])
+    print(slno_f14(x))
 
 
 
