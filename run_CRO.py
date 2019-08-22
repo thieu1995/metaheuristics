@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C2
+    "objective_func": C21
 }
 
 cro_paras = {

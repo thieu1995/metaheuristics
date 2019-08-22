@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C12
+    "objective_func": C21
 }
 hho_paras = {
     "epoch": 500,
