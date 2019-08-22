@@ -4,6 +4,9 @@ from math import gamma
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BasePFA(RootAlgo):
+    """
+    A new meta-heuristic optimizer: Pathfinder algorithm
+    """
     ID_POS = 0
     ID_FIT = 1
 

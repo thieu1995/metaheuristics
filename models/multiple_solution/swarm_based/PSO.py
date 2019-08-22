@@ -3,6 +3,9 @@ from copy import deepcopy
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BasePSO(RootAlgo):
+    """
+    Particle Swarm Optimization
+    """
     ID_CURRENT_POS = 0
     ID_BEST_PAST_POS = 1
     ID_VECTOR_V = 2
@@ -32,10 +35,6 @@ class BasePSO(RootAlgo):
         return [x, x_past_best, v, x_fitness, x_past_fitness]
 
     def _train__(self):
-        """
-        - Khoi tao quan the (tinh ca global best)
-        - Di chuyen va update vi tri, update gbest
-        """
         pop = [self._create_solution__(minmax=0) for _ in range(self.pop_size)]
         gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)
 
@@ -45,17 +44,14 @@ class BasePSO(RootAlgo):
             for j in range(self.pop_size):
                 r1 = np.random.random_sample()
                 r2 = np.random.random_sample()
-                #%% testing
                 vi_sau = w * pop[j][self.ID_VECTOR_V] + self.c1 * r1 * \
                          (pop[j][self.ID_BEST_PAST_POS] - pop[j][self.ID_CURRENT_POS]) \
                          + self.c2 * r2 * (gbest[self.ID_CURRENT_POS] - pop[j][self.ID_CURRENT_POS])
-
-                #%% testing 2
                 xi_sau = pop[j][self.ID_CURRENT_POS] + vi_sau                 # Xi(sau) = Xi(truoc) + Vi(sau) * deltaT (deltaT = 1)
                 fit_sau = self._fitness_model__(solution=xi_sau, minmax=0)
                 fit_truoc = pop[j][self.ID_PAST_FIT]
 
-                # Cap nhat x hien tai, v hien tai, so sanh va cap nhat x past best voi x hien tai
+                # Update current position, current vector v
                 pop[j][self.ID_CURRENT_POS] = deepcopy(xi_sau)
                 pop[j][self.ID_VECTOR_V] = deepcopy(vi_sau)
                 pop[j][self.ID_CURRENT_FIT] = fit_sau

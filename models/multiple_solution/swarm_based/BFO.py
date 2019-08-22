@@ -5,7 +5,8 @@ from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseBFO(RootAlgo):
     """
-    Basic version
+    Basic version of Bacterial Foraging Optimization Algorithm: Taken from here
+    http://www.cleveralgorithms.com/nature-inspired/swarm/bfoa.html
     """
     ID_VECTOR = 0
     ID_COST = 1

@@ -4,6 +4,9 @@ from math import gamma
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseTWO(RootAlgo):
+    """
+    A novel meta-heuristic algorithm: tug of war optimization
+    """
     ID_POS = 0
     ID_FIT = 1
     ID_WEIGHT = 2

@@ -5,6 +5,9 @@ from numpy.random import uniform
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseHGSO(RootAlgo):
+    """
+    Henry gas solubility optimization: A novel physics-based algorithm
+    """
     ID_POS = 0
     ID_FIT = 1
     ID_CLUS = 2     # cluster number

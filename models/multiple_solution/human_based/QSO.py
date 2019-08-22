@@ -3,6 +3,9 @@ from math import gamma
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseQSO(RootAlgo):
+    """
+    Queuing search algorithm: A novel metaheuristic algorithm for solving engineering optimization problems
+    """
     ID_POS = 0
     ID_FIT = 1
     def __init__(self, root_algo_paras=None, qso_paras = None):
@@ -144,8 +147,6 @@ class BaseQSO(RootAlgo):
             loss.append(sorted_pop[0][1])
             if self.print_train:
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        #print("best fit ", sorted_pop[0][1])
-        #print("best pos", sorted_pop[0][0])
         return sorted_pop[0][0], loss, sorted_pop[0][1]
 
 
@@ -218,8 +219,6 @@ class LevyQSO(BaseQSO):
             sorted_pop = sorted(pop, key=lambda x:x[1])
             if(current_iter%50==0):
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        print("best fit ", sorted_pop[0][1])
-        print("best pos", sorted_pop[0][0])
 
 
 class OppQSO(BaseQSO):
@@ -247,8 +246,7 @@ class OppQSO(BaseQSO):
             sorted_pop = self.apply_opposition_based(sorted_pop, sorted_pop[0][0])
             if(current_iter % 50 == 0):
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        print("best fit ", sorted_pop[0][1])
-        print("best pos", sorted_pop[0][0])
+
 
 
 class LevyOppQSO(OppQSO, LevyQSO):
@@ -269,6 +267,4 @@ class LevyOppQSO(OppQSO, LevyQSO):
             loss.append(sorted_pop[0][1])
             if self.print_train:
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        # print("best fit ", sorted_pop[0][1])
-        # print("best pos", sorted_pop[0][0])
         return sorted_pop[0][0], loss, sorted_pop[0][1]

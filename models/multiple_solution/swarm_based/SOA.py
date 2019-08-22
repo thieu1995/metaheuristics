@@ -4,7 +4,7 @@ from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseSOA(RootAlgo):
     """
-    My version
+    My version: I changed some equation and make this algorithm works
     """
     ID_POS = 0
     ID_FIT = 1
@@ -53,6 +53,8 @@ class BaseSOA(RootAlgo):
 class OriginalSOA(RootAlgo):
     """
     Sandpiper optimization algorithm: a novel approach for solving real-life engineering problems
+    Same as : A bio-inspired based optimization algorithm for industrial engineering problems.
+    Cant even update its position - completely trash
     """
     ID_POS = 0
     ID_FIT = 1

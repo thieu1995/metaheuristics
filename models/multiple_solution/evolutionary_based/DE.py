@@ -3,6 +3,10 @@ from copy import deepcopy
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BaseDE(RootAlgo):
+    """
+    Differential Evolution : Taken from here
+    http://www.cleveralgorithms.com/nature-inspired/evolution/differential_evolution.html
+    """
     ID_SOl = 0
     ID_FIT = 1
     def __init__(self, root_algo_paras=None, de_paras = None):
