@@ -6,11 +6,11 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C1s
+    "objective_func": C14
 }
 pso_paras = {
-    "epoch": 100,
-    "pop_size": 250,
+    "epoch": 500,
+    "pop_size": 100,
     "w_minmax": [0.4, 0.9],     # [0-1] -> [0.4-0.9]      Weight of bird
     "c_minmax": [1.2, 1.2]      # [(1.2, 1.2), (0.8, 2.0), (1.6, 0.6)]  Effecting of  local va global
 }

@@ -19,11 +19,10 @@ class BaseNRO(RootAlgo):
         self.pop_size = nro_paras["pop_size"]
 
     def _amend_solution_and_return__(self, solution=None):
-        temp = deepcopy(solution)
         for i in range(self.problem_size):
             if solution[i] < self.domain_range[0] or solution[i] > self.domain_range[1]:
                 solution[i] = np.random.uniform(self.domain_range[0], self.domain_range[1])
-        return temp
+        return solution
 
     def _check_array_equal__(self, array1, array2):
         check = True

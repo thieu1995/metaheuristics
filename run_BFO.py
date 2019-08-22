@@ -1,12 +1,12 @@
 from models.multiple_solution.swarm_based.BFO import BaseBFO
-from utils.FunctionUtil import square_function
+from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 30,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C12
 }
 bfo_paras = {
     "pop_size": 50,

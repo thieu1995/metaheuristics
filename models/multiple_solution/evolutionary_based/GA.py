@@ -46,8 +46,8 @@ class BaseGA(RootAlgo):
         fitness_sum = sum(list_fitness)
         while (len(next_population) < self.pop_size):
             ### Selection
-            c1 = pop[self._get_index_roulette_wheel_selection__(list_fitness, fitness_sum)]
-            c2 = pop[self._get_index_roulette_wheel_selection__(list_fitness, fitness_sum)]
+            c1 = deepcopy( pop[self._get_index_roulette_wheel_selection__(list_fitness, fitness_sum)] )
+            c2 = deepcopy( pop[self._get_index_roulette_wheel_selection__(list_fitness, fitness_sum)] )
 
             w1, w2 = deepcopy(c1[0]), deepcopy(c2[0])
             ### Crossover
@@ -61,8 +61,8 @@ class BaseGA(RootAlgo):
                 if np.random.uniform() < self.pm:
                     w2 = self._mutation_flip_point__(w2, id)
 
-            c1_new = [w1, self._fitness_model__(w1, minmax=1)]
-            c2_new = [w2, self._fitness_model__(w2, minmax=1)]
+            c1_new = [deepcopy(w1), self._fitness_model__(w1, minmax=1)]
+            c2_new = [deepcopy(w2), self._fitness_model__(w2, minmax=1)]
             next_population.append(c1_new)
             next_population.append(c2_new)
         return next_population
@@ -82,4 +82,4 @@ class BaseGA(RootAlgo):
                 print("> Epoch {0}: Best training fitness {1}".format(j + 1, 1.0 / best_train[self.ID_FITNESS]))
             self.loss_train.append(np.power(best_train[self.ID_FITNESS], -1))
 
-        return best_train[0], self.loss_train, 1.0 / best_train[self.ID_FITNESS]
+        return best_train[0], self.loss_train

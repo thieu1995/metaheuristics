@@ -2,16 +2,16 @@ from models.multiple_solution.physics_based.TWO import BaseTWO, OppoTWO, OTWO, L
 from utils.FunctionUtil import *
 
 root_paras = {
-    "problem_size": 30,
+    "problem_size": 50,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C11
+    "objective_func": whale_f1
 }
 two_paras = {
-    "epoch": 1000,
+    "epoch": 500,
     "pop_size": 100,
 }
 
 ## Run model
-md = OppoTWO(root_algo_paras=root_paras, two_paras=two_paras)
+md = ITWO(root_algo_paras=root_paras, two_paras=two_paras)
 md._train__()

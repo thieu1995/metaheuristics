@@ -65,7 +65,10 @@ class BaseSFO(RootAlgo):
             sf_pop = sorted(sf_pop, key=lambda temp: temp[self.ID_FIT])
             s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
             for i in range(0, self.pop_size):
-                s_size = len(s_pop)
+                s_size_2 = len(s_pop)
+                if s_size_2 == 0:
+                    s_pop = [self._create_solution__() for _ in range(0, s_size)]
+                    s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
                 for j in range(0, s_size):
                     ### If there is a better solution in sardine population.
                     if sf_pop[i][self.ID_FIT] > s_pop[j][self.ID_FIT]:
@@ -98,6 +101,18 @@ class LevySFO(BaseSFO):
     def __init__(self, root_algo_paras=None, sfo_paras=None):
         BaseSFO.__init__(self, root_algo_paras, sfo_paras)
 
+    def _levy_flight_HHO__(self, dimension=None, solution=None, prey=None):
+        beta = 1.5
+        sigma_muy = np.power((gamma(1+beta) * np.sin(np.pi*beta/2) / gamma((1+beta)/2)*beta*2**((beta-1)/2)) , 1.0/beta)
+        u = np.random.uniform(self.domain_range[0], self.domain_range[1], dimension)
+        v = np.random.uniform(self.domain_range[0], self.domain_range[1], dimension)
+
+        LF_D =  0.01 * (sigma_muy * u) / np.power( np.abs(v), 1.0 / beta)
+        LF_D2 = np.random.uniform(dimension) * LF_D
+        Y = prey[self.ID_POS] + np.random.uniform(-1, 1) * np.abs( prey[self.ID_POS] - solution[self.ID_POS] )
+        Z = Y + LF_D2
+        return Z
+
     def _levy_flight__(self, epoch, solution, prey):
         beta = 1
         # muy and v are two random variables which follow normal distribution
@@ -105,8 +120,8 @@ class LevySFO(BaseSFO):
         sigma_muy = np.power(gamma(1 + beta) * np.sin(np.pi * beta / 2) / (gamma((1 + beta) / 2) * beta * np.power(2, (beta - 1) / 2)), 1 / beta)
         # sigma_v : standard deviation of v
         sigma_v = 1
-        muy = np.random.normal(0, sigma_muy)
-        v = np.random.normal(0, sigma_v)
+        muy = np.random.normal(0, sigma_muy**2)
+        v = np.random.normal(0, sigma_v**2)
         s = muy / np.power(np.abs(v), 1 / beta)
         # D is a random solution
         D = self._create_solution__(minmax=self.ID_MAX_PROBLEM)
@@ -127,14 +142,11 @@ class LevySFO(BaseSFO):
 
         for epoch in range(0, self.epoch):
             for i in range(0, self.pop_size):
-                if np.random.uniform() < 0.5:
-                    # xichma = np.power((gamma(1 + 1.5) * np.sin(np.pi * 1.5 / 2.0)) / ( gamma((1 + 1.5) * 1.5 * np.power(2, (1.5 - 1) / 2)) / 2.0), 1.0 / 1.5)
-                    # LF_D = 0.01 * np.random.uniform() * xichma / np.power(np.abs(np.random.uniform()), 1.0 / 1.5)
-                    # sf_pop[i][self.ID_POS] = ( sf_gbest[self.ID_POS] + s_gbest[self.ID_POS] ) / 2 - sf_pop[i][self.ID_POS] \
-                    #         + np.random.uniform(self.domain_range[0], self.domain_range[1], self.problem_size) * LF_D
-                    sf_pop[i][self.ID_POS] = self._levy_flight__(epoch, sf_pop[i], sf_gbest)
+                PD = 1 - len(sf_pop) / ( len(sf_pop) + len(s_pop) )
+                if PD > 0.5:
+                    #sf_pop[i][self.ID_POS] = self._levy_flight__(epoch, sf_pop[i], sf_gbest)
+                    sf_pop[i][self.ID_POS] = self._levy_flight_HHO__(self.problem_size, sf_pop[i], sf_gbest)
                 else:
-                    PD = 1 - len(sf_pop) / ( len(sf_pop) + len(s_pop) )
                     lamda_i = 2 * np.random.uniform() * PD - PD
                     sf_pop[i][self.ID_POS] = s_gbest[self.ID_POS] - lamda_i * ( np.random.uniform() *
                                         ( sf_gbest[self.ID_POS] + s_gbest[self.ID_POS] ) / 2 - sf_pop[i][self.ID_POS] )
@@ -159,7 +171,10 @@ class LevySFO(BaseSFO):
             sf_pop = sorted(sf_pop, key=lambda temp: temp[self.ID_FIT])
             s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
             for i in range(0, self.pop_size):
-                s_size = len(s_pop)
+                s_size_2 = len(s_pop)
+                if s_size_2 == 0:
+                    s_pop = [self._create_solution__() for _ in range(0, s_size)]
+                    s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
                 for j in range(0, s_size):
                     if sf_pop[i][self.ID_FIT] > s_pop[j][self.ID_FIT]:
                         sf_pop[i] = deepcopy(s_pop[j])
@@ -194,6 +209,28 @@ class ImprovedSFO(RootAlgo):
         self.pop_size = isfo_paras["pop_size"]       # SailFish pop size
         self.pp = isfo_paras["pp"]         # the rate between SailFish and Sardines (N_sf = N_s * pp) = 0.1, 0.01, 0.001
 
+    def _levy_flight__(self, epoch, solution, prey):
+        beta = 1
+        # muy and v are two random variables which follow normal distribution
+        # sigma_muy : standard deviation of muy
+        sigma_muy = np.power(
+            gamma(1 + beta) * np.sin(np.pi * beta / 2) / (gamma((1 + beta) / 2) * beta * np.power(2, (beta - 1) / 2)),
+            1 / beta)
+        # sigma_v : standard deviation of v
+        sigma_v = 1
+        muy = np.random.normal(0, sigma_muy**2)
+        v = np.random.normal(0, sigma_v**2)
+        s = muy / np.power(np.abs(v), 1 / beta)
+        # D is a random solution
+        D = self._create_solution__(minmax=self.ID_MAX_PROBLEM)
+        LB = 0.01 * s * (solution[self.ID_POS] - prey[self.ID_POS])
+
+        levy = D[self.ID_POS] * LB
+        return levy
+
+        # x_new = solution[0] + 1.0/np.sqrt(epoch+1) * np.sign(np.random.uniform() - 0.5) * levy
+        # return x_new
+
     def _train__(self):
         s_size = int(self.pop_size / self.pp)
         sf_pop = [self._create_solution__() for _ in range(0, self.pop_size)]
@@ -226,13 +263,22 @@ class ImprovedSFO(RootAlgo):
             ## Sort the population of sailfish and sardine (for reducing computational cost)
             sf_pop = sorted(sf_pop, key=lambda temp: temp[self.ID_FIT])
             s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
+            # t10 = 0
             for i in range(0, self.pop_size):
-                s_size = len(s_pop)
+                # s_size_2 = len(s_pop)
+                # if s_size_2 == 0:
+                #     t10 += 1
+                #     print(t10)
+                #     s_pop = [self._create_solution__() for _ in range(0, s_size)]
+                #     s_pop = sorted(s_pop, key=lambda temp: temp[self.ID_FIT])
                 for j in range(0, s_size):
                     ### If there is a better solution in sardine population.
                     if sf_pop[i][self.ID_FIT] > s_pop[j][self.ID_FIT]:
                         sf_pop[i] = deepcopy(s_pop[j])
-                        del s_pop[j]
+                        temp = self._levy_flight__(epoch, s_pop[j], s_gbest)
+                        temp = self._amend_solution_and_return__(temp)
+                        fit = self._fitness_model__(temp)
+                        s_pop[j] = [temp, fit]
                     break   #### This simple keyword helped reducing ton of comparing operation.
                             #### Especially when sardine pop size >> sailfish pop size
 

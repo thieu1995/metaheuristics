@@ -1,17 +1,17 @@
 from models.multiple_solution.swarm_based.CSO import BaseCSO
-from utils.FunctionUtil import square_function
+from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 30,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C12
 }
 
 cso_paras = {
-    "epoch": 100,
-    "pop_size": 250,
+    "epoch": 500,
+    "pop_size": 100,
     "mixture_ratio": 0.15,      # MR - joining seeking mode with tracing mode
     "smp": 50,              # seeking memory pool, 50 clones                (larger is better, but need more time)
     "spc": True,            # self-position considering

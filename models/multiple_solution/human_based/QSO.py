@@ -143,8 +143,7 @@ class BaseQSO(RootAlgo):
             sorted_pop = sorted(pop, key=lambda x:x[1])
             loss.append(sorted_pop[0][1])
             if self.print_train:
-                if(current_iter%50==0):
-                    print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
+                print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
         #print("best fit ", sorted_pop[0][1])
         #print("best pos", sorted_pop[0][0])
         return sorted_pop[0][0], loss, sorted_pop[0][1]
@@ -269,8 +268,7 @@ class LevyOppQSO(OppQSO, LevyQSO):
             sorted_pop = self.apply_opposition_based(sorted_pop, sorted_pop[0][0])
             loss.append(sorted_pop[0][1])
             if self.print_train:
-                if(current_iter%50==0):
-                    print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
+                print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
         # print("best fit ", sorted_pop[0][1])
         # print("best pos", sorted_pop[0][0])
         return sorted_pop[0][0], loss, sorted_pop[0][1]

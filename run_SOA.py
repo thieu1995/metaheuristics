@@ -3,13 +3,13 @@ from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 30,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
     "objective_func": C1
 }
 soa_paras = {
-    "epoch": 1000,
+    "epoch": 500,
     "pop_size": 100,
 }
 

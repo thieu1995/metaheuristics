@@ -1,36 +1,37 @@
-from models.multiple_solution.swarm_based.SFO import BaseSFO, ImprovedSFO
+from models.multiple_solution.swarm_based.SFO import BaseSFO, ImprovedSFO, LevySFO
 from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 10,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": hho_f1
+    "objective_func": C21
 }
 
 # sfo_paras = {
 #     "epoch": 500,
-#     "pop_size": 30,             # SailFish pop size
-#     "pp": 0.01,                  # the rate between SailFish and Sardines (N_sf = N_s * pp) = 0.25, 0.2, 0.1
+#     "pop_size": 100,             # SailFish pop size
+#     "pp": 0.2,                  # the rate between SailFish and Sardines (N_sf = N_s * pp) = 0.25, 0.2, 0.1
 #     "A": 4,                     # A = 4, 6,...
 #     "epxilon": 0.001           # = 0.0001, 0.001
 # }
 #
-# ## Run model
-# md = ImprovedSFO(root_algo_paras=root_paras, sfo_paras=sfo_paras)
+# md = LevySFO(root_algo_paras=root_paras, sfo_paras=sfo_paras)
 # md._train__()
 
 
 
 isfo_paras = {
     "epoch": 500,
-    "pop_size": 30,             # SailFish pop size
-    "pp": 0.01                  # the rate between SailFish and Sardines (N_sf = N_s * pp) = 0.25, 0.2, 0.1
+    "pop_size": 100,             # SailFish pop size
+    "pp": 0.1                  # the rate between SailFish and Sardines (N_sf = N_s * pp) = 0.25, 0.2, 0.1
 }
 
 md = ImprovedSFO(root_algo_paras=root_paras, isfo_paras=isfo_paras)
 md._train__()
+
+
 
 ## Idea: How to remove 2 parameters A and epxilon but the Energy equation (EE) still working?
 ##      ===> Change the EE based on what we have (current epoch)

@@ -3,11 +3,11 @@ from copy import deepcopy
 from models.multiple_solution.root_multiple import RootAlgo
 
 class BasePSO(RootAlgo):
-    ID_CURRENT_POSITION = 0
-    ID_PAST_POSITION_BEST = 1
+    ID_CURRENT_POS = 0
+    ID_BEST_PAST_POS = 1
     ID_VECTOR_V = 2
-    ID_CURRENT_FITNESS = 3
-    ID_PAST_FITNESS = 4
+    ID_CURRENT_FIT = 3
+    ID_PAST_FIT = 4
 
     def __init__(self, root_algo_paras=None, pso_paras=None):
         RootAlgo.__init__(self, root_algo_paras)
@@ -37,7 +37,7 @@ class BasePSO(RootAlgo):
         - Di chuyen va update vi tri, update gbest
         """
         pop = [self._create_solution__(minmax=0) for _ in range(self.pop_size)]
-        gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FITNESS, id_best=self.ID_MIN_PROBLEM)
+        gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)
 
         for i in range(self.epoch):
             # Update weight after each move count  (weight down)
@@ -47,31 +47,31 @@ class BasePSO(RootAlgo):
                 r2 = np.random.random_sample()
                 #%% testing
                 vi_sau = w * pop[j][self.ID_VECTOR_V] + self.c1 * r1 * \
-                         (pop[j][self.ID_PAST_POSITION_BEST] - pop[j][self.ID_CURRENT_POSITION]) \
-                         + self.c2 * r2 * (gbest[self.ID_CURRENT_POSITION] - pop[j][self.ID_CURRENT_POSITION])
+                         (pop[j][self.ID_BEST_PAST_POS] - pop[j][self.ID_CURRENT_POS]) \
+                         + self.c2 * r2 * (gbest[self.ID_CURRENT_POS] - pop[j][self.ID_CURRENT_POS])
 
                 #%% testing 2
-                xi_sau = pop[j][self.ID_CURRENT_POSITION] + vi_sau                 # Xi(sau) = Xi(truoc) + Vi(sau) * deltaT (deltaT = 1)
+                xi_sau = pop[j][self.ID_CURRENT_POS] + vi_sau                 # Xi(sau) = Xi(truoc) + Vi(sau) * deltaT (deltaT = 1)
                 fit_sau = self._fitness_model__(solution=xi_sau, minmax=0)
-                fit_truoc = pop[j][self.ID_PAST_FITNESS]
+                fit_truoc = pop[j][self.ID_PAST_FIT]
 
                 # Cap nhat x hien tai, v hien tai, so sanh va cap nhat x past best voi x hien tai
-                pop[j][self.ID_CURRENT_POSITION] = deepcopy(xi_sau)
+                pop[j][self.ID_CURRENT_POS] = deepcopy(xi_sau)
                 pop[j][self.ID_VECTOR_V] = deepcopy(vi_sau)
-                pop[j][self.ID_CURRENT_FITNESS] = fit_sau
+                pop[j][self.ID_CURRENT_FIT] = fit_sau
 
                 if fit_sau < fit_truoc:
-                    pop[j][self.ID_PAST_POSITION_BEST] = deepcopy(xi_sau)
-                    pop[j][self.ID_PAST_FITNESS] = fit_sau
+                    pop[j][self.ID_BEST_PAST_POS] = deepcopy(xi_sau)
+                    pop[j][self.ID_PAST_FIT] = fit_sau
 
-            current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FITNESS, id_best=self.ID_MIN_PROBLEM)
-            if current_best[self.ID_CURRENT_FITNESS] < gbest[self.ID_CURRENT_FITNESS]:
+            current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)
+            if current_best[self.ID_CURRENT_FIT] < gbest[self.ID_CURRENT_FIT]:
                 gbest = deepcopy(current_best)
-            self.loss_train.append(gbest[self.ID_CURRENT_FITNESS])
+            self.loss_train.append(gbest[self.ID_CURRENT_FIT])
             if self.print_train:
-                print("Generation : {0}, best result so far: {1}".format(i+1, gbest[self.ID_CURRENT_FITNESS]))
+                print("Generation : {0}, best result so far: {1}".format(i+1, gbest[self.ID_CURRENT_FIT]))
 
-        return gbest[self.ID_CURRENT_POSITION], self.loss_train, gbest[self.ID_CURRENT_FITNESS]
+        return gbest[self.ID_CURRENT_POS], self.loss_train, gbest[self.ID_CURRENT_FIT]
 
 
 

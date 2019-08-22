@@ -1,16 +1,16 @@
 from models.multiple_solution.swarm_based.EPO import BaseEPO
-from utils.FunctionUtil import square_function
+from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 10,
+    "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": square_function
+    "objective_func": C19
 }
 epo_paras = {
-    "epoch": 1000,
-    "pop_size": 200
+    "epoch": 500,
+    "pop_size": 100
 }
 
 ## Run model

@@ -99,12 +99,13 @@ class BaoWOA(RootAlgo):
                 else:
                     D1 = np.abs(gbest[0] - pop[j][0])
                     new_position = D1 * np.exp(b * l) * np.cos(2 * np.pi * l) + gbest[self.ID_POS]
-
-                self._amend_solution__(new_position)
+                new_position = self._amend_solution_and_return__(new_position)
                 fit = self._fitness_model__(new_position)
                 pop[j] = [new_position, fit]
 
-            gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_FIT, id_best=self.ID_MIN_PROBLEM)
+            current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_FIT, id_best=self.ID_MIN_PROBLEM)
+            if current_best[self.ID_FIT] < gbest[self.ID_FIT]:
+                gbest = deepcopy(current_best)
             self.loss_train.append(gbest[self.ID_FIT])
             if self.print_train:
                 print("Epoch = {}, Fit = {}".format(i + 1, gbest[self.ID_FIT]))
