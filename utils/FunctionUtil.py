@@ -1,60 +1,124 @@
 import numpy as np
 #### Taken from here:
 # https://www.robertmarks.org/Classes/ENGR5358/Papers/functions.pdf
-# https://arxiv.org/pdf/1003.1409.pdf
+# https://arxiv.org/pdf/1003.1409.pdf   
 # https://sci-hub.tw/10.1080/00207160108805080
 
 ## Unimodal benchmark functions
 def whale_f1(solution=None, problem_size=None):
     return np.sum(np.power(solution, 2))
 
+
 def whale_f2(solution=None, problem_size=None):
+    x = np.array(solution) * ( 10 / 100)
     return np.sum(np.abs(solution)) + np.prod(np.abs(solution))
 
+
 def whale_f3(solution=None, problem_size=None):
-    return np.sum([ np.power(np.sum([solution[j] for j in range(0, i)]), 2) for i in range(0, problem_size)])
+    x = solution
+    D = len(solution)
+    res = 0 
+    for i in range(D):
+        sum = 0
+        for j in range(i):
+            sum += x[j]
+        res += sum ** 2 
+    return res 
+
+
+def whale_f4(solution=None, problem_size=None):
+    return max(solution, key=lambda x:abs(x))
+
 
 def whale_f5(solution=None, problem_size=None):
-    t1 = 0.0
-    for i in range(1, problem_size):
-        t1 += 100*(solution[i] - solution[i-1]**2)**2 + (solution[i-1] - 1)**2
-    return t1
+    x = np.array(solution) * ( 30 / 100)
+    D = len(solution)
+    res = 0 
+    for i in range(D-1):
+        res += 100 * ((x[i+1] - x[i]**2) ** 2) + (x[i] - 1) ** 2
+    return res 
+
 
 def whale_f6(solution=None, problem_size=None):
-    return np.sum( [ np.power( solution[x] + 0.5, 2 ) for x in range(0, problem_size)] )
+    x = solution
+    return np.sum(np.square(np.abs(x + 0.5)))
+
 
 def whale_f7(solution=None, problem_size=None):
-    return np.sum([ i * solution[i]**4 for i in range(problem_size) ]) + np.random.uniform(0, 1)
+    x = np.array(solution) * ( 1.28 / 100)
+    D = len(x)
+    res = 0
+    r = np.random.random()
+    for i in range(D):
+        res += (i + 1) * (x[i] ** 4) 
+    return res  + r 
 
 
 ## Multimodal benchmark functions
+
 def whale_f8(solution=None, problem_size=None):
-    t1 = 0.0
-    for i in range(problem_size):
-        t1 += -solution[i] * np.sin(np.sqrt(np.abs(solution[i])))
-    return t1
+    x = np.array(solution) * 5
+    return np.sum((-1) * x * np.sin(np.sqrt(np.abs(x))))
+
 
 def whale_f9(solution=None, problem_size=None):
-    t1 = 0.0
-    for i in range(problem_size):
-        t1 += solution[i]**2 - 10*np.cos(2*np.pi*solution[i]) + 10
-    return t1
+    x = np.array(solution) * ( 5.12 / 100)
+    D = len(x)
+    A = np.sum(np.square(x))
+    B = 10 * np.cos(2 * np.pi * x) 
+    return np.sum(A - B + 10)
+
 
 def whale_f10(solution=None, problem_size=None):
-    t1 = np.sum(np.power(solution, 2))
-    t2 = np.sum([np.cos(2*np.pi*solution[i]) for i in range(problem_size)])
-    return -20*np.exp(-0.2*np.sqrt(t1 / problem_size)) - np.exp(t2 / problem_size) + 20 + np.e
+    x = np.array(solution) * ( 32 / 100) # -50, 50
+    return CEC_5(x)
+
 
 def whale_f11(solution=None, problem_size=None):
-    t1 = np.sum(np.power(solution, 2))
-    t2 = np.prod([ np.cos(solution[i] / np.sqrt(i+1)) for i in range(problem_size) ])
-    return t1/4000 - t2 + 1
+    x = np.array(solution) * 6 # -600, 600
+    return CEC_7(x)     
 
 
-def square_function(solution=None, problem_size=None):
-    return np.sum([solution[i] ** 2 for i in range(0, problem_size)])
+def whale_f12(solution=None, problem_size=None):
+    x = np.array(solution) * (1 / 2) # -50, 50
+    D = len(x)
+    A = np.sin(np.pi * y(x[0]))
+    B = 0
+    C = 0
+    for i in range(D - 1):
+        B += ((y(x[i]) - 1) ** 2) * (1 + 10 * np.square(np.sin(np.pi * y(x[i+1]))))
+    for i in range(D):
+        C += u_function(x[i], 10, 100, 4)
+    res = np.pi / D * (A + B) + C
+    return res 
+
+def whale_f13(solution=None, problem_size=None):
+    x = np.array(solution) * (-1 / 2) # -50, 50
+    A = 0
+    B = 0 
+    C = 0 
+    D = len(x)
+    G = 0
+    A = np.sin(3 * np.pi * x[0]) ** 2
+    for i in range(D):
+        B += np.square(x[i] - 1) * (1 + np.square(np.sin(3 * np.pi * x[i] + 1)))
+    C = np.square(x[-1] - 1) * (1 + np.square(np.sin(2 * np.pi * x[-1])))
+    for i in range(D):
+        G += u_function(x[i], 5, 100, 4)  
+    res = 0.1 * (A + B + C) + D
+    return res 
+
+def y(x):
+    return 1 + (x + 1) / 4
 
 
+def u_function(x, a, k, m):
+    if x > a:
+        return k * ((x - a) ** m)
+    elif x < -a:
+        return k * ((-x - a) ** m)
+    else:
+        return 0
 #### New implemnt taken from here
 ## Harris Hawks Optimization: Algorithm and Applications
 
@@ -216,11 +280,11 @@ def CEC_1(solution=None, problem_size=None, shift=0):
     f(x*) = 100
     """
     res = 0
-    constant = np.power(10, 6)
+    constant = 10 ** 6
     dim = len(solution)
     for i in range(dim):
-        res += np.power(constant, i/dim) * np.square((solution[i] - shift))
-    return res 
+        res += (constant ** (i/dim)) * np.square((solution[i] - shift))
+    return res
 
 
 def CEC_2(solution=None, problem_size=None, shift=0):
@@ -295,9 +359,9 @@ def CEC_6(solution=None, problem_size=None, shift=0):
     B = 0
     for i in range(dim):
         for k in range(kmax + 1):
-            A += np.power(a, k) * np.cos(2 * np.pi * np.power(b, k) * (x[i] + 0.5))
+            A += (a ** k) * np.cos(2 * np.pi * (b ** k) * (x[i] + 0.5))
     for k in range(kmax + 1):
-        B += np.power(a, k) * np.cos(2 * np.pi * np.power(b, k) * 0.5)
+        B += (a ** k) * np.cos(2 * np.pi * (b ** k) * 0.5)
     res = A - dim * B
     return res 
 
@@ -357,10 +421,10 @@ def CEC_10(solution=None, problem_size=None, shift=0):
     B = 0
     for i in range(dim):
         temp = 1
-        for j in range(32):
-            temp += i * (np.abs(np.power(2, j + 1) * x[i] 
-                    - round(np.power(2, j + 1) * x[i]))) / np.power(2, j)
-        A *= np.power(temp, 10 / np.power(dim, 1.2))
+        for j in range(8):
+            temp += i * (np.abs((2 ** j + 1) * x[i]
+                    - np.round((2 ** j + 1) * x[i]))) / (2 ** j)
+        A *= (temp ** (10 / (dim ** 1.2)))
     B = 10 / np.square(dim) 
     res = B*A - B
     return res 

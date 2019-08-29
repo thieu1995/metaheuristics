@@ -3,13 +3,13 @@ from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 100,
-    "domain_range": [-1, 1],
+    "problem_size": 30,
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C25
+    "objective_func": whale_f13
 }
 pfa_paras = {
-    "epoch": 500,
+    "epoch": 100,
     "pop_size": 100
 }
 
