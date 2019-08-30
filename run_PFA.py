@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C25
+    "objective_func": C28
 }
 pfa_paras = {
     "epoch": 500,
@@ -14,6 +14,6 @@ pfa_paras = {
 }
 
 ## Run model
-md = BasePFA(root_algo_paras=root_paras, pfa_paras=pfa_paras)
+md = LPFA(root_algo_paras=root_paras, pfa_paras=pfa_paras)
 md._train__()
 
