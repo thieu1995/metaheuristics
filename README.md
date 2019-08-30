@@ -101,6 +101,15 @@ None
 + Can't converge
 ```
 
+* __Butterfly Optimization Algorithm__: Arora, S., & Singh, S. (2019). Butterfly optimization algorithm: a novel approach for global optimization. Soft Computing, 23(3), 715-734.
+```code 
++ Cant converge as the paper said
++ The code public from the author different with the pseudo-code in the paper
++ Totally trash and unethical, plagiarize from Flower Pollination Algorithm developed by Yang
+```
+
+
+
 4._. Human activity-based
 
 # The list will continue update...
