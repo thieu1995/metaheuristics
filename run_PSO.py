@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 30,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C14
+    "objective_func": islo_compos_F24
 }
 pso_paras = {
     "epoch": 500,

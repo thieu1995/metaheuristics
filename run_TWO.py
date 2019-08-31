@@ -3,9 +3,9 @@ from utils.FunctionUtil import *
 
 root_paras = {
     "problem_size": 50,
-    "domain_range": [-1, 1],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": whale_f1
+    "objective_func": islo_compos_F24
 }
 two_paras = {
     "epoch": 500,
@@ -13,5 +13,5 @@ two_paras = {
 }
 
 ## Run model
-md = ITWO(root_algo_paras=root_paras, two_paras=two_paras)
+md = BaseTWO(root_algo_paras=root_paras, two_paras=two_paras)
 md._train__()

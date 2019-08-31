@@ -1,4 +1,4 @@
-from models.multiple_solution.swarm_based.WOA import BaseWOA, BaoWOA
+from models.multiple_solution.swarm_based.SLnO import SLnO
 from utils.FunctionUtil import *
 
 ## Setting parameters`
@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 100,
     "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": islo_compos_F30
+    "objective_func": islo_uni_F4
 }
 woa_paras = {
     "epoch": 500,
@@ -14,6 +14,5 @@ woa_paras = {
 }
 
 ## Run model
-md = BaseWOA(root_algo_paras=root_paras, woa_paras=woa_paras)
+md = SLnO(root_algo_paras=root_paras, woa_paras=woa_paras)
 md._train__()
-
