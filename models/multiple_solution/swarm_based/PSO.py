@@ -67,7 +67,7 @@ class BasePSO(RootAlgo):
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(i+1, gbest[self.ID_CURRENT_FIT]))
 
-        return gbest[self.ID_CURRENT_POS], self.loss_train, gbest[self.ID_CURRENT_FIT]
+        return gbest[self.ID_CURRENT_POS], self.loss_train
 
 
 
