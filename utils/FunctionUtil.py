@@ -789,7 +789,7 @@ def C29(solution, prolem_size=None, shift_num=1, rate=0):
     return res + 2900 * rate
 
 
-def C30(solution, prolem_size=None, shift_num=1, rate=0):
+def C30(solution, prolem_size=None, shift_num=1, rate=0 ):
     shift_arr = [1, 2, 3]
     sigma = [10, 30, 50]
     lamda = [1, 1, 1]

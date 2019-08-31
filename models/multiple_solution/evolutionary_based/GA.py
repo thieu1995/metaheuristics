@@ -20,12 +20,13 @@ class BaseGA(RootAlgo):
 
     ### Selection
     def _get_index_roulette_wheel_selection__(self, list_fitness, sum_fitness):
+        
         r = np.random.uniform(low=0, high=sum_fitness)
         for idx, f in enumerate(list_fitness):
             r = r + f
             if r > sum_fitness:
                 return idx
-
+        return np.random.randint(len(list_fitness))
     ### Crossover
     def _crossover_arthmetic_recombination__(self, dad=None, mom=None):
         r = np.random.uniform()             # w1 = w2 when r =0.5
