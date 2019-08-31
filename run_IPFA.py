@@ -4,7 +4,7 @@ from utils.FunctionUtil import *
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-100, 100],
+    "domain_range": [-50, 50],
     "print_train": True,
     "objective_func": whale_f13
 }
@@ -15,5 +15,6 @@ pfa_paras = {
 
 ## Run model
 md = IPFA(root_algo_paras=root_paras, pfa_paras=pfa_paras)
-md._train__()
+x, y = md._train__()
 
+print(y)

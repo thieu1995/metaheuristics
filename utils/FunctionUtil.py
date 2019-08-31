@@ -10,12 +10,12 @@ def whale_f1(solution=None, problem_size=None):
 
 
 def whale_f2(solution=None, problem_size=None):
-    x = np.array(solution) * ( 10 / 100)
+    x = np.array(solution) 
     return np.sum(np.abs(solution)) + np.prod(np.abs(solution))
 
 
 def whale_f3(solution=None, problem_size=None):
-    x = solution
+    x = np.array(solution)
     D = len(solution)
     res = 0 
     for i in range(D):
@@ -31,7 +31,7 @@ def whale_f4(solution=None, problem_size=None):
 
 
 def whale_f5(solution=None, problem_size=None):
-    x = np.array(solution) * ( 30 / 100)
+    x = np.array(solution) 
     D = len(solution)
     res = 0 
     for i in range(D-1):
@@ -40,12 +40,12 @@ def whale_f5(solution=None, problem_size=None):
 
 
 def whale_f6(solution=None, problem_size=None):
-    x = solution
+    x = np.array(solution)
     return np.sum(np.square(np.abs(x + 0.5)))
 
 
 def whale_f7(solution=None, problem_size=None):
-    x = np.array(solution) * ( 1.28 / 100)
+    x = np.array(solution)
     D = len(x)
     res = 0
     r = np.random.random()
@@ -57,12 +57,12 @@ def whale_f7(solution=None, problem_size=None):
 ## Multimodal benchmark functions
 
 def whale_f8(solution=None, problem_size=None):
-    x = np.array(solution) * 5
+    x = np.array(solution) 
     return np.sum((-1) * x * np.sin(np.sqrt(np.abs(x))))
 
 
 def whale_f9(solution=None, problem_size=None):
-    x = np.array(solution) * ( 5.12 / 100)
+    x = np.array(solution) 
     D = len(x)
     A = np.sum(np.square(x))
     B = 10 * np.cos(2 * np.pi * x) 
@@ -70,30 +70,30 @@ def whale_f9(solution=None, problem_size=None):
 
 
 def whale_f10(solution=None, problem_size=None):
-    x = np.array(solution) * ( 32 / 100) # -50, 50
+    x = np.array(solution) 
     return CEC_5(x)
 
 
 def whale_f11(solution=None, problem_size=None):
-    x = np.array(solution) * 6 # -600, 600
+    x = np.array(solution) 
     return CEC_7(x)     
 
 
 def whale_f12(solution=None, problem_size=None):
-    x = np.array(solution) * (1 / 2) # -50, 50
+    x = np.array(solution) 
     D = len(x)
-    A = np.sin(np.pi * y(x[0]))
+    A = np.sin(np.pi * y_function(x[0]))
     B = 0
     C = 0
     for i in range(D - 1):
-        B += ((y(x[i]) - 1) ** 2) * (1 + 10 * np.square(np.sin(np.pi * y(x[i+1]))))
+        B += ((y_function(x[i]) - 1) ** 2) * (1 + 10 * np.square(np.sin(np.pi * y_function(x[i+1]))))
     for i in range(D):
         C += u_function(x[i], 10, 100, 4)
     res = np.pi / D * (A + B) + C
     return res 
 
 def whale_f13(solution=None, problem_size=None):
-    x = np.array(solution) * (-1 / 2) # -50, 50
+    x = np.array(solution)  # -50, 50
     A = 0
     B = 0 
     C = 0 
@@ -105,10 +105,31 @@ def whale_f13(solution=None, problem_size=None):
     C = np.square(x[-1] - 1) * (1 + np.square(np.sin(2 * np.pi * x[-1])))
     for i in range(D):
         G += u_function(x[i], 5, 100, 4)  
-    res = 0.1 * (A + B + C) + D
+    res = 0.1 * (A + B + C) + G
     return res 
 
-def y(x):
+def whale_f14(solution=None, problem_size = None):
+    return CEC_6(np.array(solution))
+
+
+def whale_f15(solution=None, problem_size=None):
+    x = np.array(solution)
+    res = np.sum(np.abs(x * np.sin(x) + 0.1 * x))
+    return res
+
+def whale_f16(solution=None, problem_size=None):
+    x = np.array(solution)
+    A = np.sin(np.sum(np.square(x))) ** 2 - 0.5
+    B = (1 + 0.001 * np.sum(np.square(x))) ** (-2)
+    return 0.5 + A * B
+
+def whale_f17(solution=None, problem_size=None):
+    x = np.array(solution)
+    res = 1/len(x) * np.sum(x ** 4 - 16 * (x ** 2) + 5 * x)
+    return res 
+
+
+def y_function(x):
     return 1 + (x + 1) / 4
 
 
@@ -575,7 +596,7 @@ def C16(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_14(x) + 1600 * rate
 
 
-def C17(solution, prolem_size=None, shift_num=1, rate=1):
+def C17(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.3 * dim)
     n2 = int(0.3 * dim) + n1
@@ -586,7 +607,7 @@ def C17(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_9(x[D[ : n1]]) + CEC_8(x[D[n1 : n2]]) + CEC_1(x[D[n2 : ]]) + 1700 * rate
 
 
-def C18(solution, prolem_size=None, shift_num=1, rate=1):
+def C18(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.3 * dim)
     n2 = int(0.3 * dim) + n1
@@ -596,7 +617,7 @@ def C18(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_2(x[D[ : n1]]) + CEC_12(x[D[n1 : n2]]) + CEC_8(x[D[n2 : ]]) + 1800 * rate
 
 
-def C19(solution, prolem_size=None, shift_num=1, rate=1):
+def C19(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.2 * dim)
     n2 = int(0.2 * dim) + n1
@@ -607,7 +628,7 @@ def C19(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_7(x[D[ : n1]]) + CEC_6(x[D[n1 : n2]]) + CEC_4(x[D[n2 : n3]]) + CEC_14(x[D[n3 : ]]) + 1900 * rate
 
 
-def C20(solution, prolem_size=None, shift_num=1, rate=1):
+def C20(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.2 * dim)
     n2 = int(0.2 * dim) + n1
@@ -618,7 +639,7 @@ def C20(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_12(x[D[ : n1]]) + CEC_3(x[D[n1 : n2]]) + CEC_13(x[D[n2 : n3]]) + CEC_8(x[D[n3 : ]]) + 2000 * rate
 
 
-def C21(solution, prolem_size=None, shift_num=1, rate=1):
+def C21(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.1 * dim)
     n2 = int(0.2 * dim) + n1
@@ -630,7 +651,7 @@ def C21(solution, prolem_size=None, shift_num=1, rate=1):
     return CEC_14(x[D[ : n1]]) + CEC_12(x[D[n1 : n2]]) + CEC_4(x[D[n2 : n3]]) + CEC_9(x[D[n3 : n4]]) + CEC_1(x[D[n4 : ]]) + 2100 * rate
 
 
-def C22(solution, prolem_size=None, shift_num=1, rate=1):
+def C22(solution, prolem_size=None, shift_num=1, rate=0):
     dim = len(solution)
     n1 = int(0.1 * dim)
     n2 = int(0.2 * dim) + n1
@@ -643,7 +664,7 @@ def C22(solution, prolem_size=None, shift_num=1, rate=1):
             CEC_5(x[D[n4 : ]]) + 2200 * rate
 
 
-def C23(solution, prolem_size=None, shift_num=1, rate=1):
+def C23(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3, 4, 5]
     sigma = [10, 20, 30, 40, 50]
     lamda = [1, 1.0e-6, 1.0e-26, 1.0e-6, 1.0e-6 ]
@@ -660,7 +681,7 @@ def C23(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2300 * rate
 
 
-def C24(solution, prolem_size=None, shift_num=1, rate=1):
+def C24(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3]
     sigma = [20, 20, 20]
     lamda = [1, 1, 1]
@@ -678,7 +699,7 @@ def C24(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2400 * rate
 
 
-def C25(solution, prolem_size=None, shift_num=1, rate=1):
+def C25(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3]
     sigma = [10, 30, 50]
     lamda = [0.25, 1, 1.0e-7]
@@ -696,7 +717,7 @@ def C25(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2500 * rate
 
 
-def C26(solution, prolem_size=None, shift_num=1, rate=1):
+def C26(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3, 4, 5]
     sigma = [10, 10, 10, 10, 10]
     lamda = [0.25, 1.0, 1.0e-7, 2.5, 10.0 ]
@@ -714,7 +735,7 @@ def C26(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2600 * rate
 
 
-def C27(solution, prolem_size=None, shift_num=1, rate=1):
+def C27(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3, 4, 5]
     sigma = [10, 10, 10, 20, 20]
     lamda = [10, 10, 2.5, 25, 1.0e-6 ]
@@ -732,7 +753,7 @@ def C27(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2700 * rate
 
 
-def C28(solution, prolem_size=None, shift_num=1, rate=1):
+def C28(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3, 4, 5]
     sigma = [10, 20, 30, 40, 50]
     lamda = [2.5, 10, 2.5, 5.0e-4, 1.0e-6]
@@ -750,7 +771,7 @@ def C28(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2800 * rate
 
 
-def C29(solution, prolem_size=None, shift_num=1, rate=1):
+def C29(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [4, 5, 6]
     sigma = [10, 30, 50]
     lamda = [1, 1, 1]
@@ -768,7 +789,7 @@ def C29(solution, prolem_size=None, shift_num=1, rate=1):
     return res + 2900 * rate
 
 
-def C30(solution, prolem_size=None, shift_num=1, rate=1):
+def C30(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3]
     sigma = [10, 30, 50]
     lamda = [1, 1, 1]
@@ -797,8 +818,9 @@ def cal_std(li, global_min):
 
 if __name__ == "__main__":
 
-    x = np.array([1, 1, 1 , 1, 1])
-    print(C1(x))    
+    x = np.array([1, 1, 1, 1, 1]) * -1
+    y = np.zeros(10)
+    print(whale_f12(x))    
 
 
 

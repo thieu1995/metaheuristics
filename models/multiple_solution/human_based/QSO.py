@@ -29,7 +29,7 @@ class BaseQSO(RootAlgo):
             n1 = 1/3
             n2 = 1/3
             n3 = 1/3
-            print("1")
+            # print("1")
         q1 = int(n1*self.pop_size)
         q2 = int(n2*self.pop_size)
         q3 = self.pop_size - q1 - q2
@@ -90,7 +90,7 @@ class BaseQSO(RootAlgo):
         if t1 > 1.0e-005:
             cv = t1/(t2+t3)
         else:
-            print("yes")
+            # print("yes")
             cv = 1/2
         for i in range(self.pop_size):
             if i < q1:
@@ -147,7 +147,7 @@ class BaseQSO(RootAlgo):
             loss.append(sorted_pop[0][1])
             if self.print_train:
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        return sorted_pop[0][0], loss, sorted_pop[0][1]
+        return sorted_pop[0][1], loss
 
 
 class LevyQSO(BaseQSO):

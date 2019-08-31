@@ -7,7 +7,7 @@ class BaseCRO(RootAlgo):
     This is standard version of CRO implement according to this paper:
         http://downloads.hindawi.com/journals/tswj/2014/739768.pdf
     """
-    HEALTH = 1000000
+    HEALTH = np.Inf
     def __init__(self, root_algo_paras=None, cro_paras = None):
         """
         # reef_size: size of the reef, NxM square grids, each  grid stores a solution
@@ -168,7 +168,7 @@ class BaseCRO(RootAlgo):
                 print("> Epoch {}: Best training fitness {}".format(j + 1, best_train["health"]))
             self.loss_train.append(best_train["health"])
 
-        return best_train["solution"], self.loss_train, best_train['health']
+        return best_train['health'], self.loss_train
 
 
 class OCRO(BaseCRO):

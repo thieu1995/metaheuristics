@@ -70,7 +70,7 @@ class BaseABC(RootAlgo):
                 print("Epoch = {}, patch_size = {}, Fit = {}".format(j + 1, self.patch_size, best[self.ID_FITNESS]))
 
         best = self._get_global_best__(pop, self.ID_FITNESS, self.ID_MIN_PROBLEM)
-        return best[self.ID_BEE], self.loss_train
+        return best[self.ID_FITNESS], self.loss_train
 
 
 

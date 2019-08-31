@@ -82,4 +82,4 @@ class BaseGA(RootAlgo):
                 print("> Epoch {0}: Best training fitness {1}".format(j + 1, 1.0 / best_train[self.ID_FITNESS]))
             self.loss_train.append(np.power(best_train[self.ID_FITNESS], -1))
 
-        return best_train[0], self.loss_train
+        return best_train[self.ID_FITNESS], self.loss_train
