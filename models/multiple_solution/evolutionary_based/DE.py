@@ -28,7 +28,7 @@ class BaseDE(RootAlgo):
                 sample.append(v)
             else :
                 sample.append(p0[i])
-        return sample
+        return np.array(sample)
 
     def _create_children__(self, pop):
         new_children = []
@@ -40,7 +40,7 @@ class BaseDE(RootAlgo):
             child = self._mutation__(pop[i][self.ID_SOl], pop[temp[0]][self.ID_SOl], pop[temp[1]][self.ID_SOl], pop[temp[2]][self.ID_SOl])
             fit = self._fitness_model__(child)
             new_children.append([child, fit])
-        return new_children
+        return np.array(new_children)
 
     ### Survivor Selection
     def _greedy_selection__(self, pop_old=None, pop_new=None):
