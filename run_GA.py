@@ -6,7 +6,7 @@ root_paras = {
     "problem_size": 100,
     "domain_range": [-1, 1],
     "print_train": True,
-    "objective_func": C10
+    "objective_func": whale_f17
 }
 ga_paras = {
     "epoch": 500,
