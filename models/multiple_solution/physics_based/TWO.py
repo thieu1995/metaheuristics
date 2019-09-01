@@ -91,58 +91,58 @@ class BaseTWO(RootAlgo):
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
         return g_best[self.ID_FIT], self.loss_train
 
-
-class OppoTWO(BaseTWO):
-    def __init__(self, root_algo_paras=None, two_paras = None):
-        BaseTWO.__init__(self, root_algo_paras, two_paras)
-
-    def _train__(self):
-        muy_s = 1
-        muy_k = 1
-        delta_t = 1
-        alpha = 0.99
-        beta = 0.1
-
-        pop_old = [self._create_solution__(minmax=self.ID_MAX_PROBLEM) for _ in range(self.pop_size)]
-        pop_old = self._update_weight__(pop_old)
-        g_best = max(pop_old, key=lambda x: x[self.ID_FIT])
-        pop_new = deepcopy(pop_old)
-        for epoch in range(self.epoch):
-            for i in range(self.pop_size):
-                for j in range(self.pop_size):
-                    if pop_old[i][self.ID_WEIGHT] < pop_old[j][self.ID_WEIGHT]:
-                        force = max(pop_old[i][self.ID_WEIGHT] * muy_s, pop_old[j][self.ID_WEIGHT] * muy_s)
-                        resultant_force = force - pop_old[i][self.ID_WEIGHT] * muy_k
-                        g = pop_old[j][self.ID_POS] - pop_old[i][self.ID_POS]
-                        acceleration = resultant_force * g / (pop_old[i][self.ID_WEIGHT] * muy_k)
-                        delta_x = 1 / 2 * acceleration + np.power(alpha, epoch + 1) \
-                                  * beta * (self.domain_range[1] - self.domain_range[0]) * \
-                                  np.random.randn(self.problem_size)
-                        pop_new[i][self.ID_POS] += delta_x
-
-            pop_new = self._amend_and_return_pop__(pop_old, pop_new, g_best, epoch + 1)
-            pop_new = self._update_fit__(pop_new)
-
-            for i in range(self.pop_size):
-                if pop_old[i][self.ID_FIT] < pop_new[i][self.ID_FIT]:
-                    pop_old[i] = deepcopy(pop_new[i])
-                else:
-                    t1 = self.domain_range[1] * np.ones(self.problem_size) + self.domain_range[0] * np.ones(self.problem_size)
-                    t2 = -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_old[i][self.ID_POS])
-                    C_op = t1 + t2
-                    fit_op = self._fitness_model__(C_op, self.ID_MAX_PROBLEM)
-                    if fit_op > pop_old[i][self.ID_FIT]:
-                        pop_old[i] = [C_op, fit_op, 0.0]
-            pop_old = self._update_weight__(pop_old)
-            pop_new = deepcopy(pop_old)
-
-            current_best = self._get_global_best__(pop_old, self.ID_FIT, self.ID_MAX_PROBLEM)
-            if current_best[self.ID_FIT] > g_best[self.ID_FIT]:
-                g_best = deepcopy(current_best)
-            self.loss_train.append(1.0 / g_best[self.ID_FIT])
-            if self.print_train:
-                print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_POS], self.loss_train
+#
+# class OppoTWO(BaseTWO):
+#     def __init__(self, root_algo_paras=None, two_paras = None):
+#         BaseTWO.__init__(self, root_algo_paras, two_paras)
+#
+#     def _train__(self):
+#         muy_s = 1
+#         muy_k = 1
+#         delta_t = 1
+#         alpha = 0.99
+#         beta = 0.1
+#
+#         pop_old = [self._create_solution__(minmax=self.ID_MAX_PROBLEM) for _ in range(self.pop_size)]
+#         pop_old = self._update_weight__(pop_old)
+#         g_best = max(pop_old, key=lambda x: x[self.ID_FIT])
+#         pop_new = deepcopy(pop_old)
+#         for epoch in range(self.epoch):
+#             for i in range(self.pop_size):
+#                 for j in range(self.pop_size):
+#                     if pop_old[i][self.ID_WEIGHT] < pop_old[j][self.ID_WEIGHT]:
+#                         force = max(pop_old[i][self.ID_WEIGHT] * muy_s, pop_old[j][self.ID_WEIGHT] * muy_s)
+#                         resultant_force = force - pop_old[i][self.ID_WEIGHT] * muy_k
+#                         g = pop_old[j][self.ID_POS] - pop_old[i][self.ID_POS]
+#                         acceleration = resultant_force * g / (pop_old[i][self.ID_WEIGHT] * muy_k)
+#                         delta_x = 1 / 2 * acceleration + np.power(alpha, epoch + 1) \
+#                                   * beta * (self.domain_range[1] - self.domain_range[0]) * \
+#                                   np.random.randn(self.problem_size)
+#                         pop_new[i][self.ID_POS] += delta_x
+#
+#             pop_new = self._amend_and_return_pop__(pop_old, pop_new, g_best, epoch + 1)
+#             pop_new = self._update_fit__(pop_new)
+#
+#             for i in range(self.pop_size):
+#                 if pop_old[i][self.ID_FIT] < pop_new[i][self.ID_FIT]:
+#                     pop_old[i] = deepcopy(pop_new[i])
+#                 else:
+#                     t1 = self.domain_range[1] * np.ones(self.problem_size) + self.domain_range[0] * np.ones(self.problem_size)
+#                     t2 = -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_old[i][self.ID_POS])
+#                     C_op = t1 + t2
+#                     fit_op = self._fitness_model__(C_op, self.ID_MAX_PROBLEM)
+#                     if fit_op > pop_old[i][self.ID_FIT]:
+#                         pop_old[i] = [C_op, fit_op, 0.0]
+#             pop_old = self._update_weight__(pop_old)
+#             pop_new = deepcopy(pop_old)
+#
+#             current_best = self._get_global_best__(pop_old, self.ID_FIT, self.ID_MAX_PROBLEM)
+#             if current_best[self.ID_FIT] > g_best[self.ID_FIT]:
+#                 g_best = deepcopy(current_best)
+#             self.loss_train.append(1.0 / g_best[self.ID_FIT])
+#             if self.print_train:
+#                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
+#         return g_best[self.ID_POS], self.loss_train
 
 
 class OTWO(BaseTWO):
@@ -189,7 +189,7 @@ class OTWO(BaseTWO):
                     pop_old[i] = deepcopy(pop_new[i])
                 else:
                     t1 = self.domain_range[1] * np.ones(self.problem_size) + self.domain_range[0] * np.ones(self.problem_size)
-                    t2 = -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_old[i][self.ID_POS])
+                    t2 = -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_new[i][self.ID_POS])
                     C_op = t1 + t2
                     fit_op = self._fitness_model__(C_op, self.ID_MAX_PROBLEM)
                     if fit_op > pop_old[i][self.ID_FIT]:
@@ -203,7 +203,7 @@ class OTWO(BaseTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_POS], self.loss_train
+        return g_best[self.ID_FIT], self.loss_train
 
 
 
@@ -274,13 +274,13 @@ class LevyTWO(BaseTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_POS], self.loss_train
+        return g_best[self.ID_FIT], self.loss_train
 
 
 
-class ITWO(OppoTWO, LevyTWO):
+class ITWO(OTWO, LevyTWO):
     def __init__(self, root_algo_paras=None, two_paras = None):
-        OppoTWO.__init__(self, root_algo_paras, two_paras)
+        OTWO.__init__(self, root_algo_paras, two_paras)
 
     def _train__(self):
         muy_s = 1
@@ -289,10 +289,19 @@ class ITWO(OppoTWO, LevyTWO):
         alpha = 0.99
         beta = 0.1
 
-        pop_old = [self._create_solution__(minmax=self.ID_MAX_PROBLEM) for _ in range(self.pop_size)]
+        pop_temp = [self._create_solution__(minmax=self.ID_MAX_PROBLEM) for _ in range(self.pop_size)]
+        pop_oppo = deepcopy(pop_temp)
+        for i in range(self.pop_size):
+            item_oppo = self.domain_range[1] * np.ones(self.problem_size) + self.domain_range[0] * np.ones(self.problem_size) - pop_temp[i][self.ID_POS]
+            fit = self._fitness_model__(item_oppo, self.ID_MAX_PROBLEM)
+            pop_oppo[i] = [item_oppo, fit, 0.0]
+        pop_oppo = pop_temp + pop_oppo
+        pop_old = sorted(pop_oppo, key=lambda item: item[self.ID_FIT])[self.pop_size:]
         pop_old = self._update_weight__(pop_old)
+
         g_best = max(pop_old, key=lambda x: x[self.ID_FIT])
         pop_new = deepcopy(pop_old)
+
         for epoch in range(self.epoch):
             for i in range(self.pop_size):
                 if np.random.uniform() < 0.5:
@@ -316,7 +325,7 @@ class ITWO(OppoTWO, LevyTWO):
                     pop_old[i] = deepcopy(pop_new[i])
                 else:
                     C_op = self.domain_range[1] * np.ones(self.problem_size) + self.domain_range[0] * np.ones(self.problem_size) + \
-                           -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_old[i][self.ID_POS])
+                           -1 * g_best[self.ID_POS] + np.random.uniform() * (g_best[self.ID_POS] - pop_new[i][self.ID_POS])
                     fit_op = self._fitness_model__(C_op, self.ID_MAX_PROBLEM)
                     if fit_op > pop_old[i][self.ID_FIT]:
                         pop_old[i] = [C_op, fit_op, 0.0]
@@ -329,5 +338,5 @@ class ITWO(OppoTWO, LevyTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_POS], self.loss_train
+        return g_best[self.ID_FIT], self.loss_train
 
