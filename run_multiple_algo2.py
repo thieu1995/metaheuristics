@@ -27,6 +27,11 @@ algo_list = [
                 # ['PSO', BasePSO],
                 # ['CRO', BaseCRO],
                 # ['WOA', BaoWOA],
+                ['HHO', BaseHHO],
+                ['ABC', BaseABC],
+                ['TWO', BaseTWO],
+                ['NRO', BaseNRO],
+                # ['QSO', BaseQSO],
                 # ['HHO', BaseHHO],
                 # ['ABC', BaseABC],
                 # ['TWO', BaseTWO],
@@ -34,7 +39,7 @@ algo_list = [
                 ['QSO', BaseQSO],
                 # ['PFA', BasePFA],
                 ['IPFA', IPFA]
-            ]
+		]
 
 fun_list = [
             #Fun(1, "whale_f1", whale_f1, [-100, 100], 0),
@@ -268,10 +273,7 @@ def run(para):
 #     print(z)
 
 param_grid = {'algo': algo_list,
-             'fun': fun_list
+              'fun': fun_list
             }
-p = Pool(5)
-# for algo in algo_list:
-#     for fun in fun_list:
-#         run({'algo':algo, 'fun': fun})
+p = Pool(8)
 p.map(run, list(ParameterGrid(param_grid)))
