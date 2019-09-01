@@ -22,18 +22,18 @@ from models.multiple_solution.human_based.QSO import BaseQSO
 
 
 algo_list = [ 
-                # ['GA', BaseGA],
-                # ['DE', BaseDE],
-                # ['PSO', BasePSO],
-                # ['CRO', BaseCRO],
-                # ['WOA', BaoWOA],
-                # ['HHO', BaseHHO],
-                # ['ABC', BaseABC],
-                # ['TWO', BaseTWO],
-                # ['NRO', BaseNRO],
-                # ['QSO', BaseQSO],
-                # ['PFA', BasePFA],
-                # ['IPFA', IPFA]
+                #['GA', BaseGA],
+                ['DE', BaseDE],
+                ['PSO', BasePSO],
+                ['CRO', BaseCRO],
+                ['WOA', BaoWOA],
+                #['HHO', BaseHHO],
+                #['ABC', BaseABC],
+                #['TWO', BaseTWO],
+                #['NRO', BaseNRO],
+                #['QSO', BaseQSO],
+                ['PFA', BasePFA],
+                #['IPFA', IPFA]
             ]
 
 fun_list = [
@@ -270,8 +270,8 @@ def run(para):
 param_grid = {'algo': algo_list,
               'fun': fun_list
              }
-p = Pool(1)
-for algo in algo_list:
-    for fun in fun_list:
-        run({'algo':algo, 'fun': fun})
-# p.map(run, list(ParameterGrid(param_grid)))
+p = Pool(8)
+#for algo in algo_list:
+#    for fun in fun_list:
+#        run({'algo':algo, 'fun': fun})
+p.map(run, list(ParameterGrid(param_grid)))
