@@ -108,6 +108,29 @@ None
 + Totally trash and unethical, plagiarize from Flower Pollination Algorithm developed by Yang
 ```
 
+* __Butterfly Optimization Algorithm__: Arora, S., & Singh, S. (2019). Butterfly optimization algorithm: a novel approach for global optimization. Soft Computing, 23(3), 715-734.
+```code 
++ Cant converge as the paper said
++ The code public from the author different with the pseudo-code in the paper
++ Totally trash and unethical, plagiarize from Flower Pollination Algorithm developed by Yang
+```
+
+* __Blue Monkey Optimization__: (2019) The Blue Monkey: A New Nature Inspired Metaheuristic Optimization Algorithm. DOI: http://dx.doi.org/10.21533/pen.v7i3.621
+```code 
++ Really? The idea look like "Chicken Swarm Optimization"
++ The pseudo-code totally shit in my opinion, just read the paper you will understand.
++ The unclear point here is the "Rate equation": really confuse because It's contain the position. As you know,
+    The position is the vector, but finally, the author conclude that Rate is random number in range [0, 1]
+    Luckily, using number we can plus/add number and vector or vector and vector.
+    So at first, Rate is random number then after the 1st loop, its become vector. 
++ Morever, both equtions movement of blue monkey and children is the same.
++ In addition, they don't check the bound after update position.
++ Keep going, they don't tell you the how to find the global best (I mean from blue monkey group or child group)
++ The code I have done here is the version which I used my knowledge about meta-heuristics to do it. 
++ The results good for some CEC2014 functions, but can't even converge with the square function.
++ Can't get the results same at the paper.
+After all, I think this is completely trash algorithm, need to remove from our comunity.
+```
 
 
 4._. Human activity-based
