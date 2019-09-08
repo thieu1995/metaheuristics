@@ -4,9 +4,9 @@ from utils.FunctionUtil import *
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-1, 1],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C21
+    "objective_func": C28
 }
 
 cro_paras = {
@@ -24,5 +24,6 @@ cro_paras = {
 
 ## Run model
 md = BaseCRO(root_algo_paras=root_paras, cro_paras=cro_paras)
-md._train__()
-
+a, b, c = md._train__()
+print(a)
+print(b)

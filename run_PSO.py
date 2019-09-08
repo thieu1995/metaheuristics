@@ -4,9 +4,9 @@ from utils.FunctionUtil import *
 ## Setting parameters
 root_paras = {
     "problem_size": 30,
-    "domain_range": [-1, 1],
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C14
+    "objective_func": C28
 }
 pso_paras = {
     "epoch": 500,

@@ -5,7 +5,8 @@ import seaborn as sns
 import os
 import matplotlib.pyplot as plt
 from utils.FunctionUtil import cal_mean, cal_std
-from plot import AlgoInfor
+# from plot import AlgoInfor
+from utils.class_utils import AlgoInfor
 from decimal import Decimal
 """
 Generate unimodal, multimodal, hybrid, compostion result table 
@@ -146,6 +147,7 @@ def gen_latex_table(flist, names, list_fun, font_size='footnotesize'):
 
 if __name__ == "__main__":
     flist, names = load_data()
-    list_fun = (0, 3, 16, 22, 30)
-    names = ['GA', 'PSO', 'ABC', 'CRO', 'WOA', 'QSO', 'IQSO']
+    list_fun = (0, 6, 16, 22, 30)
+    names = ['GA', 'DE', 'PSO', 'TWO', 'WOA', 'QSO', 
+                          'NRO', 'HHO', 'PFA', 'IPFA']
     gen_latex_table(flist, names, list_fun)

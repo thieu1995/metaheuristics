@@ -69,12 +69,15 @@ def plot_and_save(fun_index, labels_data, labels_legend=None, partly=False):
 
 
 if __name__ == '__main__':
-    labels_to_get_data = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'IQSO']
-    labels_to_plot_legend = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'IQSO']
+    labels_to_get_data = ['GA', 'DE', 'PSO', 'TWO', 'WOA', 'QSO', 
+                          'NRO', 'HHO', 'PFA', 'IPFA']
+    labels_to_plot_legend = ['GA', 'DE', 'PSO', 'TWO', 'WOA', 'QSO', 
+                          'NRO', 'HHO', 'PFA', 'IPFA']
+ 
     labels_to_get_partly_data = ['WOA', 'QSO', 'IQSO']
     with open('./history/overall/algo_dict_info.pkl', 'rb') as f:
             algo_infor = pkl.load(f)
-    partly = True
+    partly = False
     if partly is False:
         for i in range(30):
             plot_and_save(i, labels_to_get_data, labels_to_plot_legend)

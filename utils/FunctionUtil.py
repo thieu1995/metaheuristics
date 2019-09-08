@@ -5,17 +5,18 @@ import numpy as np
 # https://sci-hub.tw/10.1080/00207160108805080
 
 ## Unimodal benchmark functions
-def whale_f1(solution=None, problem_size=None):
-    return np.sum(np.power(solution, 2))
+def whale_f1(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
+    return np.sum(np.power(x, 2))
 
 
-def whale_f2(solution=None, problem_size=None):
-    x = np.array(solution) 
-    return np.sum(np.abs(solution)) + np.prod(np.abs(solution))
+def whale_f2(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
+    return np.sum(np.abs(x)) + np.prod(np.abs(x))
 
 
-def whale_f3(solution=None, problem_size=None):
-    x = np.array(solution)
+def whale_f3(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     D = len(solution)
     res = 0 
     for i in range(D):
@@ -26,12 +27,13 @@ def whale_f3(solution=None, problem_size=None):
     return res 
 
 
-def whale_f4(solution=None, problem_size=None):
+def whale_f4(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     return max(solution, key=lambda x:abs(x))
 
 
-def whale_f5(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f5(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     D = len(solution)
     res = 0 
     for i in range(D-1):
@@ -39,13 +41,13 @@ def whale_f5(solution=None, problem_size=None):
     return res 
 
 
-def whale_f6(solution=None, problem_size=None):
-    x = np.array(solution)
+def whale_f6(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     return np.sum(np.square(np.abs(x + 0.5)))
 
 
-def whale_f7(solution=None, problem_size=None):
-    x = np.array(solution)
+def whale_f7(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     D = len(x)
     res = 0
     r = np.random.random()
@@ -56,31 +58,37 @@ def whale_f7(solution=None, problem_size=None):
 
 ## Multimodal benchmark functions
 
-def whale_f8(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f81(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     return np.sum((-1) * x * np.sin(np.sqrt(np.abs(x))))
 
 
-def whale_f9(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f8(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
+    i = np.arange(1, len(x) + 1)
+    return np.sum(i * (x ** 2))
+
+
+def whale_f9(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num) 
     D = len(x)
     A = np.sum(np.square(x))
     B = 10 * np.cos(2 * np.pi * x) 
     return np.sum(A - B + 10)
 
 
-def whale_f10(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f10(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num) 
     return CEC_5(x)
 
 
-def whale_f11(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f11(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     return CEC_7(x)     
 
 
-def whale_f12(solution=None, problem_size=None):
-    x = np.array(solution) 
+def whale_f12(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num) 
     D = len(x)
     A = np.sin(np.pi * y_function(x[0]))
     B = 0
@@ -92,8 +100,9 @@ def whale_f12(solution=None, problem_size=None):
     res = np.pi / D * (A + B) + C
     return res 
 
-def whale_f13(solution=None, problem_size=None):
-    x = np.array(solution)  # -50, 50
+
+def whale_f13(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     A = 0
     B = 0 
     C = 0 
@@ -108,24 +117,36 @@ def whale_f13(solution=None, problem_size=None):
     res = 0.1 * (A + B + C) + G
     return res 
 
-def whale_f14(solution=None, problem_size = None):
-    return CEC_6(np.array(solution))
+
+def whale_f14(solution=None, problem_size = None, shift_num=1):
+    x = shift(solution, shift_num)
+    return CEC_6(X)
 
 
-def whale_f15(solution=None, problem_size=None):
-    x = np.array(solution)
+def whale_f15(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     res = np.sum(np.abs(x * np.sin(x) + 0.1 * x))
     return res
 
-def whale_f16(solution=None, problem_size=None):
-    x = np.array(solution)
+
+def whale_f16(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     A = np.sin(np.sum(np.square(x))) ** 2 - 0.5
     B = (1 + 0.001 * np.sum(np.square(x))) ** (-2)
     return 0.5 + A * B
 
-def whale_f17(solution=None, problem_size=None):
-    x = np.array(solution)
+
+def whale_f171(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
     res = 1/len(x) * np.sum(x ** 4 - 16 * (x ** 2) + 5 * x)
+    return res 
+
+
+def whale_f17(solution=None, problem_size=None, shift_num=1):
+    x = shift(solution, shift_num)
+    res = 0
+    for i in range(len(x) - 1):
+        res = x[i] ** 2 + 2 * x[i+1] ** 2 - 0.3 * np.cos(3 * np.pi * x[i]) - 0.4 * np.cos(4 * np.pi * x[i+1]) + 0.7
     return res 
 
 
@@ -789,7 +810,7 @@ def C29(solution, prolem_size=None, shift_num=1, rate=0):
     return res + 2900 * rate
 
 
-def C30(solution, prolem_size=None, shift_num=1, rate=0 ):
+def C30(solution, prolem_size=None, shift_num=1, rate=0):
     shift_arr = [1, 2, 3]
     sigma = [10, 30, 50]
     lamda = [1, 1, 1]
@@ -818,9 +839,14 @@ def cal_std(li, global_min):
 
 if __name__ == "__main__":
 
-    x = np.array([1, 1, 1, 1, 1]) * -1
+    x = np.ones(30) 
     y = np.zeros(10)
-    print(whale_f12(x))    
+    z = [-8.03336335,  4.49403415,  0.83832122,  5.97514123, -5.08682023 ,-9.43050266,
+ -6.77228137,  1.1883411 , -4.86021467 , 0.08497228, -5.09768197 ,-1.97166303,
+  3.51906606, -9.78713803, -9.16818984 ,-3.51087451 , 6.73651609, -5.36781026,
+ -9.79573247, -9.39918547 ,-5.26281275 ,-7.26505511, -5.45225145 ,-9.66711428,
+ -6.65442971, -8.31826288, -1.31812973 , 6.97717255 , 1.00123612,  0.99947184]
+    print(whale_f17(x))    
 
 
 

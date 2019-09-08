@@ -76,5 +76,5 @@ class BaseHHO(RootAlgo):
             if self.print_train:
                 print("Epoch = {}, Fit = {}".format(epoch + 1, gbest[self.ID_FIT]))
 
-        return gbest[self.ID_FIT], self.loss_train
+        return gbest[self.ID_FIT], self.loss_train, gbest[self.ID_POS]
 

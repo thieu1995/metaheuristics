@@ -13,6 +13,14 @@ class BaseQSO(RootAlgo):
         self.epoch =  qso_paras["epoch"]
         self.pop_size = qso_paras["pop_size"]
 
+    def _amend_(self, solution):
+        # for i in range(len(solution)):
+        #     if solution[i] < self.domain_range[0]:
+        #         solution[i] = self.domain_range[0]
+        #     if solution[i] > self.domain_range[1]:
+        #         solution[i] = self.domain_range[1]
+        return solution
+
     def _calculate_queue_length__(self, t1, t2 , t3):
         """
         calculate length of each queue based on  t1, t2,t3
@@ -59,10 +67,10 @@ class BaseQSO(RootAlgo):
             solution_shape = pop[0][0].shape
             E = np.random.exponential(0.5, solution_shape)
             e = np.random.exponential(0.5)
-            F1 = beta*alpha*(E*np.abs(A - pop[i][0])) + e*A - e*pop[i][0]
-            F2 = beta*alpha*(E*np.abs(A - pop[i][0]))
+            F1 = beta * alpha * (E * np.abs(A - pop[i][0])) + e * A - e * pop[i][0]
+            F2 = beta * alpha * (E * np.abs(A - pop[i][0]))
             if case == 1:
-                X_new = A + F1
+                X_new = self._amend_(A + F1)
                 new_fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 if new_fit < pop[i][1]:
                     pop[i] = [X_new, new_fit]
@@ -70,7 +78,7 @@ class BaseQSO(RootAlgo):
                 else:
                     case = 2
             else:
-                X_new = pop[i][0] + F2
+                X_new = self._amend_(pop[i][0] + F2)
                 new_fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 if new_fit < pop[i][1]:
                     pop[i] = [X_new, new_fit]
@@ -107,10 +115,10 @@ class BaseQSO(RootAlgo):
                 F1 = e*(X1-X2)
                 F2 = e*(A-X1)
                 if np.random.random() < cv:
-                    X_new = sorted_pop[i][0] + F1
+                    X_new = self._amend_(sorted_pop[i][0] + F1)
                     fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 else:
-                    X_new = sorted_pop[i][0] + F2
+                    X_new = self._amend_(sorted_pop[i][0] + F2)
                     fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
                 if fit < sorted_pop[i][1]:
                     sorted_pop[i] = [X_new, fit]
@@ -130,6 +138,7 @@ class BaseQSO(RootAlgo):
                     X_new[j] = X1[j] + e*(X2[j]- sorted_pop[i][self.ID_POS][j])
                 else:
                     X_new[j] = sorted_pop[i][self.ID_POS][j]
+            X_new = self._amend_(X_new)
             fit = self._fitness_model__(solution=X_new, minmax=self.ID_MIN_PROBLEM)
             if fit < sorted_pop[i][1]:
                 sorted_pop[i] = [X_new, fit]
@@ -147,7 +156,7 @@ class BaseQSO(RootAlgo):
             loss.append(sorted_pop[0][1])
             if self.print_train:
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        return sorted_pop[0][1], loss
+        return sorted_pop[0][1], loss, sorted_pop[0][0]
 
 
 class LevyQSO(BaseQSO):
@@ -267,4 +276,4 @@ class LevyOppQSO(OppQSO, LevyQSO):
             loss.append(sorted_pop[0][1])
             if self.print_train:
                 print("best fit ", sorted_pop[0][1]," in gen ",current_iter)
-        return sorted_pop[0][0], loss, sorted_pop[0][1]
+        return sorted_pop[0][1], loss, sorted_pop[0][0]

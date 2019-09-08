@@ -85,7 +85,7 @@ class BasePFA(RootAlgo):
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(i + 1, gbest_present[self.ID_FIT]))
 
-        return gbest_present[self.ID_FIT], self.loss_train
+        return gbest_present[self.ID_FIT], self.loss_train, g_best[self.ID_POS]
 
 
 
@@ -230,7 +230,7 @@ class LPFA(BasePFA):
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(i + 1, gbest_present[self.ID_FIT]))
 
-        return gbest_present[self.ID_FIT], self.loss_train
+        return gbest_present[self.ID_FIT], self.loss_train, gbest_present[self.ID_POS]
 
 
 class IPFA(LPFA):

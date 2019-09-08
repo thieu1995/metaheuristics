@@ -89,7 +89,7 @@ class BaseTWO(RootAlgo):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_FIT], self.loss_train
+        return 1.0 / g_best[self.ID_FIT], self.loss_train, g_best[self.ID_POS]
 
 #
 # class OppoTWO(BaseTWO):
@@ -203,7 +203,7 @@ class OTWO(BaseTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_FIT], self.loss_train
+        return 1.0 / g_best[self.ID_FIT], self.loss_train, g_best[self.ID_POS]
 
 
 
@@ -274,7 +274,7 @@ class LevyTWO(BaseTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_FIT], self.loss_train
+        return 1.0 / g_best[self.ID_FIT], self.loss_train
 
 
 
@@ -338,5 +338,5 @@ class ITWO(OTWO, LevyTWO):
             self.loss_train.append(1.0 / g_best[self.ID_FIT])
             if self.print_train:
                 print("Generation : {0}, best result so far: {1}".format(epoch + 1, 1.0 / g_best[self.ID_FIT]))
-        return g_best[self.ID_FIT], self.loss_train
+        return 1.0 / g_best[self.ID_FIT], self.loss_train, g_best[self.ID_POS] 
 

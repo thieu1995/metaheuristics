@@ -3,10 +3,10 @@ from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 100,
-    "domain_range": [-1, 1],
+    "problem_size": 30,
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": whale_f17
+    "objective_func": C28
 }
 ga_paras = {
     "epoch": 500,
@@ -17,4 +17,6 @@ ga_paras = {
 
 ## Run model
 md = BaseGA(root_algo_paras=root_paras, ga_paras=ga_paras)
-md._train__()
+a, b, c = md._train__()
+print(a)
+print(c)

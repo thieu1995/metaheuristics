@@ -1,12 +1,12 @@
-from models.multiple_solution.human_based.QSO import LevyOppQSO
+from models.multiple_solution.human_based.QSO import LevyOppQSO, BaseQSO
 from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 100,
-    "domain_range": [-1, 1],
+    "problem_size": 30,
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C20
+    "objective_func": C28
 }
 qso_paras = {
     "epoch": 500,
@@ -14,5 +14,6 @@ qso_paras = {
 }
 
 ## Run model
-md = LevyOppQSO(root_algo_paras=root_paras, qso_paras=qso_paras)
-md._train__()
+md = BaseQSO(root_algo_paras=root_paras, qso_paras=qso_paras)
+a,b,c = md._train__()
+print(c)

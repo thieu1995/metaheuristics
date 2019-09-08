@@ -4,13 +4,17 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from utils.FunctionUtil import cal_mean, cal_std
-from class_utils import AlgoInfor
+from utils.class_utils import AlgoInfor
 """
 Get all information (best fit of 15 runtimes and losses for the best run) of all algorithms.
 Save all information in  overall/algo_dict_info.pkl
 """
 
-algos = ['GA', 'PSO', 'ABFOLS', 'CRO', 'ABC', 'WOA', 'QSO', 'IQSO']
+algos = ['GA', 'DE', 'PSO',
+         'CRO', 'ABC', 'WOA',
+         'QSO', 'TWO',
+         'OTWO', 'NRO', 'HHO',
+         'PFA', 'IPFA']
 path_loss = './history/loss/'
 path_best_fit = './history/best_fit/'
 algo_dict = {}
@@ -19,9 +23,12 @@ for name in algos:
     al = AlgoInfor()
     al.name = name
     print(name)
+    coeff = 1
+    if name == 'GA':
+        coeff = -1
     # iterate over 30 benmark functions
     for i in range(1, 31):
-        function_name = 'F' + str(i)
+        function_name = str(i)
         name_file = name + "_" + function_name
         loss_file = name_file + '_loss.pkl'
         best_fit_file = name_file + '_best_fit.pkl'
@@ -32,18 +39,20 @@ for name in algos:
             loss = pkl.load(f)
         with open(path_file_best_fit, 'rb') as f:
             best_fit = pkl.load(f)
-        if name == 'PSO':
-            # PSO returns matrix form of loss and best fit
-            loss = np.reshape(np.array(loss), -1)
-            best_fit = np.reshape(np.array(best_fit), -1)
-        elif name == 'ABFOLS':
-            # ABFOLS return inversed value of fitness and matrix form of loss
-            best_fit = 1 / np.array(best_fit)
-            loss = np.array(loss)[:, 0]
+
+        best_fit = best_fit ** (coeff)
+        # if name == 'PSO':
+        #     # PSO returns matrix form of loss and best fit
+        #     loss = np.reshape(np.array(loss), -1)
+        #     best_fit = np.reshape(np.array(best_fit), -1)
+        # elif name == 'ABFOLS':
+        #     # ABFOLS return inversed value of fitness and matrix form of loss
+        #     best_fit = 1 / np.array(best_fit)
+        #     loss = np.array(loss)[:, 0]
 
         # cal std, mean , worst, best of 15 run times
-        std = cal_std(best_fit, i*100)
-        mean = cal_mean(best_fit, i*100)
+        std = cal_std(best_fit, 0*100)
+        mean = cal_mean(best_fit, 0*100)
         worst = max(best_fit)
         best = min(best_fit)
         al.std.append(std)

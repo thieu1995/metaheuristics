@@ -3,18 +3,22 @@ from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 100,
-    "domain_range": [-1, 1],
+    "problem_size": 30,
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C2
+    "objective_func": C28
 }
 hgso_paras = {
-    "epoch": 500,
+    "epoch": 1000,
     "pop_size": 100,
     "n_clusters": 5
 }
 
 ## Run model
-md = LevyHGSO(root_algo_paras=root_paras, hgso_paras=hgso_paras)
-md._train__()
+md = BaseHGSO(root_algo_paras=root_paras, hgso_paras=hgso_paras)
+a, b, c = md._train__()
+print(b)
+print(a)
+print(c)
+
 

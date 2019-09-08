@@ -65,7 +65,7 @@ class BaseDE(RootAlgo):
             if self.print_train:
                 print("Epoch : {}, [MSE, MAE]: {}".format(i + 1, gbest[self.ID_FIT]))
 
-        return gbest[self.ID_FIT], self.loss_train
+        return gbest[self.ID_FIT], self.loss_train, gbest[0]
 
 
 

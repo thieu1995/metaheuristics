@@ -19,28 +19,28 @@ from models.multiple_solution.swarm_based.PFA import IPFA
 from models.multiple_solution.physics_based.TWO import BaseTWO, OTWO, ITWO
 from models.multiple_solution.physics_based.NRO import BaseNRO
 from models.multiple_solution.human_based.QSO import BaseQSO
-
+from models.multiple_solution.physics_based.HGSO import BaseHGSO
 
 algo_list = [ 
-                # ['GA', BaseGA],
-                # ['DE', BaseDE],
-                # ['PSO', BasePSO],
-                # ['CRO', BaseCRO],
-                # ['WOA', BaoWOA],
-                # ['HHO', BaseHHO],
+                ['GA', BaseGA],
+                ['DE', BaseDE],
+                ['PSO', BasePSO],
+                ['CRO', BaseCRO],
+                ['WOA', BaoWOA],
+                ['HHO', BaseHHO],
+                # ['ABC', BaseABC],
+                ['TWO', BaseTWO],
+                ['NRO', BaseNRO],
+                ['QSO', BaseQSO],
+                ['HGSO', BaseHGSO],
                 # ['ABC', BaseABC],
                 # ['TWO', BaseTWO],
                 # ['NRO', BaseNRO],
                 # ['QSO', BaseQSO],
-                # ['HHO', BaseHHO],
-                # ['ABC', BaseABC],
-                # ['TWO', BaseTWO],
-                # ['NRO', BaseNRO],
-                # ['QSO', BaseQSO],
-                ['OTWO', OTWO],
+                # ['OTWO', OTWO],
                 ['ITWO', ITWO],
-                ['PFA', BasePFA],
-                ['IPFA', IPFA]
+                # ['PFA', BasePFA],
+                # ['IPFA', IPFA]
 		]
 
 fun_list = [
@@ -50,16 +50,16 @@ fun_list = [
             Fun(4, "whale_f5", whale_f5, [-30, 30], 0),            
             Fun(5, "whale_f6", whale_f6, [-100, 100], 0), 
             Fun(6, "whale_f7", whale_f7, [-1.28, 1.28], 0), 
-            Fun(7, "whale_f8", whale_f8, [-500, 500], -418.9286 * 5), 
+            Fun(7, "whale_f8", whale_f8, [-10, 10], 0), 
             Fun(8, "whale_f9", whale_f9, [-100, 100], 0), 
             Fun(9, "whale_f10", whale_f10, [-5.12, 5.12], 0), 
             Fun(10, "whale_f11", whale_f11, [-32, 32], 0), 
-            Fun(11, "whale_f12", whale_f12, [-50, 50], 0), 
+            Fun(11, "whale_f12", whale_f12, [-60, 60], 0), 
             Fun(12, "whale_f13", whale_f13, [-50, 50], 0), 
             Fun(13, "whale_f14", whale_f14, [-50, 50], 0), 
-            Fun(14, "whale_f15", whale_f15, [-50, 50], 0),
-            Fun(15, "whale_f16", whale_f16, [-10, 10], 0), 
-            Fun(16, "whale_f17", whale_f17, [-5, 5], -78.33236),
+            Fun(14, "whale_f15", whale_f15, [-10, 10], 0),
+            Fun(15, "whale_f16", whale_f16, [-100, 100], 0), 
+            Fun(16, "whale_f17", whale_f17, [-15, 15], 0),
             Fun(17, "C17", C17, [-100, 100], 0),
             Fun(18, "C18", C18, [-100, 100], 0),
             Fun(19, "C19", C19, [-100, 100], 0),
@@ -78,7 +78,7 @@ fun_list = [
 
 run_times = 15
 problem_size = 30
-epoch = 1000
+epoch = 500
 pop_size = 100
 
 def run(para):
@@ -132,6 +132,14 @@ def run(para):
                 "w_minmax": [0.4, 0.9],     # [0-1] -> [0.4-0.9]      Weight of bird
                 "c_minmax": [1.2, 1.2]      # [(1.2, 1.2), (0.8, 2.0), (1.6, 0.6)]  Effecting of  local va global
             }
+            md = Algo(root_paras, algo_paras)
+
+        elif name == 'HGSO':
+            algo_paras = {
+                    "epoch": epoch,
+                    "pop_size": 100,
+                    "n_clusters": 5
+                }
             md = Algo(root_paras, algo_paras)
 
         elif name == 'ABC':
@@ -241,7 +249,7 @@ def run(para):
         if time + 1 == run_times:
             mess = "name {}, fun {}, time {}/{} + DONE run time".format(name, fun.name, time + 1, run_times)
             print(mess)
-            f = open('./history/progress.txt', 'a+')
+            f = open('./history2/progress.txt', 'a+')
             f.write(mess + "\n")
             if fun.id == 30:
                 mess2 = "==============DONE WHOLE {} ==========================".format(name)
@@ -255,8 +263,8 @@ def run(para):
     fname = name + "_" + str(fun.id) 
     file_loss = fname + "_loss"
     file_best_fit = fname + "_best_fit"
-    path_file_loss = './history/loss/' + file_loss
-    path_file_best_fit = './history/best_fit/' + file_best_fit
+    path_file_loss = './history2/loss/' + file_loss
+    path_file_best_fit = './history2/best_fit/' + file_best_fit
 
     with open(path_file_loss + ".csv", 'w') as f_loss:
         for loss in best_loss:
