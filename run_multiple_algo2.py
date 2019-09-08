@@ -27,18 +27,18 @@ algo_list = [
                 ['PSO', BasePSO],
                 ['CRO', BaseCRO],
                 ['WOA', BaoWOA],
-                ['HHO', BaseHHO],
+               # ['HHO', BaseHHO],
                 # ['ABC', BaseABC],
-                ['TWO', BaseTWO],
-                ['NRO', BaseNRO],
-                ['QSO', BaseQSO],
-                ['HGSO', BaseHGSO],
+                #['TWO', BaseTWO],
+                #['NRO', BaseNRO],
+                #['QSO', BaseQSO],
+                #['HGSO', BaseHGSO],
                 # ['ABC', BaseABC],
                 # ['TWO', BaseTWO],
                 # ['NRO', BaseNRO],
                 # ['QSO', BaseQSO],
                 # ['OTWO', OTWO],
-                ['ITWO', ITWO],
+                #['ITWO', ITWO],
                 # ['PFA', BasePFA],
                 # ['IPFA', IPFA]
 		]
@@ -77,7 +77,7 @@ fun_list = [
         ]
 
 run_times = 15
-problem_size = 30
+problem_size = 30 
 epoch = 500
 pop_size = 100
 
@@ -241,7 +241,7 @@ def run(para):
             }
             md = Algo(root_paras, algo_paras)
         
-        best_fit, loss_history = md._train__()
+        best_fit, loss_history, _ = md._train__()
         if best_fit < gbest_fit:
                 gbest_fit = best_fit
                 best_loss = loss_history

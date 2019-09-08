@@ -120,7 +120,7 @@ def whale_f13(solution=None, problem_size=None, shift_num=1):
 
 def whale_f14(solution=None, problem_size = None, shift_num=1):
     x = shift(solution, shift_num)
-    return CEC_6(X)
+    return CEC_6(x)
 
 
 def whale_f15(solution=None, problem_size=None, shift_num=1):
