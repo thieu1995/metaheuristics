@@ -22,23 +22,23 @@ from models.multiple_solution.human_based.QSO import BaseQSO
 from models.multiple_solution.physics_based.HGSO import BaseHGSO
 
 algo_list = [ 
-                ['GA', BaseGA],
-                ['DE', BaseDE],
-                ['PSO', BasePSO],
-                ['CRO', BaseCRO],
-                ['WOA', BaoWOA],
-               # ['HHO', BaseHHO],
+               # ['GA', BaseGA],
+               # ['DE', BaseDE],
+               # ['PSO', BasePSO],
+               # ['CRO', BaseCRO],
+               # ['WOA', BaoWOA],
+                ['HHO', BaseHHO],
                 # ['ABC', BaseABC],
-                #['TWO', BaseTWO],
-                #['NRO', BaseNRO],
-                #['QSO', BaseQSO],
+                ['TWO', BaseTWO],
+                ['NRO', BaseNRO],
+                ['QSO', BaseQSO],
                 #['HGSO', BaseHGSO],
                 # ['ABC', BaseABC],
                 # ['TWO', BaseTWO],
                 # ['NRO', BaseNRO],
                 # ['QSO', BaseQSO],
                 # ['OTWO', OTWO],
-                #['ITWO', ITWO],
+                ['ITWO', ITWO],
                 # ['PFA', BasePFA],
                 # ['IPFA', IPFA]
 		]
@@ -299,5 +299,5 @@ def run(para):
 param_grid = {'algo': algo_list,
               'fun': fun_list
             }
-p = Pool(8)
+p = Pool(6)
 p.map(run, list(ParameterGrid(param_grid)))
