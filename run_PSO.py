@@ -7,7 +7,7 @@ function_list = [ islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid
                  islo_hybrid_F21, islo_hybrid_F22, islo_hybrid_F23, islo_compos_F24, islo_compos_F25, islo_compos_F26,
                  islo_compos_F27, islo_compos_F28, islo_compos_F29, islo_compos_F30]
 
-# function_list = [islo_uni_F1]
+# function_list = [islo_compos_F30]
 dimensions = [50, 100]
 pso_paras = {
     "epoch": 500,

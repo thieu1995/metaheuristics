@@ -1147,7 +1147,7 @@ def islo_compos_F30(solution, problem_size=None, shift_num=1):
     sigma = [10, 10, 20, 20, 30, 30, 40, 40, 50, 50]
     lamda = [0.1,2.5e-1, 0.1, 2.5e-2, 1e-3, 0.1, 1e-5, 10, 2.5e-2, 1e-3]
     bias = [1500, 1600, 1600, 1700, 1700, 1800, 1800, 1900, 1900, 2000]
-    fun = [slno_f8, slno_f6, slno_f11, slno_f9, islo_multi_F15, slno_f12, slno_f10, slno_f14, slno_f13, slno_f5]
+    fun = [slno_f8, slno_f6, slno_f11, slno_f9, islo_multi_F15, slno_f12, slno_f5, slno_f14, slno_f13, slno_f5]
     dim = len(solution)
     res = 0
     w = np.zeros(len(shift_arr))
