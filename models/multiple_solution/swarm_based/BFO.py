@@ -57,7 +57,7 @@ class BaseBFO(RootAlgo):
         cell[self.ID_FITNESS] = cell[self.ID_COST] + cell[self.ID_INTER]
 
     def _tumble_cell__(self, cell, step_size):
-        delta_i = np.random.uniform(-1.0, 1.0, self.problem_size)
+        delta_i = np.random.uniform(self.domain_range[0], self.domain_range[1], self.problem_size)
         unit_vector = delta_i / np.sqrt(np.dot(delta_i, delta_i.T))
         vector = cell[self.ID_VECTOR] + step_size * unit_vector
         return [vector, 0.0, 0.0, 0.0, 0.0]

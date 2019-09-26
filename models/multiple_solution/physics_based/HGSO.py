@@ -199,7 +199,7 @@ class LevyHGSO(BaseHGSO):
         s = muy / np.power(np.abs(v), 1 / beta)
         # D is a random solution
         D = self._create_solution__(minmax=self.ID_MAX_PROBLEM)
-        LB = 0.01 * s * (solution[self.ID_POS] - prey[self.ID_POS])
+        LB = 0.001 * s * (solution[self.ID_POS] - prey[self.ID_POS])
 
         levy = D[self.ID_POS] * LB
         #return levy

@@ -1,4 +1,4 @@
-from models.multiple_solution.evolutionary_based.GA import BaseGA
+from models.multiple_solution.swarm_based.SLnO import SLnO
 from utils.FunctionUtil import *
 
 ## Setting parameters
@@ -8,13 +8,11 @@ root_paras = {
     "print_train": True,
     "objective_func": C29
 }
-ga_paras = {
+woa_paras = {
     "epoch": 500,
-    "pop_size": 100,
-    "pc": 0.95,
-    "pm": 0.025
+    "pop_size": 100
 }
 
 ## Run model
-md = BaseGA(root_algo_paras=root_paras, ga_paras=ga_paras)
+md = SLnO(root_algo_paras=root_paras, woa_paras=woa_paras)
 md._train__()
