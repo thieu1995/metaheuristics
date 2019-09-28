@@ -3,10 +3,10 @@ from utils.FunctionUtil import *
 
 ## Setting parameters
 root_paras = {
-    "problem_size": 30,
-    "domain_range": [-1, 1],
+    "problem_size": 100,
+    "domain_range": [-100, 100],
     "print_train": True,
-    "objective_func": C1
+    "objective_func": C30
 }
 boa_paras = {
     "epoch": 500,
