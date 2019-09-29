@@ -88,7 +88,7 @@ class BaseBMO(RootAlgo):
             if current_g_best[self.ID_FIT] < g_best[self.ID_FIT]:
                 g_best = deepcopy(current_g_best)
 
-            self.loss_train.append(best[self.ID_FIT])
+            self.loss_train.append(g_best[self.ID_FIT])
             if self.print_train:
                 print("Epoch = {}, Fit = {}".format(epoch + 1, g_best[self.ID_FIT]))
         return g_best[self.ID_FIT], self.loss_train
