@@ -27,9 +27,9 @@ class BasePSO(RootAlgo):
                 x_past_best: the best personal position so far (in history)
                 v: velocity of this bird (same number of dimension of x)
         """
-        x = np.random.uniform(self.domain_range[0], self.domain_range[1], (self.problem_size, 1))
+        x = np.random.uniform(self.domain_range[0], self.domain_range[1], self.problem_size)
         x_past_best = deepcopy(x)
-        v = np.zeros((len(x), 1))
+        v = np.zeros(len(x))
         x_fitness = self._fitness_model__(solution=x, minmax=minmax)
         x_past_fitness = deepcopy(x_fitness)
         return [x, x_past_best, v, x_fitness, x_past_fitness]
