@@ -3,7 +3,9 @@ from utils.FunctionUtil import *
 import json
 import os
 
-function_list = [ islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
+function_list = [islo_uni_F1, islo_uni_F2, islo_uni_F3, islo_uni_F4, islo_uni_F5, islo_uni_F6, islo_uni_F8,
+                 islo_multi_F9, islo_multi_F10, islo_multi_F11, islo_multi_F12, islo_multi_F13, islo_multi_F14,
+                 islo_multi_F15, islo_multi_F16, islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
                  islo_hybrid_F21, islo_hybrid_F22, islo_hybrid_F23, islo_compos_F24, islo_compos_F25, islo_compos_F26,
                  islo_compos_F27, islo_compos_F28, islo_compos_F29, islo_compos_F30]
 
@@ -23,7 +25,7 @@ for dim in dimensions:
         ## Setting parameters`
         root_paras = {
             "problem_size": dim,
-            "domain_range": [-100, 100],
+            "domain_range": [-10, 10],
             "print_train": False,
             "objective_func": func
         }
@@ -58,7 +60,7 @@ for dim in dimensions:
 path = "results/"+model_name
 if not os.path.exists(path):
     os.makedirs(path)
-with open(path+'/'+model_name+'_2.json', 'w') as fp:
+with open(path+'/'+model_name+'_final.json', 'w') as fp:
     json.dump(results, fp)
 
 # ## Setting parameters`

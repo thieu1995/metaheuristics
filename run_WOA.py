@@ -3,7 +3,9 @@ from utils.FunctionUtil import *
 import json
 import os
 
-function_list = [ islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
+function_list = [islo_uni_F7, islo_uni_F8,
+                 islo_multi_F9, islo_multi_F10, islo_multi_F11, islo_multi_F12, islo_multi_F13, islo_multi_F14,
+                 islo_multi_F15, islo_multi_F16, islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
                  islo_hybrid_F21, islo_hybrid_F22, islo_hybrid_F23, islo_compos_F24, islo_compos_F25, islo_compos_F26,
                  islo_compos_F27, islo_compos_F28, islo_compos_F29, islo_compos_F30]
 

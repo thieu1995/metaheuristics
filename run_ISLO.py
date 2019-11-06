@@ -3,7 +3,9 @@ from utils.FunctionUtil import *
 import json
 import os
 
-function_list = [ islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
+function_list = [islo_uni_F1, islo_uni_F2, islo_uni_F3, islo_uni_F4, islo_uni_F5, islo_uni_F6, islo_uni_F8,
+                 islo_multi_F9, islo_multi_F10, islo_multi_F11, islo_multi_F12, islo_multi_F13, islo_multi_F14,
+                 islo_multi_F15, islo_multi_F16, islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
                  islo_hybrid_F21, islo_hybrid_F22, islo_hybrid_F23, islo_compos_F24, islo_compos_F25, islo_compos_F26,
                  islo_compos_F27, islo_compos_F28, islo_compos_F29, islo_compos_F30]
 
@@ -37,7 +39,8 @@ for dim in dimensions:
         for i in range(n_times):
             md = ISLO(root_algo_paras=root_paras, woa_paras=SLnO_paras)
             gbest, train_loss = md._train__()
-            statistical_history_train_losses[i] += np.asarray(train_loss)
+            # print(statistical_history_train_losses.shape, np.asarray(train_loss).shape)
+            statistical_history_train_losses[i] += np.asarray(train_loss).reshape((SLnO_paras["epoch"],))
             statistical_final_optimal_values[i] += train_loss[-1]
             print("{} of 20 times: result {}".format(i, train_loss[-1]))
 
@@ -58,7 +61,7 @@ for dim in dimensions:
 path = "results/"+model_name
 if not os.path.exists(path):
     os.makedirs(path)
-with open(path+'/'+model_name+'_2.json', 'w') as fp:
+with open(path+'/'+model_name+'_final.json', 'w') as fp:
     json.dump(results, fp)
 
 
