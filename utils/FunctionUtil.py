@@ -350,20 +350,11 @@ def CEC_9(solution=None, problem_size=None, shift=0):
 
 
 def CEC_10(solution=None, problem_size=None, shift=0):
-    x  = solution - shift
-    res = 0 
+    x = solution - shift
     dim = len(x)
-    A = 1
-    B = 0
-    for i in range(dim):
-        temp = 1
-        for j in range(32):
-            temp += i * (np.abs(np.power(2, j + 1) * x[i] 
-                    - round(np.power(2, j + 1) * x[i]))) / np.power(2, j)
-        A *= np.power(temp, 10 / np.power(dim, 1.2))
-    B = 10 / np.square(dim) 
-    res = B*A - B
-    return res 
+    return (10 / dim ** 2) * np.prod([(1 + (i + 1) * np.sum([(np.abs(2 ** j * x[i] - round(2 ** j * x[i])) / 2 ** j)
+                                                             for j in range(1, 32)])) ** (10 / dim ** 1.2) for i in
+                                      range(dim)]) - 10 / dim ** 2
 
 
 def CEC_11(solution=None, problem_size=None, shift=0):

@@ -3,17 +3,15 @@ from utils.FunctionUtil import *
 import json
 import os
 
-function_list = [ islo_hybrid_F17, islo_hybrid_F18, islo_hybrid_F19, islo_hybrid_F20,
-                 islo_hybrid_F21, islo_hybrid_F22, islo_hybrid_F23, islo_compos_F24, islo_compos_F25, islo_compos_F26,
-                 islo_compos_F27, islo_compos_F28, islo_compos_F29, islo_compos_F30]
+function_list = [islo_uni_F1]
 
 # function_list = [islo_compos_F30]
-dimensions = [50, 100]
+dimensions = [100]
 pso_paras = {
-    "epoch": 500,
-    "pop_size": 100,
+    "epoch": 1000,
+    "pop_size": 300,
     "w_minmax": [0.4, 0.9],     # [0-1] -> [0.4-0.9]      Weight of bird
-    "c_minmax": [1.2, 1.2]      # [(1.2, 1.2), (0.8, 2.0), (1.6, 0.6)]  Effecting of  local va global
+    "c_minmax": [2.05, 2.05]      # [(1.2, 1.2), (0.8, 2.0), (1.6, 0.6)]  Effecting of  local va global
 }
 model_name = "PSO"
 n_times = 20
