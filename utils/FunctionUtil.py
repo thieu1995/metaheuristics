@@ -352,7 +352,7 @@ def CEC_9(solution=None, problem_size=None, shift=0):
 def CEC_10(solution=None, problem_size=None, shift=0):
     x = solution - shift
     dim = len(x)
-    return (10 / dim ** 2) * np.prod([(1 + (i + 1) * np.sum([(np.abs(2 ** j * x[i] - round(2 ** j * x[i])) / 2 ** j)
+    return (10 / dim ** 2) * np.prod([(1 + (i + 1) * np.sum([(np.abs(2 ** j * x[i][0] - round(2 ** j * x[i][0])) / 2 ** j)
                                                              for j in range(1, 32)])) ** (10 / dim ** 1.2) for i in
                                       range(dim)]) - 10 / dim ** 2
 

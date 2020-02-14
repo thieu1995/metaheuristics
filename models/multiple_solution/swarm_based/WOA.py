@@ -114,13 +114,30 @@ class BaoWOA(RootAlgo):
 
 
 class LWOA(BaseWOA):
-    ID_POS = 0
-    ID_FIT = 1
+
+    ID_CURRENT_POS = 0
+    ID_BEST_PAST_POS = 1
+    ID_VECTOR_V = 2
+    ID_CURRENT_FIT = 3
+    ID_PAST_FIT = 4
 
     def __init__(self, root_algo_paras=None, woa_paras=None):
         RootAlgo.__init__(self, root_algo_paras)
         self.epoch = woa_paras["epoch"]
         self.pop_size = woa_paras["pop_size"]
+
+    def _create_solution__(self, minmax=0):
+        """  This algorithm has different encoding mechanism, so we need to override this method
+                x: current position
+                x_past_best: the best personal position so far (in history)
+                v: velocity of this bird (same number of dimension of x)
+        """
+        x = np.random.uniform(self.domain_range[0], self.domain_range[1], (self.problem_size, 1))
+        x_past_best = deepcopy(x)
+        v = np.zeros((len(x), 1))
+        x_fitness = self._fitness_model__(solution=x, minmax=minmax)
+        x_past_fitness = deepcopy(x_fitness)
+        return [x, x_past_best, v, x_fitness, x_past_fitness]
 
     def caculate_xichma(self, beta):
         up = math.gamma(1 + beta) * math.sin(math.pi * beta / 2)
@@ -140,7 +157,7 @@ class LWOA(BaseWOA):
 
     def _train__(self):
         pop = [self._create_solution__() for _ in range(self.pop_size)]
-        gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_FIT, id_best=self.ID_MIN_PROBLEM)   # Find prey which is the best solution
+        gbest = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)   # Find prey which is the best solution
 
         for i in range(self.epoch):
             a = 2 - 2 * i / (self.epoch - 1)            # linearly decreased from 2 to 0
@@ -156,27 +173,27 @@ class LWOA(BaseWOA):
 
                 if (p < 0.5):
                     if np.abs(A) < 1:
-                        new_position = self.shrink_encircling_Levy(pop[j][self.ID_POS],
-                                                                   gbest[self.ID_POS],
+                        new_position = self.shrink_encircling_Levy(pop[j][self.ID_CURRENT_POS],
+                                                                   gbest[self.ID_CURRENT_POS],
                                                                    i,
                                                                    C)
                     else :
                         x_rand = pop[np.random.randint(self.pop_size)] # chon ra 1 thang random
-                        D = np.abs(C * x_rand[self.ID_POS] - pop[j][self.ID_POS])
+                        D = np.abs(C * x_rand[self.ID_CURRENT_POS] - pop[j][self.ID_CURRENT_POS])
                         new_position = (x_rand[self.ID_POS] - A * D)
                 else:
                     D1 = np.abs(gbest[0] - pop[j][0])
-                    new_position = D1 * np.exp(b * l) * np.cos(2 * np.pi * l) + gbest[self.ID_POS]
+                    new_position = D1 * np.exp(b * l) * np.cos(2 * np.pi * l) + gbest[self.ID_CURRENT_POS]
                 new_position[new_position < self.domain_range[0]] = self.domain_range[0]
                 new_position[new_position > self.domain_range[1]] = self.domain_range[1]
                 fit = self._fitness_model__(new_position)
-                pop[j] = [new_position, fit]
+                pop[j] = [new_position, pop[j][self.ID_BEST_PAST_POS], pop[j][self.ID_VECTOR_V], fit, pop[j][self.ID_PAST_FIT]]
 
-            current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_FIT, id_best=self.ID_MIN_PROBLEM)
-            if current_best[self.ID_FIT] < gbest[self.ID_FIT]:
+            current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)
+            if current_best[self.ID_CURRENT_FIT] < gbest[self.ID_CURRENT_FIT]:
                 gbest = deepcopy(current_best)
-            self.loss_train.append(gbest[self.ID_FIT])
+            self.loss_train.append(gbest[self.ID_CURRENT_FIT])
             if self.print_train:
-                print("Epoch = {}, Fit = {}".format(i + 1, gbest[self.ID_FIT]))
+                print("Epoch = {}, Fit = {}".format(i + 1, gbest[self.ID_CURRENT_FIT]))
         #print(gbest[self.ID_POS])
-        return gbest[self.ID_POS], self.loss_train
+        return gbest[self.ID_CURRENT_POS], self.loss_train
