@@ -7,7 +7,7 @@ function_list = [C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C1
                  C23, C24, C25, C26, C27, C28, C29, C30]
 
 # function_list = [islo_uni_F1]
-dimensions = [20, 50, 100]
+dimensions = [100]
 GSO_paras = {
         "epoch": [50, 10, 300],
         "pop_size": 150,
@@ -16,7 +16,7 @@ GSO_paras = {
         "num_subswarm": 15
     }
 model_name = "GSOLWOA"
-n_times = 20
+n_times = 2
 epoch = GSO_paras["epoch"][0]
 results = []
 dir_path = os.path.join(os.path.dirname(__file__), "results/", model_name)
