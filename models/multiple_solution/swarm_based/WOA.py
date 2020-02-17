@@ -192,7 +192,6 @@ class LWOA(BaseWOA):
             current_best = self._get_global_best__(pop=pop, id_fitness=self.ID_CURRENT_FIT, id_best=self.ID_MIN_PROBLEM)
             if current_best[self.ID_CURRENT_FIT] < gbest[self.ID_CURRENT_FIT]:
                 gbest = deepcopy(current_best)
-            print(type(gbest[self.ID_CURRENT_FIT]))
             if isinstance(gbest[self.ID_CURRENT_FIT], float):
                 self.loss_train.append(gbest[self.ID_CURRENT_FIT])
             else:
