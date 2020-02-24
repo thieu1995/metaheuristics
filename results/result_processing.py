@@ -58,7 +58,7 @@ for i in range(len(function_name_list)):
             f.close()
 
         for result in results:
-            if result['function_name'] == function_name and result['dimension'] == 100:
+            if result['function_name'] == function_name and result['dimension'] == 20:
                 if model_name == "LWOA":
                     mean_history_train_loss = []
                     for j in range(len(result['mean_history_train_loss'])):
@@ -79,8 +79,8 @@ for i in range(len(function_name_list)):
         plt.plot(loss, label=model_names[x])
     plt.xlabel('Function Evaluation')
     plt.ylabel('log(Best fitness - '+str(constant[i])+")")
-    plt.xticks(np.arange(0, 51, 10), ["0"", 60000", "120000", "180000", "240000", "300000"])
-    plt.title(function_name.split('_')[-1]+" with dimension "+str(100))
+    plt.xticks(np.arange(10, 51, 10), ["60000", "120000", "180000", "240000", "300000"])
+    plt.title(function_name.split('_')[-1]+" with dimension "+str(20))
     plt.legend()
     plt.savefig('./figures/log/'+function_name+'.png')
     plt.close()
