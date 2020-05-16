@@ -96,22 +96,6 @@ class ISLO(SLnO):
         x_past_fitness = deepcopy(x_fitness)
         return [x, x_fitness,  x_past_best, x_past_fitness]
 
-    def _caculate_xichma__(self, beta):
-        up = math.gamma(1 + beta) * math.sin(math.pi * beta / 2)
-        down = (math.gamma((1 + beta) / 2) * beta * math.pow(2, (beta - 1) / 2))
-        xich_ma_1 = math.pow(up / down, 1 / beta)
-        xich_ma_2 = 1
-        return xich_ma_1, xich_ma_2
-
-    def _shrink_encircling_Levy__(self, current_sea_lion, epoch_i, dist, c, beta=1):
-        xich_ma_1, xich_ma_2 = self._caculate_xichma__(beta)
-        a = np.random.normal(0, xich_ma_1, 1)
-        b = np.random.normal(0, xich_ma_2, 1)
-        LB = 0.01 * a / (math.pow(np.abs(b), 1 / beta)) * dist * c
-        D = np.random.uniform(self.domain_range[0], self.domain_range[1], 1)
-        levy = LB * D
-        return (current_sea_lion - math.sqrt(epoch_i + 1) * np.sign(np.random.random(1) - 0.5)) * levy
-
     def _train__(self):
         pop = [self._create_solution__() for _ in range(self.pop_size)]
         # Find prey which is the best solution
@@ -136,22 +120,19 @@ class ISLO(SLnO):
                     if c <= 1:
                         dist1 = b1 * np.abs(2 * gbest[self.ID_POS] - pop[j][self.ID_POS])
                         dist2 = b2 * np.abs(2 * pop[j][self.ID_PBEST_POS] - pop[j][self.ID_POS])
-                        new_position = self._shrink_encircling_Levy__(pop[j][self.ID_POS], i, dist1, c)
-                        # new_position = r1 * (gbest[self.ID_POS] - c * dist1) + \
-                        #                r2 * (pop[j][self.ID_PBEST_POS] - c * dist2)
+                        new_position = r1 * (gbest[self.ID_POS] - c * dist1) + \
+                                       r2 * (pop[j][self.ID_PBEST_POS] - c * dist2)
                     else:
 
                         random_SL_1 = np.random.uniform(self.domain_range[0], self.domain_range[1],
                                                         (self.problem_size, 1))
-                        # random_SL_1 = gbest[self.ID_CURRENT_POSITION]
 
                         rand_index = np.random.randint(0, self.pop_size)
                         random_SL_2 = pop[rand_index][self.ID_PBEST_POS]
-                        random_SL = random_SL_1 * 2 - random_SL_2
+                        random_SL = random_SL_2 * 2 - random_SL_1
 
-                        # dist = np.abs(b * random_SL - pop[j][self.ID_CURRENT_POSITION])
-                        # new_position = random_SL - dist*c
-                        new_position = random_SL
+                        dist = np.abs(b * random_SL - pop[j][self.ID_CURRENT_POSITION])
+                        new_position = random_SL - dist*c
                 # new_position[new_position < self.domain_range[0]] = self.domain_range[0]
                 # new_position[new_position > self.domain_range[1]] = self.domain_range[1]
 
