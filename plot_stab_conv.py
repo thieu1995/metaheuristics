@@ -34,8 +34,8 @@ def plot_and_save(fun_index, labels_data, labels_legend=None, partly=False):
     file_name = 'F' + str(fun_index + 1)
     if partly:
         file_name += '_partly'
-    stable_file = file_name + '_stable.pdf'
-    convergence_file = file_name + '_conv.pdf'
+    stable_file = file_name + '_stable.jpg'
+    convergence_file = file_name + '_conv.jpg'
 
     df_fit, df_loss = get_loss_fit(fun_index, labels_data)
 
@@ -52,15 +52,15 @@ def plot_and_save(fun_index, labels_data, labels_legend=None, partly=False):
         axe1.legend(labels_legend)
     else:
         axe1.legend(labels_data)
-    axe1.set_title('F' + str(fun_index))
+    axe1.set_title('F' + str(fun_index + 1))
 
     axe2 = sns.boxplot(data=df_fit, ax=ax2)
     axe2.set_xlabel("Algorithm")
     axe2.set_ylabel("Average Fitness")
     axe2.set_title(file_name)
 
-    fig1.savefig('./history/convergence/' + convergence_file)
-    fig2.savefig("./history/stability/" + stable_file, figsize=(1, 2), dpi=10)
+    fig1.savefig('./history/png/convergence/' + convergence_file)
+    fig2.savefig("./history/png/stability/" + stable_file, figsize=(1, 2), dpi=10)
     # plt.show()
     fig1.clf()
     fig2.clf()
@@ -69,12 +69,12 @@ def plot_and_save(fun_index, labels_data, labels_legend=None, partly=False):
 
 
 if __name__ == '__main__':
-    labels_to_get_data = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'IQSO']
-    labels_to_plot_legend = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'IQSO']
+    labels_to_get_data = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'nQSV']
+    labels_to_plot_legend = ['GA', 'ABC', 'PSO', 'CRO', 'WOA', 'QSO', 'nQSV']
     labels_to_get_partly_data = ['WOA', 'QSO', 'IQSO']
     with open('./history/overall/algo_dict_info.pkl', 'rb') as f:
             algo_infor = pkl.load(f)
-    partly = True
+    partly = False
     if partly is False:
         for i in range(30):
             plot_and_save(i, labels_to_get_data, labels_to_plot_legend)

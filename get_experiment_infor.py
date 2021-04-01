@@ -18,7 +18,10 @@ algo_dict = {}
 for name in algos:
     al = AlgoInfor()
     al.name = name
-    print(name)
+    if name == 'IQSO':
+        al.name = 'nQSV'
+        print("true")
+    print(al.name)
     # iterate over 30 benmark functions
     for i in range(1, 31):
         function_name = 'F' + str(i)
@@ -52,7 +55,7 @@ for name in algos:
         al.worst.append(worst)
         al.loss.append(np.array(loss))
         al.best_fit.append(np.array(best_fit))
-    algo_dict[name] = al
+    algo_dict[al.name] = al
 
 # save infor as pickle file
 with open('./history/overall/algo_dict_info.pkl', 'wb') as f:
@@ -61,4 +64,4 @@ with open('./history/overall/algo_dict_info.pkl', 'wb') as f:
 with open('./history/overall/algo_dict_info.pkl', 'rb') as f:
     alf = pkl.load(f)
 
-print(alf['PSO'].name)
+print(alf['nQSV'].name)
