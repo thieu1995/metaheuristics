@@ -109,7 +109,7 @@ class PO:
 
         return 0
 
-    def PoliticalOptimizer(self):
+    def _train__(self):
        
         ################
         # Initialization: sth arbitrary now to replicate the paper, making 9 2D individuals
