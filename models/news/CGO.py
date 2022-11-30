@@ -11,6 +11,8 @@ from copy import deepcopy
 
 class BaseCGO(Optimizer):
 
+    # Chaos Game Optimization: a novel metaheuristic algorithm
+
     def __init__(self, obj_func=None, lb=list, ub=list, verbose=True, epoch=1000, pop_size=100):
         super().__init__(obj_func, lb, ub, verbose)
         self.epoch = epoch
