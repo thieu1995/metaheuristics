@@ -1,4 +1,4 @@
-from models.multiple_solution.human_based.PO import BaseABC
+from models.multiple_solution.human_based.PO import PO
 from utils.FunctionUtil import square_function
 
 ## Setting parameters
@@ -14,7 +14,7 @@ root_paras = {
 
 
 
-poo_params = {
+po_params = {
     'fun':lambda x: x[0]**2 + x[1]**2, #the function we want to optimize
     'n':3,                             #the number of contituencies, political parties and party members
     'tmax':100,                        #number of iterations
