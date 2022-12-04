@@ -73,7 +73,7 @@ class PO:
                 sp = np.random.rand()
                 if (sp < Lambda):
                     r = np.random.randint(0, self.n - 1)  # the random new party (from 0 to n-1 as it how python indexes)
-                    q = np.argmax(fitnesst[parties[r]])  # do we have to recompute here? or time consuming
+                    q = np.argmax(fitnesst[parties[r]]) 
                     old = parties[i][j].copy()
                     new = parties[r][q].copy()
                     # print('before')
