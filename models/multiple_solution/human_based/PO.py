@@ -22,48 +22,48 @@ class PO:
         self.d = po_params['d']
 
         
-    def ElectionCampaign(self, pji, pjitminus1, pstari, cstarj):
-        if (self.fun(pji) <= self.fun(pjitminus1)):
+    def ElectionCampaign(self, leader_position, leader_minus_1, pstari, cstarj):
+        if (self.fun(leader_position) <= self.fun(leader_minus_1)):
             for k in range(self.d):
                 mstar = pstari[k]
                 r = np.random.rand()
                 # Implementation of eq9
-                if ((pjitminus1[k] <= pji[k] <= mstar) or (pjitminus1[k] >= pji[k] >= mstar)):
-                    pji[k] = mstar + r * (mstar - pji[k])
-                elif ((pjitminus1[k] <= mstar <= pji[k]) or (pjitminus1[k] >= mstar >= pji[k])):
-                    pji[k] = mstar = (2 * r - 1) * abs(mstar - pji[k])
-                elif ((mstar <= pjitminus1[k] <= pji[k]) or (mstar >= pjitminus1[k] >= pji[k])):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pjitminus1[k])
+                if ((leader_minus_1[k] <= leader_position[k] <= mstar) or (leader_minus_1[k] >= leader_position[k] >= mstar)):
+                    leader_position[k] = mstar + r * (mstar - leader_position[k])
+                elif ((leader_minus_1[k] <= mstar <= leader_position[k]) or (leader_minus_1[k] >= mstar >= leader_position[k])):
+                    leader_position[k] = mstar = (2 * r - 1) * abs(mstar - leader_position[k])
+                elif ((mstar <= leader_minus_1[k] <= leader_position[k]) or (mstar >= leader_minus_1[k] >= leader_position[k])):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_minus_1[k])
                 mstar = cstarj[k]
                 r = np.random.rand()
                 # This is just a copy paste of what was above, since eq 9 already implemented
-                if ((pjitminus1[k] <= pji[k] <= mstar) or (pjitminus1[k] >= pji[k] >= mstar)):
-                    pji[k] = mstar + r * (mstar - pji[k])
-                elif ((pjitminus1[k] <= mstar <= pji[k]) or (pjitminus1[k] >= mstar >= pji[k])):
-                    pji[k] = mstar = (2 * r - 1) * abs(mstar - pji[k])
-                elif ((mstar <= pjitminus1[k] <= pji[k]) or (mstar >= pjitminus1[k] >= pji[k])):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pjitminus1[k])
+                if ((leader_minus_1[k] <= leader_position[k] <= mstar) or (leader_minus_1[k] >= leader_position[k] >= mstar)):
+                    leader_position[k] = mstar + r * (mstar - leader_position[k])
+                elif ((leader_minus_1[k] <= mstar <= leader_position[k]) or (leader_minus_1[k] >= mstar >= leader_position[k])):
+                    leader_position[k] = mstar = (2 * r - 1) * abs(mstar - leader_position[k])
+                elif ((mstar <= leader_minus_1[k] <= leader_position[k]) or (mstar >= leader_minus_1[k] >= leader_position[k])):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_minus_1[k])
         else:
             for k in range(self.d):
                 mstar = pstari[k]
                 r = np.random.rand()
                 # Implementation of eq 10
-                if ((pjitminus1[k] <= pji[k] <= mstar) or (pjitminus1[k] >= pji[k] >= mstar)):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pji[k])
-                elif ((pjitminus1[k] <= mstar <= pji[k]) or (pjitminus1[k] >= mstar >= pji[k])):
-                    pji[k] = pjitminus1[k] + r * (pji[k] - pjitminus1[k])
-                elif ((mstar <= pjitminus1[k] <= pji[k]) or (mstar >= pjitminus1[k] >= pji[k])):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pjitminus1[k])
+                if ((leader_minus_1[k] <= leader_position[k] <= mstar) or (leader_minus_1[k] >= leader_position[k] >= mstar)):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_position[k])
+                elif ((leader_minus_1[k] <= mstar <= leader_position[k]) or (leader_minus_1[k] >= mstar >= leader_position[k])):
+                    leader_position[k] = leader_minus_1[k] + r * (leader_position[k] - leader_minus_1[k])
+                elif ((mstar <= leader_minus_1[k] <= leader_position[k]) or (mstar >= leader_minus_1[k] >= leader_position[k])):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_minus_1[k])
                 mstar = cstarj[k]
                 r = np.random.rand()
                 # Copy paste of what was above, since eq 10 already implemented
-                if ((pjitminus1[k] <= pji[k] <= mstar) or (pjitminus1[k] >= pji[k] >= mstar)):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pji[k])
-                elif ((pjitminus1[k] <= mstar <= pji[k]) or (pjitminus1[k] >= mstar >= pji[k])):
-                    pji[k] = pjitminus1[k] + r * (pji[k] - pjitminus1[k])
-                elif ((mstar <= pjitminus1[k] <= pji[k]) or (mstar >= pjitminus1[k] >= pji[k])):
-                    pji[k] = mstar + (2 * r - 1) * abs(mstar - pjitminus1[k])
-        return pji
+                if ((leader_minus_1[k] <= leader_position[k] <= mstar) or (leader_minus_1[k] >= leader_position[k] >= mstar)):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_position[k])
+                elif ((leader_minus_1[k] <= mstar <= leader_position[k]) or (leader_minus_1[k] >= mstar >= leader_position[k])):
+                    leader_position[k] = leader_minus_1[k] + r * (leader_position[k] - leader_minus_1[k])
+                elif ((mstar <= leader_minus_1[k] <= leader_position[k]) or (mstar >= leader_minus_1[k] >= leader_position[k])):
+                    leader_position[k] = mstar + (2 * r - 1) * abs(mstar - leader_minus_1[k])
+        return leader_position
 
     def PartySwitching(self, parties, population, Lambda, fitnesst):
         for i in range(len(parties)):
